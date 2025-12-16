@@ -10,7 +10,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
     /* Emit */
@@ -77,7 +76,9 @@
     "node_modules",
     "dist",
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "src/batch/**/*",
+    "src/routes/batch/**/*"
   ],
 
   /* TS-Node Configuration */
