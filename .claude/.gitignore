@@ -1,0 +1,6 @@
+# Environment files with secrets
+**/environments/environment*.ts
+!**/environments/environment.example.ts
+
+# Backend environment
+backend/.env

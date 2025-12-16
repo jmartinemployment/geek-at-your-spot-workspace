@@ -1,0 +1,45 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "strict": true,
+    "paths": {
+      "geek-at-your-spot-component-library": [
+        "./dist/geek-at-your-spot-component-library"
+      ]
+    },
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/geek-at-your-spot-component-library/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/geek-at-your-spot-component-library/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/my-elements-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/my-elements-app/tsconfig.spec.json"
+    }
+  ]
+}

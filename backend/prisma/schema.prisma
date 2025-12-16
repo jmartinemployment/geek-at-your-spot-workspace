@@ -1,0 +1,159 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// LEAD MODEL - Main customer/prospect record
+// ============================================
+model Lead {
+  id                  Int           @id @default(autoincrement())
+  name                String
+  email               String        @unique
+  phone               String?
+  company             String?
+  projectDescription  String        @db.Text
+  estimatedBudgetMin  Decimal?      @db.Decimal(10, 2)
+  estimatedBudgetMax  Decimal?      @db.Decimal(10, 2)
+  estimatedTimeline   String?
+  status              LeadStatus    @default(NEW)
+  source              String        @default("website")
+  ipAddress           String?
+  userAgent           String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  // Relationships
+  conversations       Conversation[]
+  bookings            Booking[]
+  project             Project?
+
+  // Indexes for performance
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ============================================
+// CONVERSATION MODEL - Chat history
+// ============================================
+model Conversation {
+  id          Int       @id @default(autoincrement())
+  leadId      Int
+  lead        Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  messages    Json      // Array of {role, content, timestamp}
+  aiModel     String    @default("claude-sonnet-4")
+  tokenCount  Int?
+  cost        Decimal?  @db.Decimal(10, 4)  // Track API costs
+  createdAt   DateTime  @default(now())
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+// ============================================
+// BOOKING MODEL - Calendar appointments
+// ============================================
+model Booking {
+  id              Int           @id @default(autoincrement())
+  leadId          Int
+  lead            Lead          @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  scheduledTime   DateTime
+  durationMinutes Int           @default(30)
+  meetingType     String        // 'consultation', 'demo', 'follow-up'
+  status          BookingStatus @default(SCHEDULED)
+  meetingUrl      String?       // Zoom/Google Meet link
+  notes           String?       @db.Text
+  reminderSent    Boolean       @default(false)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([leadId])
+  @@index([scheduledTime])
+  @@index([status])
+}
+
+// ============================================
+// PROJECT MODEL - Active/completed projects
+// ============================================
+model Project {
+  id              Int           @id @default(autoincrement())
+  leadId          Int           @unique
+  lead            Lead          @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  projectName     String
+  actualBudget    Decimal?      @db.Decimal(10, 2)
+  actualTimeline  String?
+  techStack       Json?         // Array of technologies: ["Angular", "Node.js", etc]
+  status          ProjectStatus @default(IN_PROGRESS)
+  startDate       DateTime?
+  endDate         DateTime?
+  completedAt     DateTime?
+  githubRepo      String?
+  liveUrl         String?
+  notes           String?       @db.Text
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@index([startDate])
+}
+
+// ============================================
+// QUOTE MODEL - Detailed quote information
+// ============================================
+model Quote {
+  id              Int       @id @default(autoincrement())
+  leadId          Int
+  projectType     String    // "WordPress Site", "E-commerce", "Custom App"
+  features        Json      // Array of included features
+  minBudget       Decimal   @db.Decimal(10, 2)
+  maxBudget       Decimal   @db.Decimal(10, 2)
+  timeline        String    // "4-6 weeks"
+  validUntil      DateTime  // Quote expiration
+  acceptedAt      DateTime?
+  rejectedAt      DateTime?
+  notes           String?   @db.Text
+  createdAt       DateTime  @default(now())
+
+  @@index([leadId])
+  @@index([validUntil])
+}
+
+// ============================================
+// ENUMS - Status types
+// ============================================
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  CONSULTATION_BOOKED
+  PROPOSAL_SENT
+  NEGOTIATING
+  WON
+  LOST
+  INACTIVE
+}
+
+enum BookingStatus {
+  SCHEDULED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+  RESCHEDULED
+}
+
+enum ProjectStatus {
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+  MAINTENANCE
+}

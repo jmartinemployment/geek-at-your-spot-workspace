@@ -1,0 +1,52 @@
+ <!-- Overlay backdrop -->
+    <div
+      *ngIf="isOpen()"
+      class="sidebar-overlay"
+      [class.open]="isOpen()"
+      (click)="handleClose()"
+      [attr.aria-hidden]="true">
+    </div>
+
+    <!-- Sidebar -->
+    <aside
+      id="sidebar-menu"
+      role="navigation"
+      [attr.aria-label]="'Main navigation'"
+      [class.open]="isOpen()"
+      class="sidebar">
+
+      <div class="sidebar-header">
+        <h2>Menu</h2>
+        <button
+          (click)="handleClose()"
+          [attr.aria-label]="'Close menu'"
+          class="sidebar-close-btn">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            [attr.aria-hidden]="true">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="sidebar-menu">
+          <li *ngFor="let item of menuItems()">
+            <a
+              [href]="item.href"
+              (click)="handleClose()"
+              class="sidebar-menu-link">
+              {{ item.name }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>

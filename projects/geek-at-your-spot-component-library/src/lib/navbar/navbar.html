@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <nav class="navbar shadow-sm">
+    <!-- Logo on the left -->
+    <div class="navbar-logo-container">
+      <img
+        [src]="logoUrl()"
+        [alt]="logoAlt()"
+        class="navbar-logo" />
+    </div>
+
+    <!-- Hamburger menu on the right -->
+    <button
+      (click)="toggleSidebar()"
+      [attr.aria-label]="'Open menu'"
+      [attr.aria-expanded]="isSidebarOpen()"
+      [attr.aria-controls]="'sidebar-menu'"
+      class="navbar-hamburger-btn">
+      <svg
+        class="navbar-hamburger-icon"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        [attr.aria-hidden]="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+    <!-- SideBar Component -->
+    <lib-sidebar
+      [isOpen]="isSidebarOpen()"
+      (close)="closeSidebar()">
+    </lib-sidebar>
+</div>
+

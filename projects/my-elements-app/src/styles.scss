@@ -1,0 +1,14 @@
+$enable-deprecation-messages: false;// TODO: Migrate to @use when Bootstrap fully supports Dart Sass 3.0
+// Using @import temporarily until Bootstrap updates their internal dependencies
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Global styles
+html, body {
+  overflow-x: hidden;
+}
+$card-height: 100%;
+
+
+@import 'bootstrap/scss/bootstrap.scss';

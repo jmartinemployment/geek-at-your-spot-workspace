@@ -1,0 +1,300 @@
+$enable-deprecation-messages: false;// TODO: Migrate to @use when Bootstrap fully supports Dart Sass 3.0
+// Using @import temporarily until Bootstrap updates their internal dependencies
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Global styles
+html, body {
+  overflow-x: hidden;
+}
+$card-height: 100%;
+
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+.card-header {
+  text-align: center;
+  min-width: 100%;
+}
+.geek-quote {
+  background-color: #0A0B26;
+}
+
+    .geek-quote-ai {
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      max-width: 800px;
+      margin: 0 auto;
+      background: $white;
+      border-radius: $border-radius-lg;
+      box-shadow: $box-shadow-lg;
+      overflow: hidden;
+    }
+
+    // Header
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: $white;
+      padding: $spacer * 1.5;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: $spacer;
+    }
+
+    .ai-avatar {
+      font-size: 2.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: $h4-font-size;
+      font-weight: $font-weight-bold;
+    }
+
+    .header-subtitle {
+      margin: 0;
+      font-size: $font-size-sm;
+      opacity: 0.9;
+    }
+
+    // Messages Area
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: $spacer * 1.5;
+      background: $gray-100;
+    }
+
+    .message {
+      margin-bottom: $spacer * 1.5;
+    }
+
+    .message-content {
+      display: flex;
+      gap: $spacer;
+      align-items: flex-start;
+    }
+
+    .message-avatar {
+      font-size: 1.5rem;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $white;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .message-bubble {
+      max-width: 70%;
+      padding: $spacer;
+      border-radius: $border-radius-lg;
+      background: $white;
+      box-shadow: $box-shadow-sm;
+    }
+
+    .message-assistant .message-bubble {
+      background: $white;
+    }
+
+    .message-user {
+      .message-content {
+        flex-direction: row-reverse;
+      }
+      .message-bubble {
+        background: #667eea;
+        color: $white;
+      }
+    }
+
+    .message-time {
+      display: block;
+      font-size: $font-size-sm;
+      color: $text-muted;
+      margin-top: $spacer * 0.5;
+    }
+
+    .message-user .message-time {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    // Typing Indicator
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: $spacer * 0.5;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $gray-500;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+      30% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+    }
+
+// Quote Estimate
+    .quote-estimate {
+      margin: $spacer 0;
+      padding: $spacer * 1.5;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: $border-radius-lg;
+      border: 2px solid #667eea;
+    }
+
+    .estimate-header {
+      margin-bottom: $spacer;
+      h4 {
+        margin: 0;
+        color: #667eea;
+        font-weight: $font-weight-bold;
+      }
+    }
+
+    .estimate-row {
+      display: flex;
+      justify-content: space-between;
+      padding: $spacer * 0.75 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .estimate-row.highlight {
+      background: rgba(102, 126, 234, 0.1);
+      padding: $spacer;
+      margin: $spacer 0;
+      border-radius: $border-radius;
+      border: none;
+      font-size: $h5-font-size;
+      font-weight: $font-weight-bold;
+    }
+
+    .estimate-label {
+      font-weight: $font-weight-semibold;
+      color: $gray-700;
+    }
+
+    .estimate-value {
+      color: $gray-900;
+    }
+
+    .estimate-features {
+      margin-top: $spacer;
+      ul {
+        margin: $spacer * 0.5 0 0 0;
+        padding-left: $spacer * 1.5;
+      }
+      li {
+        color: $gray-700;
+        margin-bottom: $spacer * 0.25;
+      }
+    }
+
+    // Input Area
+    .chat-input {
+      padding: $spacer * 1.5;
+      background: $white;
+      border-top: 1px solid $border-color;
+    }
+
+    .input-form {
+      display: flex;
+      gap: $spacer;
+    }
+
+    .input-field {
+      flex: 1;
+      padding: $spacer;
+      border: 2px solid $gray-300;
+      border-radius: $border-radius-lg;
+      font-size: $font-size-base;
+      transition: $transition-base;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+      }
+
+      &:disabled {
+        background-color: $gray-200;
+        cursor: not-allowed;
+      }
+    }
+
+    .send-button {
+      padding: $spacer ($spacer * 2);
+      background: #667eea;
+      color: $white;
+      border: none;
+      border-radius: $border-radius-lg;
+      font-weight: $font-weight-semibold;
+      cursor: pointer;
+      transition: $transition-base;
+
+      &:hover:not(:disabled) {
+        background: #5568d3;
+        transform: translateY(-2px);
+        box-shadow: $box-shadow;
+      }
+
+      &:disabled {
+        background: $gray-400;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+
+    .input-hint {
+      margin: $spacer * 0.5 0 0 0;
+      font-size: $font-size-sm;
+      color: $text-muted;
+      font-style: italic;
+    }
+
+    // Responsive
+    @include media-breakpoint-down(md) {
+      .geek-quote-ai {
+        height: 500px;
+      }
+
+      .message-bubble {
+        max-width: 85%;
+      }
+
+      .quote-estimate {
+        padding: $spacer;
+      }
+    }
