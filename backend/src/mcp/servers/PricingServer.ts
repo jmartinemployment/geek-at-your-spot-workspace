@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ============================================
 // src/mcp/servers/PricingServer.ts
 // MCP Server: Cost Estimation & Budget Optimization

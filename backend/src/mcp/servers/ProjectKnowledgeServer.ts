@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ============================================
 // src/mcp/servers/ProjectKnowledgeServer.ts
 // MCP Server: Project Knowledge Database

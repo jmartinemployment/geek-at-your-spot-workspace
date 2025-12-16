@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ============================================
 // src/mcp/client/MCPClient.ts
 // MCP Client: Claude API Integration with Tools

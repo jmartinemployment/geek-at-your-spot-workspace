@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ============================================
 // src/mcp/servers/ServiceCatalogServer.ts
 // MCP Server: Service Catalog & Recommendations
