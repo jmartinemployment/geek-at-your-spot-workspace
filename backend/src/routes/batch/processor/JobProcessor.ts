@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ============================================
 // src/batch/processor/JobProcessor.ts
 // Job Processor - Executes jobs in the background

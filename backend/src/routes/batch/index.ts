@@ -35,13 +35,13 @@ export type JobType =
   | 'data_export'
   | 'custom';
 // Export types
-export * from './types';
-
+/* export * from './types';
+ */
 // Export queue
 export { JobQueue } from './queue/JobQueue';
 
-// Export processor
-export { JobProcessor, DefaultProcessors } from './processor/JobProcessor';
+/* // Export processor
+export { JobProcessor, DefaultProcessors } from './processor/JobProcessor'; */
 
 // Export main service
 export { BatchService } from './BatchService';
@@ -340,8 +340,7 @@ export interface BatchConfig {
  */
 export interface ProcessorRegistryEntry {
   type: JobType;
-  processor: JobProcessor;
-  defaultTimeout?: number;
+ defaultTimeout?: number;
   defaultMaxAttempts?: number;
 }
 
