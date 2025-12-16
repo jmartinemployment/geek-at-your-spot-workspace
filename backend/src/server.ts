@@ -374,8 +374,8 @@ app.use('/api/mcp', mcpRoutes);
 app.use('/api/code-execution', codeExecutionRoutes);
 app.use('/api/a2a', a2aRoutes);
 app.use('/api/extended-context', extendedContextRoutes);
-app.use('/api/batch', batchRoutes);
-
+/* app.use('/api/batch', batchRoutes);
+ */
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({

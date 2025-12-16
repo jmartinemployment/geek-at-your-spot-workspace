@@ -67,7 +67,6 @@
     },
 
     /* Additional Options */
-    "types": ["node", "jest"]
   },
 
   /* Include/Exclude */
