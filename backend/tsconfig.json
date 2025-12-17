@@ -47,14 +47,16 @@
     "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "src/routes/batch/**/*",
-    "src/batch/**/*",
-    "src/routes/extended-context.ts",
-    "src/server.backup*.ts"
+  "node_modules",
+  "dist",
+  "**/*.spec.ts",
+  "**/*.test.ts",
+  "src/routes/batch/**/*",
+  "src/batch/**/*",
+  "src/routes/extended-context.ts",
+  "src/server.backup*.ts",
+  "src/test-db.ts",
+  "src/test*.ts"
   ],
   "ts-node": {
     "require": ["tsconfig-paths/register"],
