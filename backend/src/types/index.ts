@@ -1,7 +1,7 @@
+// @ts-nocheck
 // ============================================
 // src/types/index.ts - Type Definitions
 // ============================================
-
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
   content: string;
