@@ -10,6 +10,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+
 // ============================================
 // LEAD MODEL - Main customer/prospect record
 // ============================================
