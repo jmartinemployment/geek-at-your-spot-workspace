@@ -22,7 +22,7 @@ import {
   Message,
   QuoteEstimate,
   LeadInfo
-} from '../services/geek-quote-ai.service.depreciated';
+} from '../services/geek-quote-ai.service';
 
 // ============================================
 // COMPONENT

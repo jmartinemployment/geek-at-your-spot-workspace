@@ -161,11 +161,16 @@ Remember: You have access to real data through MCP tools. Use them to provide ac
    * Extract text from MCP response
    */
   private extractTextFromResponse(response: any): string {
+    // Backend now returns content as a string directly
+    if (typeof response.content === 'string') {
+      return response.content;
+    }
+
+    // Fallback to old format (array of blocks)
     if (!response.content || !Array.isArray(response.content)) {
       return 'Sorry, I received an invalid response.';
     }
 
-    // Combine all text blocks
     return response.content
       .filter((block: any) => block.type === 'text')
       .map((block: any) => block.text)
