@@ -1,11 +1,10 @@
 /* Existing styles */
-.geek-quote {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 15px;
+.geek-quote-banner {
+  background-color: #0A0B26;
 }
 
 /* Dialog Styles */
-.chat-dialog {
+/* .chat-dialog {
   max-width: 800px;
   width: 90%;
   max-height: 80vh;
@@ -111,7 +110,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-}
+} */
 
 /* Loading State */
 .thinking-indicator {

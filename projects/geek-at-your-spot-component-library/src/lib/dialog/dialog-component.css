@@ -46,14 +46,3 @@
   opacity: 0.6;
   margin-top: 4px;
 }
-
-/* Dialog Footer Input */
-.input-group {
-  display: flex;
-  width: 100%;
-  gap: 8px;
-}
-
-.input-group input {
-  flex: 1;
-}

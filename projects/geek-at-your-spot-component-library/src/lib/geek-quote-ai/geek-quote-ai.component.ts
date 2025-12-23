@@ -18,7 +18,7 @@ export class GeekQuoteAiComponent implements OnInit {
   messages: Message[] = [];
   conversationId: string | null = null;
   isLoading = false;
-  
+
   // New properties for Path B
   currentPhase: ConversationPhase = 'gathering';
   readinessScore: number = 0;

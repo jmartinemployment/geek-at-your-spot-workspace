@@ -62,7 +62,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy, OnChanges {
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('dialogContent') dialogContent!: ElementRef<HTMLDivElement>;
   @Input() messages: Message[] = [];
-  @Input() isSending: boolean = false;
+  @Input() isSending = false;
   @Output() messageSent = new EventEmitter<string>();
   
   inputText = '';
@@ -104,6 +104,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   getSafeHtml(content: string): SafeHtml {
+    // Trust HTML from our backend since we control it
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
