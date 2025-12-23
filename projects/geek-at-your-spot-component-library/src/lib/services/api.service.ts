@@ -4,30 +4,58 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface MCPChatRequest {
-  messages: Array<{
-    role: 'user' | 'assistant';
-    content: string;
-  }>;
+  messages: Array<{ role: 'user' | 'assistant'; content: string }>;
   system_prompt?: string;
   max_tool_uses?: number;
   temperature?: number;
 }
 
 export interface MCPChatResponse {
-  id: string;
-  type: string;
-  role: string;
-  content: Array<{
-    type: string;
-    text?: string;
-    tool_use?: any;
-  }>;
-  model: string;
-  stop_reason: string;
+  content: string;
+  toolsUsed: string[];
+  stopReason: string;
   usage: {
-    input_tokens: number;
-    output_tokens: number;
+    inputTokens: number;
+    outputTokens: number;
   };
+}
+
+export interface SmartChatRequest {
+  conversationId?: string;
+  message: string;
+  userId?: string;
+}
+
+export type ConversationPhase = 
+  | 'gathering'
+  | 'confirmation_first'
+  | 'clarifying'
+  | 'confirmation_second'
+  | 'human_escalation'
+  | 'complete';
+
+export interface EstimateResult {
+  summary: string;
+  pricing: {
+    basePrice: number;
+    additionalCosts: Array<{ item: string; cost: number }>;
+    totalMin: number;
+    totalMax: number;
+  };
+  timeline: string;
+  nextSteps: string[];
+  formattedEstimate: string;
+}
+
+export interface SmartChatResponse {
+  conversationId: string;
+  response: string;
+  phase: ConversationPhase;
+  readinessScore?: number;
+  requirements?: Record<string, any>;
+  escalationReason?: string;
+  estimateReady?: boolean;
+  estimate?: EstimateResult;
 }
 
 @Injectable({
@@ -38,12 +66,9 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Chat with Claude using MCP tools
-   */
   chat(request: MCPChatRequest): Observable<MCPChatResponse> {
     return this.http.post<MCPChatResponse>(
-      `${this.apiUrl}/api/mcp/chat`,
+      `${this.apiUrl}${environment.endpoints.webDev}/api/mcp/chat`,
       request,
       {
         headers: new HttpHeaders({
@@ -53,34 +78,15 @@ export class ApiService {
     );
   }
 
-  /**
-   * Get available MCP tools
-   */
-  getTools(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/mcp/tools`);
-  }
-
-  /**
-   * Execute specific MCP tool
-   */
-  executeTool(toolName: string, params: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/mcp/execute`, {
-      tool_name: toolName,
-      params: params,
-    });
-  }
-
-  /**
-   * Get MCP health status
-   */
-  getHealth(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/mcp/health`);
-  }
-
-  /**
-   * Get MCP statistics
-   */
-  getStats(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/mcp/stats`);
+  smartChat(request: SmartChatRequest): Observable<SmartChatResponse> {
+    return this.http.post<SmartChatResponse>(
+      `${this.apiUrl}/api/chat`,
+      request,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
+    );
   }
 }

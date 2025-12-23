@@ -1,318 +1,142 @@
-// ============================================
-// geek-quote-ai.ts (replace your existing file with this)
-// GeekQuote AI Chatbot Component - Refactored & Clean
-// ============================================
-
-import {
-  Component,
-  signal,
-  computed,
-  PLATFORM_ID,
-  inject,
-  ViewChild,
-  ElementRef,
-  AfterViewInit
-} from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-// Import service and types from shared services folder
-import {
-  GeekQuoteAiService,
-  Message,
-  QuoteEstimate,
-  LeadInfo
-} from '../services/geek-quote-ai.service';
-
-// ============================================
-// COMPONENT
-// ============================================
+import { GeekQuoteAiService, LeadInfo, Message } from '../services/geek-quote-ai.service';
+import { DialogService } from '../services/dialog.service';
+import { DialogComponent } from '../dialog/dialog-component';
+import { ConversationPhase } from '../services/api.service';
 
 @Component({
   selector: 'lib-geek-quote-ai',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DialogComponent],
   templateUrl: './geek-quote-ai.component.html',
-  styleUrl: './geek-quote-ai.component.scss',
+  styleUrls: ['./geek-quote-ai.component.css']
 })
+export class GeekQuoteAiComponent implements OnInit {
+  userInput: string = '';
+  messages: Message[] = [];
+  conversationId: string | null = null;
+  isLoading = false;
+  
+  // New properties for Path B
+  currentPhase: ConversationPhase = 'gathering';
+  readinessScore: number = 0;
+  estimateReady: boolean = false;
+  escalationReason: string = '';
 
-export class GeekQuoteAiComponent implements AfterViewInit {
+  leadInfo: LeadInfo = {
+    name: 'Prospective Client',
+    email: '',
+    phone: '',
+    company: ''
+  };
 
-imageUrl = 'https://geekatyourspot.com/wp-content/uploads/2025/10/geek@yourSpot-1.jpeg';
-title = 'Empower Your Small Business with Smart Technology';
-subtitle = 'Empower Your Small Business with Smart Technology';
+  constructor(
+    private geekQuoteService: GeekQuoteAiService,
+    public dialogService: DialogService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  // ============================================
-  // DEPENDENCY INJECTION
-  // ============================================
+  ngOnInit(): void {}
 
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly isBrowser = isPlatformBrowser(this.platformId);
-  private readonly geekQuoteService = inject(GeekQuoteAiService);
-
-  // ============================================
-  // VIEW CHILDREN - Proper DOM access
-  // ============================================
-
-  @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
-
-  // ============================================
-  // CONSTANTS
-  // ============================================
-
-  private readonly SCROLL_DELAY_MS = 100;
-
-  // ============================================
-  // STATE SIGNALS
-  // ============================================
-
-  /** Array of chat messages */
-  messages = signal<Message[]>([]);
-
-  /** Current user input text */
-  userInput = '';
-
-  /** Whether AI is processing a response */
-  isThinking = signal(false);
-
-  /** Current quote estimate from AI */
-  currentEstimate = signal<QuoteEstimate | null>(null);
-
-  /** Whether conversation has started */
-  conversationStarted = signal(false);
-
-  // ============================================
-  // LEAD INFORMATION SIGNALS
-  // ============================================
-
-  /** Lead's name (persisted) */
-  leadName = signal<string>('');
-
-  /** Lead's email (persisted) */
-  leadEmail = signal<string>('');
-
-  /** Lead's phone (persisted) */
-  leadPhone = signal<string>('');
-
-  // ============================================
-  // TEMPORARY FORM VARIABLES (converted to signals for consistency)
-  // ============================================
-
-  /** Temporary name input (before submission) */
-  tempName = signal('');
-
-  /** Temporary email input (before submission) */
-  tempEmail = signal('');
-
-  /** Temporary phone input (before submission) */
-  tempPhone = signal('');
-
-  // ============================================
-  // COMPUTED PROPERTIES
-  // ============================================
-
-  /** Total number of messages in conversation */
-  messageCount = computed(() => this.messages().length);
-
-  /** Whether lead info has been captured */
-  hasLeadInfo = computed(() => !!(this.leadName() && this.leadEmail()));
-
-  // ============================================
-  // LIFECYCLE HOOKS
-  // ============================================
-
-  constructor() {
-    // Initialize with welcome message
-    this.addMessage('assistant', this.getWelcomeMessage());
-  }
-
-  ngAfterViewInit(): void {
-    // Initial scroll to bottom after view is initialized
-    setTimeout(() => this.scrollToBottom(), this.SCROLL_DELAY_MS);
-  }
-
-  // ============================================
-  // PUBLIC METHODS
-  // ============================================
-
-  /**
-   * Handle message send from user
-   * @param event - Form submit event
-   */
   async sendMessage(event: Event): Promise<void> {
     event.preventDefault();
 
-    // Validation: Don't send if input is empty or AI is thinking
-    if (!this.userInput.trim() || this.isThinking()) {
+    if (!this.userInput.trim() || this.isLoading) {
       return;
     }
 
     const userMessage = this.userInput.trim();
-
-    // Add user message to chat
-    this.addMessage('user', userMessage);
-
-    // Clear input field
     this.userInput = '';
 
-    // Set thinking state
-    this.isThinking.set(true);
-    this.conversationStarted.set(true);
+    await this.processMessage(userMessage);
+  }
 
-    // Scroll to show user message
-    setTimeout(() => this.scrollToBottom(), this.SCROLL_DELAY_MS);
+  async onDialogMessage(message: string): Promise<void> {
+    await this.processMessage(message);
+  }
+
+  private async processMessage(content: string): Promise<void> {
+    this.messages.push({
+      role: 'user',
+      content,
+      timestamp: new Date()
+    });
+
+    this.isLoading = true;
 
     try {
-      // Prepare lead info
-      const leadInfo: LeadInfo = {
-        name: this.leadName(),
-        email: this.leadEmail(),
-        phone: this.leadPhone()
-      };
-
-      // Call service (no API logic in component!)
       const response = await this.geekQuoteService.sendMessage(
-        this.messages(),
-        leadInfo
+        this.messages,
+        this.leadInfo
       );
 
-      // Add AI response to chat
-      this.addMessage('assistant', response.response);
+      this.messages.push({
+        role: 'assistant',
+        content: response.response,
+        timestamp: new Date()
+      });
 
-      // Update estimate if provided
-      if (response.estimate) {
-        this.currentEstimate.set(response.estimate);
+      // Update Path B state
+      this.currentPhase = response.phase || 'gathering';
+      this.readinessScore = response.readinessScore || 0;
+      this.estimateReady = response.estimateReady || false;
+      this.escalationReason = response.escalationReason || '';
+
+      this.isLoading = false;
+      this.cdr.detectChanges();
+
+      // Open dialog if not already open
+      if (!this.dialogService.isOpen()) {
+        setTimeout(() => {
+          this.dialogService.open({
+            title: this.getDialogTitle(),
+            content: response.response
+          });
+        }, 0);
       }
-
-      // Success - stop thinking
-      this.isThinking.set(false);
-
-      // Scroll to show AI response
-      setTimeout(() => this.scrollToBottom(), this.SCROLL_DELAY_MS);
 
     } catch (error) {
-      // Error handling
       console.error('Chat Error:', error);
-
-      const errorMessage = error instanceof Error
-        ? error.message
-        : 'Unknown error occurred';
-
-      this.addMessage(
-        'assistant',
-        `Sorry, I encountered an error: ${errorMessage}. Please try again or contact us directly at contact@geekatyourspot.com`
-      );
-
-      this.isThinking.set(false);
-    }
-  }
-
-  /**
-   * Capture lead information from form
-   * @param event - Form submit event
-   */
-  captureLeadInfo(event: Event): void {
-    event.preventDefault();
-
-    // Validate required fields
-    if (!this.tempName() || !this.tempEmail()) {
-      console.warn('Name and email are required');
-      return;
-    }
-
-    // Persist to lead signals
-    this.leadName.set(this.tempName());
-    this.leadEmail.set(this.tempEmail());
-    this.leadPhone.set(this.tempPhone());
-
-    // Confirmation message
-    this.addMessage(
-      'assistant',
-      `Thanks ${this.tempName()}! I've got your contact info. Let me continue helping you with your project...`
-    );
-
-    // Clear temp fields
-    this.tempName.set('');
-    this.tempEmail.set('');
-    this.tempPhone.set('');
-  }
-
-  /**
-   * Format message content with simple markdown-like syntax
-   * @param content - Raw message content
-   * @returns HTML string with formatting
-   *
-   * NOTE: In production, consider using DomSanitizer for XSS protection
-   */
-  formatMessage(content: string): string {
-    return content
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold
-      .replace(/\n/g, '<br>')                             // Line breaks
-      .replace(/^- (.*)/gm, '<li>$1</li>')               // List items
-      .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');        // Wrap lists
-  }
-
-  /**
-   * Format timestamp for display
-   * @param date - Message timestamp
-   * @returns Formatted time string
-   */
-  formatTime(date: Date): string {
-    return date.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit'
-    });
-  }
-
-  // ============================================
-  // PRIVATE METHODS
-  // ============================================
-
-  /**
-   * Get welcome message for new conversations
-   */
-  private getWelcomeMessage(): string {
-    return `Hi! I'm GeekQuote AI, your instant project estimator. 🚀
-
-I can help you get a quick quote for your web development project. Just tell me what you're looking to build, and I'll ask a few questions to give you an accurate estimate.
-
-**What kind of project do you have in mind?**
-
-Some examples:
-- "I need a website for my restaurant"
-- "I want an e-commerce store for selling products"
-- "I need a custom web application"
-- "I want to redesign my existing website"`;
-  }
-
-  /**
-   * Add a message to the conversation
-   * @param role - Message sender role
-   * @param content - Message content
-   */
-  private addMessage(role: 'user' | 'assistant', content: string): void {
-    this.messages.update(msgs => [
-      ...msgs,
-      {
-        role,
-        content,
+      this.messages.push({
+        role: 'assistant',
+        content: 'Sorry, there was an error processing your request. Please try again.',
         timestamp: new Date()
-      }
-    ]);
+      });
+      this.isLoading = false;
+    }
   }
 
-  /**
-   * Scroll chat container to bottom
-   * Uses ViewChild for proper Angular DOM access
-   */
-  private scrollToBottom(): void {
-    // Guard: Only run in browser
-    if (!this.isBrowser) return;
+  private getDialogTitle(): string {
+    switch (this.currentPhase) {
+      case 'gathering':
+        return `Requirements Gathering (${this.readinessScore}%)`;
+      case 'confirmation_first':
+      case 'confirmation_second':
+        return 'Please Confirm';
+      case 'complete':
+        return '✅ Estimate Ready';
+      case 'human_escalation':
+        return 'Human Review Needed';
+      default:
+        return 'AI Assistant';
+    }
+  }
 
-    // Guard: Ensure element exists
-    if (!this.messagesContainer) return;
+  isThinking(): boolean {
+    return this.isLoading;
+  }
 
-    const element = this.messagesContainer.nativeElement;
-    element.scrollTop = element.scrollHeight;
+  getPhaseDisplay(): string {
+    switch (this.currentPhase) {
+      case 'gathering': return 'Gathering Requirements';
+      case 'confirmation_first': return 'Confirming Details';
+      case 'clarifying': return 'Clarifying Requirements';
+      case 'confirmation_second': return 'Final Confirmation';
+      case 'human_escalation': return 'Connecting You with Team';
+      case 'complete': return 'Ready for Estimate';
+      default: return 'In Progress';
+    }
   }
 }

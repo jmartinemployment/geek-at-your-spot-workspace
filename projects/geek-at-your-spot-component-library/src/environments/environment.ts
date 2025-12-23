@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000',
+  apiUrl: 'https://geekquote-controller.onrender.com',
   endpoints: {
     webDev: '/api/web-dev',
     businessAnalytics: '/api/ai-analytics',

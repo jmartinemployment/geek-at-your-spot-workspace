@@ -3,7 +3,7 @@ $enable-deprecation-messages: false;// TODO: Migrate to @use when Bootstrap full
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
-
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // Global styles
 html, body {
   overflow-x: hidden;
