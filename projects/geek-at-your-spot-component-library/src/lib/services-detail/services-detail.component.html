@@ -1,0 +1,42 @@
+<div class="services-detail-container">
+  <div *ngFor="let service of services; let i = index"
+       class="service-section"
+       [class.even]="isEven(i)"
+       [class.odd]="!isEven(i)">
+
+    <!-- Image/Icon Side -->
+    <div class="icon-side" [style.backgroundColor]="service.backgroundColor">
+      <div class="icon-container">
+        <i [class]="service.iconClass + ' service-icon-large'"></i>
+      </div>
+    </div>
+
+    <!-- Content Side -->
+    <div class="content-side">
+      <div class="content-container">
+        <h2 class="service-title">{{ service.title }}</h2>
+        <p class="service-subtitle">{{ service.subtitle }}</p>
+
+        <h3>Key Benefits</h3>
+        <ul class="benefits-list">
+          <li *ngFor="let benefit of service.benefits">{{ benefit }}</li>
+        </ul>
+
+        <h3>Perfect For</h3>
+        <ul class="use-cases-list">
+          <li *ngFor="let useCase of service.useCases">{{ useCase }}</li>
+        </ul>
+
+        <h3>Features Included</h3>
+        <ul class="features-list">
+          <li *ngFor="let feature of service.features">{{ feature }}</li>
+        </ul>
+
+        <!-- SEO Keywords (hidden but in DOM) -->
+        <div class="seo-keywords" aria-hidden="true">
+          {{ service.keywords }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

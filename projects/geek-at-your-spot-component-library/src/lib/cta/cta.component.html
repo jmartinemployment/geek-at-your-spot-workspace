@@ -1,0 +1,18 @@
+<section 
+  class="cta-section" 
+  [style.backgroundColor]="backgroundColor"
+  [style.color]="textColor">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-heading">{{ heading }}</h2>
+      <p class="cta-description" *ngIf="description">{{ description }}</p>
+      <button 
+        class="cta-btn" 
+        [style.backgroundColor]="buttonColor"
+        [style.color]="buttonTextColor"
+        (click)="handleClick()">
+        {{ buttonText }}
+      </button>
+    </div>
+  </div>
+</section>

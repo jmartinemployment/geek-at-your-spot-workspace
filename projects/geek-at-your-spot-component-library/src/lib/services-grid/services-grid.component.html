@@ -1,0 +1,25 @@
+<section class="services-section" [style.backgroundColor]="backgroundColor">
+  <div class="container">
+    <div class="section-title" *ngIf="title">
+      <h2>{{ title }}</h2>
+      <p *ngIf="subtitle">{{ subtitle }}</p>
+    </div>
+    
+    <div class="row g-4">
+      <div *ngFor="let service of services" class="col-md-6 col-lg-4">
+        <div class="service-card" [style.borderTopColor]="cardBorderColor">
+          <div class="service-icon">
+            <i [class]="service.icon"></i>
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <div class="service-keywords" *ngIf="service.keywords.length > 0">
+            <span *ngFor="let keyword of service.keywords" class="keyword-badge">
+              {{ keyword }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

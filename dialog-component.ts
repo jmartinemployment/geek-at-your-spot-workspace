@@ -2,29 +2,28 @@ import { Component, ViewChild, ElementRef, AfterViewInit, Input, OnDestroy, Outp
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { DialogService } from '../services/dialog.service';
-import { Message } from '../services/geek-quote-ai.service';
+import { DialogService } from './projects/geek-at-your-spot-component-library/src/lib/services/dialog.service';
+import { Message } from './projects/geek-at-your-spot-component-library/src/lib/services/geek-quote-ai.service';
 
 @Component({
   selector: 'lib-dialog',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <dialog #dialog class="chat-dialog">
+    <dialog #dialog class="modal fade">
       <div class="dialog-header">
-        <h3>{{ dialogService.title() }}</h3>
-        <button 
+        <span><h3>{{ dialogService.title() }}</h3>
+        <button
           *ngIf="dialogService.showCloseButton()"
-          class="close-btn" 
+          class="btn-close"
           (click)="dialogService.close()"
           aria-label="Close dialog">
-          ×
-        </button>
+        </button></span>
       </div>
-      
+
       <div #dialogContent class="dialog-content">
         <div class="message-container">
-          <div *ngFor="let message of displayMessages; let i = index" 
+          <div *ngFor="let message of displayMessages; let i = index"
                class="message"
                [class.user-message]="message.role === 'user'"
                [class.assistant-message]="message.role === 'assistant'">
@@ -36,18 +35,18 @@ import { Message } from '../services/geek-quote-ai.service';
           </div>
         </div>
       </div>
-      
+
       <div class="dialog-footer">
         <div class="input-group">
-          <input 
-            type="text" 
-            class="form-control" 
+          <input
+            type="text"
+            class="form-control"
             placeholder="Type your message..."
             [(ngModel)]="inputText"
             (keyup.enter)="sendMessage()"
             [disabled]="isSending">
-          <button 
-            class="btn btn-primary" 
+          <button
+            class="btn btn-primary"
             (click)="sendMessage()"
             [disabled]="!inputText.trim() || isSending">
             {{ isSending ? 'Sending...' : 'Send' }}
@@ -64,7 +63,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy, OnChanges {
   @Input() messages: Message[] = [];
   @Input() isSending = false;
   @Output() messageSent = new EventEmitter<string>();
-  
+
   inputText = '';
   private intervalId?: number;
 
@@ -77,7 +76,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy, OnChanges {
     this.intervalId = window.setInterval(() => {
       const isOpen = this.dialogService.isOpen();
       const dialogIsOpen = this.dialog?.nativeElement?.open || false;
-      
+
       if (isOpen && !dialogIsOpen) {
         this.dialog.nativeElement.showModal();
         this.scrollToBottom();

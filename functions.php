@@ -20,8 +20,8 @@ function my_custom_scripts()
 {
   // Enqueue Custom Elements from my-elements-app build (includes Bootstrap 5.3 + zone.js for Safari)
   // Update the hash values (UDEK6KLO, 6RNQ5KQO) after each build to match your dist output
-  wp_register_script('my-elements-js', get_template_directory_uri() . '/assets/js/main-75MBZGJE.js');
-  wp_enqueue_script('my-elements-js', get_template_directory_uri() . '/assets/js/main-75MBZGJE.js', array('custom-elements-polyfill'), '1.0.0', true);
+  wp_register_script('my-elements-js', get_template_directory_uri() . '/assets/js/main-6NLRIOZF.js');
+  wp_enqueue_script('my-elements-js', get_template_directory_uri() . '/assets/js/main-6NLRIOZF.js', array('custom-elements-polyfill'), '1.0.0', true);
 }
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
 

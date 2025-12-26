@@ -1,44 +1,37 @@
-import 'zone.js'; // Required for Safari compatibility
-import { createApplication } from '@angular/platform-browser';
 import { createCustomElement } from '@angular/elements';
-// Import the correct class names based on the type definitions
-import { Navbar, FrontPageHeroComponent, ServicesOffered, GeekQuoteAiComponent, GEEK_QUOTE_AI_CONFIG } from 'geek-at-your-spot-component-library';
+import { createApplication } from '@angular/platform-browser';
+import { FrontPageHeroComponent } from 'geek-at-your-spot-component-library';
+import { GeekQuoteAiComponent } from 'geek-at-your-spot-component-library';
+import { ServicesComponent } from 'geek-at-your-spot-component-library';
+import { ServicesDetailComponent } from 'geek-at-your-spot-component-library';
+import { appConfig } from './app/app.config';
 
 (async () => {
-  const app = await createApplication({
-    providers: [
-      {
-        provide: GEEK_QUOTE_AI_CONFIG,
-        useValue: {
-          apiUrl: 'http://localhost:3000/api/chat',
-          apiKey: 'm9rBdZs8xe1h5omHTNGnVismQB0lywnsYlhFWtj6sqk='
-        }
-      }
-    ] // Use zone.js-based change detection for Safari compatibility
-  });
+  const app = await createApplication(appConfig);
 
-  // Use Navbar (not NavbarComponent)
-  const navbarElement = createCustomElement(Navbar, {
-    injector: app.injector
+  // Register FrontPageHero
+  const frontPageHeroElement = createCustomElement(FrontPageHeroComponent, {
+    injector: app.injector,
   });
+  customElements.define('front-page-hero', frontPageHeroElement);
 
-  // Use FrontPageHeroComponent
-  const heroElement = createCustomElement(FrontPageHeroComponent, {
-    injector: app.injector
+  // Register GeekQuoteAi
+  const geekQuoteElement = createCustomElement(GeekQuoteAiComponent, {
+    injector: app.injector,
   });
-    // Use ServicesOfferedComponent
-  const servicesOfferedElement = createCustomElement(ServicesOffered, {
-    injector: app.injector
-  });
-      // Use GeekQuoteAIComponent
-const quoteAiElement = createCustomElement(GeekQuoteAiComponent, {
-  injector: app.injector
-});
+  customElements.define('geek-quote-ai', geekQuoteElement);
 
-  // Register as custom HTML elements
-  customElements.define('app-navbar', navbarElement);
-  customElements.define('app-hero', heroElement);
-  customElements.define('app-services-offered', servicesOfferedElement );
-  customElements.define('app-geek-quote-ai', quoteAiElement);
-  console.log('Angular Elements registered!');
+  // Register Services (overview with cards)
+  const servicesElement = createCustomElement(ServicesComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-services', servicesElement);
+
+  // Register ServicesDetail (animated detail page)
+  const servicesDetailElement = createCustomElement(ServicesDetailComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-services-detail', servicesDetailElement);
+
+  console.log('Custom elements registered: front-page-hero, geek-quote-ai, geek-services, geek-services-detail');
 })();
