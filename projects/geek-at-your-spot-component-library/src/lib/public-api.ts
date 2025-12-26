@@ -2,7 +2,10 @@
  * Public API Surface of geek-at-your-spot-component-library
  */
 
+// Main library component
 export * from './lib/geek-at-your-spot-component-library';
+
+// Components
 export * from './lib/navbar/navbar';
 export * from './lib/sidebar/sidebar';
 export * from './lib/front-page-hero-component/front-page-hero-component';

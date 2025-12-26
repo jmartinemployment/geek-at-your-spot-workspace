@@ -1,0 +1,23 @@
+Building Angular Package
+
+------------------------------------------------------------------------------
+Building entry point 'geek-at-your-spot-component-library'
+------------------------------------------------------------------------------
+- Compiling with Angular sources in partial compilation mode.
+[32m✔[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m✔[39m Writing FESM and DTS bundles
+- Copying assets
+[32m✔[39m Copying assets
+- Writing package manifest
+[32m✔[39m Writing package manifest
+[32m✔[39m Built geek-at-your-spot-component-library
+
+------------------------------------------------------------------------------
+Built Angular Package
+- from: /Users/jam/development/geek-at-your-spot-workspace/projects/geek-at-your-spot-component-library
+- to:   /Users/jam/development/geek-at-your-spot-workspace/dist/geek-at-your-spot-component-library
+------------------------------------------------------------------------------
+
+Build at: 2025-12-26T18:57:29.744Z - Time: 893ms
+

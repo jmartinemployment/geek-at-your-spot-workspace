@@ -6,7 +6,7 @@ get_header();
   <app-hero></app-hero>
 </header>
 <main>
-  <app-services-offered></app-services-offered>
+  <app-services-grid></app-services-grid>
   <app-geek-quote-ai></app-geek-quote-ai>
 </main>
 

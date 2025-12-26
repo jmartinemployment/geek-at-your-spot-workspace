@@ -6,17 +6,19 @@
     </div>
     
     <div class="row g-4">
-      <div *ngFor="let service of services" class="col-md-6 col-lg-4">
-        <div class="service-card" [style.borderTopColor]="cardBorderColor">
-          <div class="service-icon">
+      <div *ngFor="let service of services" class="col-md-6 col-lg-3">
+        <div class="service-card">
+          <div class="service-header" [style.backgroundColor]="service.headerColor">
             <i [class]="service.icon"></i>
           </div>
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.description }}</p>
-          <div class="service-keywords" *ngIf="service.keywords.length > 0">
-            <span *ngFor="let keyword of service.keywords" class="keyword-badge">
-              {{ keyword }}
-            </span>
+          <div class="service-body">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <div class="service-keywords" *ngIf="service.keywords.length > 0">
+              <span *ngFor="let keyword of service.keywords" class="keyword-badge">
+                {{ keyword }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
