@@ -2,27 +2,26 @@ import { createCustomElement } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
 import { FrontPageHeroComponent } from 'geek-at-your-spot-component-library';
 import { GeekQuoteAiComponent } from 'geek-at-your-spot-component-library';
-import { ServicesComponent } from 'geek-at-your-spot-component-library';
 import { ServicesGridComponent } from 'geek-at-your-spot-component-library';
 import { ServicesDetailComponent } from 'geek-at-your-spot-component-library';
 import { HeroComponent } from 'geek-at-your-spot-component-library';
-import { Navbar } from 'geek-at-your-spot-component-library';
+import { NavbarComponent } from 'geek-at-your-spot-component-library';
 import { appConfig } from './app/app.config';
 
 (async () => {
   const app = await createApplication(appConfig);
 
   // Register Navbar
-  const appNavbarElement = createCustomElement(Navbar, {
+  const geekNavbarElement = createCustomElement(NavbarComponent, {
     injector: app.injector,
   });
-  customElements.define('app-navbar', appNavbarElement);
+  customElements.define('geek-navbar', geekNavbarElement);
 
-  // Register Hero
-  const appHeroElement = createCustomElement(FrontPageHeroComponent, {
+  // Register Front Page Hero (main hero)
+  const geekHeroMainElement = createCustomElement(FrontPageHeroComponent, {
     injector: app.injector,
   });
-  customElements.define('app-hero', appHeroElement);
+  customElements.define('geek-hero-main', geekHeroMainElement);
 
   // Register Reusable Hero
   const geekHeroElement = createCustomElement(HeroComponent, {
@@ -31,22 +30,16 @@ import { appConfig } from './app/app.config';
   customElements.define('geek-hero', geekHeroElement);
 
   // Register Quote AI
-  const appGeekQuoteElement = createCustomElement(GeekQuoteAiComponent, {
+  const geekQuoteAiElement = createCustomElement(GeekQuoteAiComponent, {
     injector: app.injector,
   });
-  customElements.define('app-geek-quote-ai', appGeekQuoteElement);
-
-  // Register Services (3-card version)
-  const appServicesOfferedElement = createCustomElement(ServicesComponent, {
-    injector: app.injector,
-  });
-  customElements.define('app-services-offered', appServicesOfferedElement);
+  customElements.define('geek-quote-ai', geekQuoteAiElement);
 
   // Register Services Grid (20-service grid)
-  const appServicesGridElement = createCustomElement(ServicesGridComponent, {
+  const geekServicesGridElement = createCustomElement(ServicesGridComponent, {
     injector: app.injector,
   });
-  customElements.define('app-services-grid', appServicesGridElement);
+  customElements.define('geek-services-grid', geekServicesGridElement);
 
   // Register Services Detail
   const geekServicesDetailElement = createCustomElement(ServicesDetailComponent, {
@@ -54,5 +47,5 @@ import { appConfig } from './app/app.config';
   });
   customElements.define('geek-services-detail', geekServicesDetailElement);
 
-  console.log('Custom elements registered: app-navbar, app-hero, geek-hero, app-geek-quote-ai, app-services-offered, app-services-grid, geek-services-detail');
+  console.log('Custom elements registered: geek-navbar, geek-hero-main, geek-hero, geek-quote-ai, geek-services-grid, geek-services-detail');
 })();

@@ -18,3 +18,8 @@ $card-height: 100%;
 html, body {
   overflow-x: hidden;
 }
+
+// Override Bootstrap's h1 sizing to use fluid sizing at all breakpoints
+h1, .h1 {
+  font-size: calc(1.375rem + 1.5vw) !important;
+}

@@ -1,38 +1,29 @@
-<div class="container-fluid">
-  <nav class="navbar shadow-sm">
-    <!-- Logo on the left -->
-    <div class="navbar-logo-container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container-fluid px-4">
+    <!-- Logo/Brand -->
+    <a class="navbar-brand" href="/">
       <img
         [src]="logoUrl()"
         [alt]="logoAlt()"
-        class="navbar-logo" />
-    </div>
+        height="48"
+        class="d-inline-block align-text-top" />
+    </a>
 
-    <!-- Hamburger menu on the right -->
+    <!-- Hamburger Button -->
     <button
+      class="navbar-toggler border-0"
+      type="button"
       (click)="toggleSidebar()"
       [attr.aria-label]="'Open menu'"
       [attr.aria-expanded]="isSidebarOpen()"
-      [attr.aria-controls]="'sidebar-menu'"
-      class="navbar-hamburger-btn">
-      <svg
-        class="navbar-hamburger-icon"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        [attr.aria-hidden]="true">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
+      [attr.aria-controls]="'sidebar-menu'">
+      <span class="navbar-toggler-icon"></span>
     </button>
-  </nav>
-    <!-- SideBar Component -->
-    <lib-sidebar
-      [isOpen]="isSidebarOpen()"
-      (close)="closeSidebar()">
-    </lib-sidebar>
-</div>
+  </div>
 
+  <!-- Sidebar Component -->
+  <lib-sidebar
+    [isOpen]="isSidebarOpen()"
+    (close)="closeSidebar()">
+  </lib-sidebar>
+</nav>

@@ -2,12 +2,12 @@
 get_header();
 ?>
 <header>
-  <app-navbar></app-navbar>
-  <app-hero></app-hero>
+  <geek-navbar></geek-navbar>
+  <geek-hero-main></geek-hero-main>
 </header>
 <main>
-  <app-services-grid></app-services-grid>
-  <app-geek-quote-ai></app-geek-quote-ai>
+  <geek-services-grid></geek-services-grid>
+  <geek-quote-ai></geek-quote-ai>
 </main>
 
 <?php

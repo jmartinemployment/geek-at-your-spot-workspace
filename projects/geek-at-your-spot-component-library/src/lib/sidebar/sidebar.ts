@@ -13,28 +13,27 @@ interface MenuItem {
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {
-
-private platformId = inject(PLATFORM_ID);
+export class SidebarComponent {
+  private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
 
-  // Input signals (equivalent to React props)
+  // Input signals
   isOpen = input<boolean>(false);
 
-  // Output signals (equivalent to React event handlers)
+  // Output signals
   close = output<void>();
 
-  // Internal state signal (equivalent to React useState)
+  // Menu items with real URLs
   menuItems = signal<MenuItem[]>([
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Services', href: '#services' }
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services/' },
+    { name: 'About', href: '/about/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: 'Contact', href: '/contact/' }
   ]);
 
   constructor() {
-    // Effect to manage body scroll (equivalent to React useEffect)
+    // Effect to manage body scroll
     effect(() => {
       if (!this.isBrowser) return;
 
@@ -59,7 +58,6 @@ private platformId = inject(PLATFORM_ID);
   }
 
   ngOnDestroy() {
-    // Cleanup on component destroy
     if (this.isBrowser) {
       document.body.style.overflow = 'unset';
     }

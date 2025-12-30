@@ -1,19 +1,19 @@
-import {Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Sidebar } from '../sidebar/sidebar';
+import { SidebarComponent } from '../sidebar/sidebar';
 
 @Component({
-  selector: 'lib-navbar',
+  selector: 'geek-navbar',
   standalone: true,
-  imports: [CommonModule, Sidebar],
+  imports: [CommonModule, SidebarComponent],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
-  // State signals (equivalent to React useState)
+export class NavbarComponent {
+  // State signals
   isSidebarOpen = signal<boolean>(false);
   logoUrl = signal<string>('https://geekatyourspot.com/wp-content/uploads/2025/10/GeekAtYourSpot.svg');
-  logoAlt = signal<string>('Company Logo');
+  logoAlt = signal<string>('Geek @ Your Spot');
 
   toggleSidebar(): void {
     this.isSidebarOpen.update(value => !value);
@@ -21,11 +21,5 @@ export class Navbar {
 
   closeSidebar(): void {
     this.isSidebarOpen.set(false);
-  }
-
-  // Example: Method to update logo dynamically
-  updateLogo(url: string, alt: string): void {
-    this.logoUrl.set(url);
-    this.logoAlt.set(alt);
   }
 }

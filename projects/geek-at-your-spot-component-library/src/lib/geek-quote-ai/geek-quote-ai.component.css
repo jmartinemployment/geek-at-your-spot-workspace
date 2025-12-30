@@ -1,6 +1,8 @@
-.geek-quote-banner{
-background-color:#0a0b26;
+.geek-quote-ai-banner {
+  background-color: #0A0B26;
+  min-height: 400px;
 }
+
 /* Full-page loading overlay */
 .loading-overlay {
   position: fixed;

@@ -1,21 +1,21 @@
 <section class="services-section" [style.backgroundColor]="backgroundColor">
   <div class="container">
-    <div class="section-title" *ngIf="title">
-      <h2>{{ title }}</h2>
-      <p *ngIf="subtitle">{{ subtitle }}</p>
+    <div class="section-title text-center mb-5" *ngIf="title">
+      <h2 class="fw-bold mb-3">{{ title }}</h2>
+      <p class="text-muted fs-5" *ngIf="subtitle">{{ subtitle }}</p>
     </div>
     
     <div class="row g-4">
       <div *ngFor="let service of services" class="col-md-6 col-lg-3">
-        <div class="service-card">
-          <div class="service-header" [style.backgroundColor]="service.headerColor">
-            <i [class]="service.icon"></i>
+        <div class="card h-100 shadow-sm service-card">
+          <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
+            <i [class]="service.icon + ' fs-1'"></i>
           </div>
-          <div class="service-body">
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-            <div class="service-keywords" *ngIf="service.keywords.length > 0">
-              <span *ngFor="let keyword of service.keywords" class="keyword-badge">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-3">{{ service.title }}</h5>
+            <p class="card-text text-muted small">{{ service.description }}</p>
+            <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
+              <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
                 {{ keyword }}
               </span>
             </div>

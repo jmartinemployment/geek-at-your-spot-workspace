@@ -26,7 +26,7 @@ export interface SmartChatRequest {
   userId?: string;
 }
 
-export type ConversationPhase = 
+export type ConversationPhase =
   | 'gathering'
   | 'confirmation_first'
   | 'clarifying'
@@ -58,6 +58,22 @@ export interface SmartChatResponse {
   estimate?: EstimateResult;
 }
 
+export interface EmailRequest {
+  to: string;
+  subject: string;
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  service?: string;
+  message: string;
+}
+
+export interface EmailResponse {
+  success: boolean;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -81,6 +97,18 @@ export class ApiService {
   smartChat(request: SmartChatRequest): Observable<SmartChatResponse> {
     return this.http.post<SmartChatResponse>(
       `${this.apiUrl}/api/chat`,
+      request,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
+    );
+  }
+
+  sendEmail(request: EmailRequest): Observable<EmailResponse> {
+    return this.http.post<EmailResponse>(
+      `${this.apiUrl}/api/email`,
       request,
       {
         headers: new HttpHeaders({

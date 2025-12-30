@@ -1,0 +1,113 @@
+<!-- Bootstrap Modal -->
+<div class="modal fade" [class.show]="isOpen()" [class.d-block]="isOpen()" tabindex="-1" (click)="close()">
+  <div class="modal-dialog modal-dialog-centered" (click)="stopPropagation($event)">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Get In Touch</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="close()" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <form (submit)="$event.preventDefault(); submit()">
+
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="contact-name" class="form-label">Name <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="contact-name"
+              [value]="formData().name"
+              (input)="updateField('name', $any($event.target).value)"
+              [disabled]="isSubmitting()"
+              required>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="contact-email" class="form-label">Email <span class="text-danger">*</span></label>
+            <input
+              type="email"
+              class="form-control"
+              id="contact-email"
+              [value]="formData().email"
+              (input)="updateField('email', $any($event.target).value)"
+              [disabled]="isSubmitting()"
+              required>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-3">
+            <label for="contact-phone" class="form-label">Phone</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="contact-phone"
+              [value]="formData().phone"
+              (input)="updateField('phone', $any($event.target).value)"
+              [disabled]="isSubmitting()">
+          </div>
+
+          <!-- Company -->
+          <div class="mb-3">
+            <label for="contact-company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control"
+              id="contact-company"
+              [value]="formData().company"
+              (input)="updateField('company', $any($event.target).value)"
+              [disabled]="isSubmitting()">
+          </div>
+
+          <!-- Service -->
+          <div class="mb-3">
+            <label for="contact-service" class="form-label">Service Interested In</label>
+            <select
+              class="form-select"
+              id="contact-service"
+              [value]="formData().service"
+              (change)="updateField('service', $any($event.target).value)"
+              [disabled]="isSubmitting()">
+              <option value="">Select a service...</option>
+              <option *ngFor="let svc of services" [value]="svc">{{ svc }}</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="mb-3">
+            <label for="contact-message" class="form-label">Message <span class="text-danger">*</span></label>
+            <textarea
+              class="form-control"
+              id="contact-message"
+              rows="4"
+              [value]="formData().message"
+              (input)="updateField('message', $any($event.target).value)"
+              [disabled]="isSubmitting()"
+              required></textarea>
+          </div>
+
+          <!-- Modal Footer Buttons -->
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-secondary" (click)="close()" [disabled]="isSubmitting()">Cancel</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!isFormValid() || isSubmitting()">
+              <span *ngIf="!isSubmitting()">Send Message</span>
+              <span *ngIf="isSubmitting()">Sending...</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="isOpen()" *ngIf="isOpen()"></div>

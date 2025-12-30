@@ -1,28 +1,22 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { GeekContactModalComponent } from '../geek-contact-modal/geek-contact-modal.component';
 
 @Component({
-  selector: 'lib-front-page-hero-component',
+  selector: 'lib-front-page-hero',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, GeekContactModalComponent],
   templateUrl: './front-page-hero-component.html',
-  styleUrl: './front-page-hero-component.scss',
+  styleUrls: ['./front-page-hero-component.scss']
 })
 export class FrontPageHeroComponent {
-  // Content signals
+  @ViewChild(GeekContactModalComponent) contactModal?: GeekContactModalComponent;
+
   title = signal<string>('Empower Your Small Business with Smart Technology');
-  subtitle = signal<string>('Build a strong online presence, automate routine tasks, and grow confidently with AI-driven web solutions.');
+  subtitle = signal<string>('Transform your business with intelligent automation, data-driven insights, and cutting-edge technology. From web development to workflow automation, we help small businesses compete like enterprises.');
   imageUrl = signal<string>('https://geekatyourspot.com/wp-content/uploads/2025/10/geek@yourSpot-1.jpeg');
 
-  // Methods to update content dynamically
-  updateTitle(newTitle: string): void {
-    this.title.set(newTitle);
-  }
-
-  updateSubtitle(newSubtitle: string): void {
-    this.subtitle.set(newSubtitle);
-  }
-
-  updateImage(newImageUrl: string): void {
-    this.imageUrl.set(newImageUrl);
+  openContactModal(): void {
+    this.contactModal?.open();
   }
 }
