@@ -1,227 +1,191 @@
-# Geek At Your Spot Workspace
+# Geek @ Your Spot - Angular Component Library
 
-An Angular 21 monorepo workspace containing a reusable component library and multiple Angular applications for building custom web elements and WordPress integration.
+Modern Angular web components for WordPress integration with AI-powered quote generation and business automation.
 
-## 📦 Project Structure
-
-This is a multi-project Angular workspace with the following projects:
-
-### **geek-at-your-spot-component-library**
-A standalone Angular component library featuring reusable UI components:
-- **Navbar** - Responsive navigation bar with hamburger menu
-- **Sidebar** - Slide-out navigation sidebar
-- **FrontPageHero** - Hero section component
-
-### **my-elements-app**
-Angular application that converts library components into custom web elements for use in any HTML environment (including WordPress).
-
-### **angular-custom-element-nav-bar**
-SSR-enabled Angular application with server-side rendering support.
-
-### **angular-custom-elements**
-Another SSR-enabled Angular application for custom element development.
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v20 or later recommended)
-- npm 11.6.4 (specified in package.json)
-- Angular CLI 21.0.0
-
-### Installation
-
-```bash
-# Install dependencies
-npm install
+## 🏗️ Architecture
+```
+┌─────────────────────────────────────────────────────┐
+│          WordPress + Angular Web Components         │
+│              (geekatyourspot.com)                   │
+└──────────────────┬──────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────────────────┐
+│              ControllerBackend (Port 4000)          │
+│          https://geekquote-controller.onrender.com  │
+│                                                      │
+│  Routes requests to specialized backends:           │
+│  • /api/web-dev → WebDevelopmentBackend            │
+│  • /api/email → Email Service                      │
+└──────────────────┬──────────────────────────────────┘
+                   │
+        ┌──────────┴──────────┐
+        ▼                     ▼
+┌──────────────┐   ┌──────────────┐
+│WebDevelopment│   │    Email     │
+│   Backend    │   │   Service    │
+│  (Port 3000) │   │              │
+├──────────────┤   ├──────────────┤
+│• MCP Tools   │   │• Contact Form│
+│• Database    │   │• Quote Email │
+│• AI Pricing  │   │              │
+└──────────────┘   └──────────────┘
 ```
 
-## 📚 Development Commands
+## 📦 Components
 
-### Building Projects
+All components use the `geek-` prefix for consistency:
 
+| Component | Selector | Purpose |
+|-----------|----------|---------|
+| NavbarComponent | `geek-navbar` | Site navigation with hamburger menu |
+| SidebarComponent | `geek-sidebar` | Mobile sidebar navigation |
+| FrontPageHeroComponent | `geek-hero-main` | Main landing page hero |
+| HeroComponent | `geek-hero` | Reusable hero component |
+| GeekQuoteAiComponent | `geek-quote-ai` | AI-powered quote generation |
+| GeekQuoteModalComponent | `geek-quote-modal` | Quote conversation modal |
+| GeekContactModalComponent | `geek-contact-modal` | Contact form modal |
+| ServicesGridComponent | `geek-services-grid` | 20-service grid display |
+| ServicesDetailComponent | `geek-services-detail` | Detailed service pages |
+| CtaComponent | `geek-cta` | Call-to-action sections |
+
+## 🛠️ Services
+
+| Service | Purpose |
+|---------|---------|
+| ApiService | HTTP client for backend communication |
+| GeekEmailService | Email form submission |
+| GeekQuoteAiService | AI quote generation logic |
+| GeekServicesBusinessLogicDataService | Services data (827 lines) |
+
+## 🚀 Build & Deploy
+
+### Development Build
 ```bash
-# Build the component library (always build this first)
+cd ~/development/geek-at-your-spot-workspace
 ng build geek-at-your-spot-component-library
-
-# Build individual applications
 ng build my-elements-app
-ng build angular-custom-element-nav-bar
-ng build angular-custom-elements
 ```
 
-### Development Server
+### Output
+Files generated in `dist/my-elements-app/browser/`:
+- `main-[HASH].js` - Application bundle
+- `styles-[HASH].css` - Styles
 
-```bash
-# Serve a specific project
-ng serve my-elements-app
-ng serve angular-custom-element-nav-bar
-ng serve angular-custom-elements
+### WordPress Deployment
+1. Upload files to WordPress:
+   - `/wp-content/themes/geek-at-your-spot/js/main-[HASH].js`
+   - `/wp-content/themes/geek-at-your-spot/css/styles-[HASH].css`
 
-# Default development server runs on http://localhost:4200/
+2. Update `functions.php` with new hashes:
+```php
+wp_enqueue_script(
+    'geek-at-your-spot-elements',
+    get_template_directory_uri() . '/js/main-[NEW-HASH].js',
+    array(),
+    null,
+    true
+);
 ```
 
-### Server-Side Rendering
+3. Clear SiteGround Dynamic Cache
+4. Hard refresh browser (Cmd+Shift+R)
 
-For projects with SSR support:
+## 🧪 Testing
 
-```bash
-# Build the SSR project first
-ng build angular-custom-element-nav-bar
+### Email Functionality
+- **Contact Modal**: Sends to `sales@geekatyourspot.com`
+- **Quote Modal**: Sends to `geek-quote-ai@geekatyourspot.com`
 
-# Run the SSR server
-npm run serve:ssr:angular-custom-element-nav-bar
-```
-
-```bash
-# For angular-custom-elements
-ng build angular-custom-elements
-npm run serve:ssr:angular-custom-elements
-```
-
-### Testing
-
-```bash
-# Run unit tests for a specific project
-ng test geek-at-your-spot-component-library
-ng test my-elements-app
-```
-
-### Linting
-
-```bash
-ng lint
-```
-
-### Watch Mode
-
-```bash
-ng build --watch --configuration development
-```
-
-## 🎨 Component Library Usage
-
-### Building the Library
-
-The component library must be built before it can be used by other projects:
-
-```bash
-ng build geek-at-your-spot-component-library
-```
-
-Build artifacts will be in `dist/geek-at-your-spot-component-library/`.
-
-### Using Components in Another Project
-
+### Component Registration
+Custom elements are registered in `projects/my-elements-app/src/main.ts`:
 ```typescript
-import { Navbar, Sidebar, FrontPageHero } from 'geek-at-your-spot-component-library';
-
-@Component({
-  selector: 'app-root',
-  imports: [Navbar, Sidebar, FrontPageHero],
-  template: `
-    <lib-navbar></lib-navbar>
-    <lib-front-page-hero></lib-front-page-hero>
-  `
-})
-export class AppComponent {}
+customElements.define('geek-navbar', geekNavbarElement);
+customElements.define('geek-quote-ai', geekQuoteAiElement);
+// etc...
 ```
 
-## 🌐 Custom Web Elements
-
-The `my-elements-app` project creates custom web elements that can be used in any HTML page:
-
-1. Build the project:
-```bash
-ng build my-elements-app
+## 📁 Project Structure
+```
+geek-at-your-spot-workspace/
+├── projects/
+│   ├── geek-at-your-spot-component-library/
+│   │   ├── src/lib/
+│   │   │   ├── geek-navbar/
+│   │   │   ├── geek-quote-ai/
+│   │   │   ├── geek-contact-modal/
+│   │   │   ├── services/
+│   │   │   │   ├── api.service.ts
+│   │   │   │   ├── geek-email-service.ts
+│   │   │   │   ├── geek-quote-ai.service.ts
+│   │   │   │   └── geek-services-business-logic-data.service.ts
+│   │   │   └── [other components]
+│   │   └── src/public-api.ts
+│   └── my-elements-app/
+│       └── src/main.ts
+├── dist/
+└── [WordPress theme files]
 ```
 
-2. Include the generated JavaScript in your HTML:
-```html
-<script src="dist/my-elements-app/browser/main-[hash].js"></script>
-```
+## 🔑 Environment Variables
 
-3. Use the custom elements:
-```html
-<app-navbar></app-navbar>
-<app-hero></app-hero>
-```
+Required in Render.com for backends:
+- `ANTHROPIC_API_KEY` - Claude AI API key
+- `DATABASE_URL` - Supabase PostgreSQL connection string
+- `EMAIL_SERVICE_API_KEY` - Email service credentials
 
-## 🔌 WordPress Integration
+## 🌐 Hosting
 
-This workspace includes WordPress theme files for integrating Angular components:
+- **Frontend/WordPress**: SiteGround
+- **Backend Services**: Render.com (free tier)
+- **Database**: Supabase PostgreSQL (free tier)
 
-- **front-page.php** - WordPress front page template
-- **functions.php** - Enqueues Angular build artifacts
+## 📝 Coding Standards
 
-### Setup for WordPress:
+1. **Component Naming**: All selectors use `geek-` prefix
+2. **Service Location**: All services in `/lib/services/`
+3. **Standalone Components**: All components use `standalone: true`
+4. **Exports**: All public components exported in `public-api.ts`
+5. **Registration**: Web components registered in `main.ts`
 
-1. Build the required projects
-2. Copy build artifacts to your WordPress theme assets directory
-3. Update the file hashes in `functions.php` to match your build output
-4. Place `front-page.php` and `functions.php` in your WordPress theme directory
+## �� Troubleshooting
 
-## 🏗️ Project Technologies
+### Component Not Displaying
+- Check selector matches custom element name
+- Verify component is exported in `public-api.ts`
+- Confirm registration in `main.ts`
+- Clear browser cache
 
-- **Angular 21.0.0** - Modern signals-based reactive framework
-- **TypeScript 5.9.2** - Strict mode enabled
-- **Bootstrap 5.3.8** - CSS framework (using @use/@forward syntax)
-- **Sass 1.94.2** - CSS preprocessor
-- **Vitest 4.0.8** - Unit testing
-- **Angular Elements** - Web components support
-- **Express 5.1.0** - Server for SSR
+### Build Errors
+- Ensure selectors match between component and template
+- Check all imports are correct
+- Verify services are injected properly
 
-## 🔧 Configuration Files
+### Email Not Sending
+- Check backend `/api/email` endpoint is running
+- Verify email service credentials in environment variables
+- Check browser console for errors
 
-- **angular.json** - Angular CLI workspace configuration
-- **tsconfig.json** - TypeScript compiler configuration with strict settings
-- **package.json** - Dependencies and npm scripts
-- **.editorconfig** - Code style consistency
+## 📊 Current Build
 
-## 📝 Code Style
+Latest commit: `5d4f2d7` - Major refactoring complete
+- All components standardized with `geek-` prefix
+- Services consolidated
+- Dialog replaced with Bootstrap modals
+- Email functionality tested and working
 
-This project uses:
-- Prettier for code formatting (printWidth: 100, singleQuote: true)
-- ESLint with angular-eslint rules
-- TypeScript strict mode
+## �� Future Enhancements
 
-## 🎯 Key Features
+**Planned Backend Services:**
+- AIBusinessAnalyticsBackend (Port 5001)
+- MarketingBackend (Port 5002)
+- WebsiteAnalyticsBackend (Port 5003)
 
-- ✅ Zoneless change detection for better performance
-- ✅ Standalone components (no NgModules)
-- ✅ Signal-based reactive state management
-- ✅ Server-side rendering (SSR) support
-- ✅ Custom web elements for framework-agnostic deployment
-- ✅ TypeScript strict mode
-- ✅ Modern Sass with @use/@forward syntax
-- ✅ WordPress theme integration
+**Frontend Improvements:**
+- Additional reusable components
+- Enhanced animations
+- Progressive Web App features
 
-## 📦 Build Output
+## 📞 Support
 
-Built projects are output to the `dist/` directory:
-```
-dist/
-├── geek-at-your-spot-component-library/
-├── my-elements-app/
-├── angular-custom-element-nav-bar/
-└── angular-custom-elements/
-```
-
-## 🤝 Contributing
-
-When adding new components to the library:
-
-1. Create component in `projects/geek-at-your-spot-component-library/src/lib/`
-2. Export it in `projects/geek-at-your-spot-component-library/src/public-api.ts`
-3. Rebuild the library: `ng build geek-at-your-spot-component-library`
-4. Use in your applications
-
-## 📄 License
-
-Private project - see package.json
-
-## 🔗 Additional Resources
-
-- [Angular Documentation](https://angular.dev)
-- [Angular CLI Reference](https://angular.dev/tools/cli)
-- [Angular Elements Guide](https://angular.dev/guide/elements)
-- [Bootstrap Documentation](https://getbootstrap.com/docs/)
+For questions or issues, contact: jeff@geekatyourspot.com
