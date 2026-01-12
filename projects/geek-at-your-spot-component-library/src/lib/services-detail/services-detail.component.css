@@ -1,6 +1,8 @@
 .services-detail-container {
   width: 100%;
   overflow-x: hidden;
+  height: auto;
+  overflow-y: hidden;
 }
 
 .service-section {

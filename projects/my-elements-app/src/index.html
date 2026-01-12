@@ -6,11 +6,29 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  
+
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body style="margin: 0; padding: 0;">
-  <geek-services-detail></geek-services-detail>
+  <geek-navbar></geek-navbar>
+  <geek-about-hero></geek-about-hero>
+  <geek-mission-banner></geek-mission-banner>
+<geek-forty-years-banner></geek-forty-years-banner>
+  <geek-pong></geek-pong>
+  <geek-quote-ai></geek-quote-ai>
+
+  <geek-journey-banner></geek-journey-banner>
+  <geek-reusable-banner
+    [heading]="'Welcome to Geek @ Your Spot!'"
+    [subheading]="'Your trusted partner for all things tech.'"
+    [icon]="'bi-info-circle-fill'"
+    [showCta]="true"
+    [ctaText]="'Learn More'"
+    (ctaClicked)="onBannerCtaClick()"
+    [dismissible]="true"
+    (dismissed)="onBannerDismissed()">
+    <p>We provide top-notch IT solutions tailored to your needs.</p>
+
 </body>
 </html>

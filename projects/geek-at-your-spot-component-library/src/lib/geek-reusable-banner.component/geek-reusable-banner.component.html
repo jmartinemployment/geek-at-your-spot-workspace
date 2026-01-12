@@ -1,0 +1,54 @@
+<!-- Using @if instead of *ngIf (Angular 21) -->
+@if (isVisible()) {
+  <div [class]="bannerClasses()">
+    <div class="banner-container">
+      <div class="banner-content">
+
+        <!-- Icon (optional) -->
+        @if (icon()) {
+          <div class="banner-icon">
+            <i [class]="'bi ' + icon()"></i>
+          </div>
+        }
+
+        <!-- Text Content -->
+        <div class="banner-text">
+          @if (heading()) {
+            <h3 class="banner-heading">{{ heading() }}</h3>
+          }
+
+          @if (subheading()) {
+            <p class="banner-subheading">{{ subheading() }}</p>
+          }
+
+          <!-- Slot for custom content -->
+          <div class="banner-slot">
+            <ng-content></ng-content>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        @if (showCta()) {
+          <div class="banner-cta">
+            <button
+              [class]="ctaClasses()"
+              (click)="handleCtaClick()">
+              {{ ctaText() }}
+            </button>
+          </div>
+        }
+
+        <!-- Dismiss Button -->
+        @if (dismissible()) {
+          <button
+            class="banner-dismiss"
+            (click)="dismiss()"
+            aria-label="Dismiss banner">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        }
+
+      </div>
+    </div>
+  </div>
+}

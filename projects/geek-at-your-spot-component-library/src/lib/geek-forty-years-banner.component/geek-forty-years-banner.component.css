@@ -1,0 +1,150 @@
+:root {
+  --deep-navy: #0A0B26;
+  --medium-slate-blue: #7E5EF2;
+  --deep-lake: #1D3273;
+  --dark-cornflower-blue: #3060BF;
+  --traditional-blue: #3D80D9;
+  --pale-turquoise: #A7F2F2;
+  --midnight-black: #03020D;
+  --night-sky: #091740;
+  --hermes: #203B8C;
+  --lapis-lazuli: #3632A6;
+  --cerulean-periwinkle: #5CB9F2;
+  --burlywood: #D4A574;
+  --shiny-copper: #DD8343;
+  --soft-cyan: #AEF2F2;
+}
+body, html {
+  background-color:white;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  height:100vh;
+  width:100%;
+  scroll-behavior: smooth;
+}
+.container-fluid {
+  background-color: var(--night-sky);
+}
+.container-fluid.sm {
+  min-width:100vw !important;
+  padding-left:0;
+  padding-right:0;
+  margin-left:0;
+  margin-right:0;
+  height: auto;
+  overflow:hidden;
+}
+p.content{
+  color: white;
+  font-size: var(--bs-body-font-size);
+  padding-left:5px;
+  padding-right:5px;
+}
+.rounded-circle{
+  height:100px;
+  width:100px;
+  border-radius: 50%;
+}
+.grid-container {
+  display: grid;
+  grid-template-rows:64px;
+  /* 3 columns of equal width (1fr = ~33.33% each) */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; /* Space between grid items */
+  width: 100%; /* Ensures the container uses available space */
+}
+.item {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+/* Item 1: 100% width (spans all 3 columns) */
+.one {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  max-height:64px;
+}
+
+/* Item 2: 33% of width (Column 1) */
+.two {
+  grid-column: 1 / 2;
+  grid-row: 2; /* All middle items share this row */
+  min-height: 100px;
+  z-index: 1;
+}
+
+/* Item 3: 66% of width (Columns 2 and 3) */
+.three {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  z-index: 2;
+  position:relative;
+  top:-14px;
+}
+
+/* Item 4: 33% width, positioned within its grid cell to overlap Item 2's bottom edge */
+.four {
+  grid-column: 1 / 2; /* Placed in the same column as Item 2 */
+  grid-row: 2;        /* Placed in the same row as Item 2 */
+  z-index: 3;
+
+  /* The precise vertical overlap */
+  position: relative;
+  top: 108px;
+  left:18px;
+  height:48px;
+}
+
+/* Item 5: 100% width (Bottom row), accounts for the overlap of Item 4 */
+.five {
+  grid-column: 1 / 4;
+  grid-row: 3;
+  text-align: left;
+  top: -52px;
+  position: relative;
+  /* Placed in the row below */
+  /* Margin exactly matches the 'top' value of Item 4 to prevent collision */
+}
+@media (min-width: 576px) {
+  .container-fluid {
+    min-width:100%;
+    padding-left:unset ;
+    padding-right:unset;
+    margin-left:unset;
+    margin-right:unset;
+    height: auto;
+    overflow:hidden;
+  }
+  .row {
+    min-width:100%;
+    padding-left:0;
+    padding-right:0;
+    margin-left:0;
+    margin-right:0;
+  }
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+ h2.section-title{
+  calc(1.325rem + 1.5vw)
+  }
+  p.content{
+    font-size:1.25rem;
+  }
+}
+@media (min-width: 1200px) {
+h2.section-title {
+  }
+  p.content{
+
+  }
+}
+@media only screen and (min-width: 1400px) {
+  p.content{
+  }
+}

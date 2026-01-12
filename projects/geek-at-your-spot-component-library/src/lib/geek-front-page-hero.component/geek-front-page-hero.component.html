@@ -1,0 +1,26 @@
+
+<div class="container-fluid d-block d-sm-block d-md-none d-lg-none py-5">
+  <div class="row hero">
+    <div class="col-12 hero flex-column justify-content-center">
+      <h1 class="hero text-white mx-auto px-4">{{ title() }}</h1>
+      <img [src]="imageUrl()" alt="a geek at your spot" class="img-fluid mx-auto px-0 text-center" width="560" height="286" />
+      <p class="hero text-white mx-auto px-4">{{ subtitle() }}</p>
+      <button class="btn btn-primary text-center d-block mx-auto"  (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid d-none d-sm-none d-md-block">
+  <div class="row hero">
+    <div class="col-6 hero flex-column justify-content-center">
+      <img [src]="imageUrl()" alt="a geek at your spot" class="img-fluid px-0" width="948" height="532" />
+    </div>
+    <div class="col-6 hero flex-column justify-content-center">
+      <h1 class="hero text-white pe-4">{{ title() }}</h1>
+      <p class="lead text-white pe-5">{{ subtitle() }}</p>
+      <button class="btn btn-primary mx-auto text-center" (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+<!-- Contact Modal -->
+<geek-contact-modal></geek-contact-modal>

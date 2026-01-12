@@ -1,11 +1,20 @@
 import { createCustomElement } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
-import { FrontPageHeroComponent } from 'geek-at-your-spot-component-library';
+
 import { GeekQuoteAiComponent } from 'geek-at-your-spot-component-library';
 import { ServicesGridComponent } from 'geek-at-your-spot-component-library';
 import { ServicesDetailComponent } from 'geek-at-your-spot-component-library';
-import { HeroComponent } from 'geek-at-your-spot-component-library';
 import { NavbarComponent } from 'geek-at-your-spot-component-library';
+import { GeekPongComponent } from 'geek-at-your-spot-component-library';
+import { GeekBannerComponent } from 'geek-at-your-spot-component-library';
+import { GeekJourneyBannerComponent } from 'geek-at-your-spot-component-library';
+import { GeekReusableBannerComponent } from 'geek-at-your-spot-component-library';
+import { GeekFortyYearsBannerComponent } from 'geek-at-your-spot-component-library';
+import { GeekMissionBannerComponent} from 'geek-at-your-spot-component-library';
+import { GeekFrontPageHeroComponent} from 'geek-at-your-spot-component-library';
+import { GeekServicesHeroComponent} from 'geek-at-your-spot-component-library';
+import { GeekAboutHeroComponent} from 'geek-at-your-spot-component-library';
+import { GeekFooterComponent} from 'geek-at-your-spot-component-library';
 import { appConfig } from './app/app.config';
 
 (async () => {
@@ -16,18 +25,6 @@ import { appConfig } from './app/app.config';
     injector: app.injector,
   });
   customElements.define('geek-navbar', geekNavbarElement);
-
-  // Register Front Page Hero (main hero)
-  const geekHeroMainElement = createCustomElement(FrontPageHeroComponent, {
-    injector: app.injector,
-  });
-  customElements.define('geek-hero-main', geekHeroMainElement);
-
-  // Register Reusable Hero
-  const geekHeroElement = createCustomElement(HeroComponent, {
-    injector: app.injector,
-  });
-  customElements.define('geek-hero', geekHeroElement);
 
   // Register Quote AI
   const geekQuoteAiElement = createCustomElement(GeekQuoteAiComponent, {
@@ -47,5 +44,57 @@ import { appConfig } from './app/app.config';
   });
   customElements.define('geek-services-detail', geekServicesDetailElement);
 
-  console.log('Custom elements registered: geek-navbar, geek-hero-main, geek-hero, geek-quote-ai, geek-services-grid, geek-services-detail');
+  // Register Pong Game
+  const geekPongElement = createCustomElement(GeekPongComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-pong', geekPongElement);
+
+  // Register Banner Component
+  const geekBannerElement = createCustomElement(GeekBannerComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-banner', geekBannerElement);
+    // Register Banner Component
+  const geekJourneyBannerElement = createCustomElement(GeekJourneyBannerComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-journey-banner', geekJourneyBannerElement);
+
+  const geekReusableBannerElement = createCustomElement(GeekReusableBannerComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-reusable-banner', geekReusableBannerElement);
+
+  const geekFortyYearsBannerElement = createCustomElement(GeekFortyYearsBannerComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-forty-years-banner', geekFortyYearsBannerElement);
+
+    const geekMissionBannerElement = createCustomElement(GeekMissionBannerComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-mission-banner', geekMissionBannerElement);
+
+    const geekFrontPageHeroElement = createCustomElement(GeekFrontPageHeroComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-front-page-hero', geekFrontPageHeroElement);
+
+      const geekServicesHeroElement = createCustomElement(GeekServicesHeroComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-services-page-hero', geekServicesHeroElement);
+
+  const geekAboutHeroElement = createCustomElement(GeekAboutHeroComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-about-hero', geekAboutHeroElement);
+
+  const geekFooterElement = createCustomElement(GeekFooterComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-footer', geekFooterElement);
+
+  console.log('Custom elements registered: geek-navbar, geek-hero-main, geek-hero, geek-quote-ai, geek-services-grid, geek-services-detail, geek-about-page, geek-pong, geek-banner');
 })();

@@ -1,0 +1,17 @@
+div.container-fluid.footer {
+  width:100%;
+  min-height:33dvh;
+  background-color: white;
+  overflow:hidden;
+}
+a.footer {
+  text-decoration:none;
+  margin-bottom:18px;
+  font-size:10px;
+}
+a.footer:hover {
+  color: red;
+}
+span.footer {
+  font-size:6px;
+}

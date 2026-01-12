@@ -1,0 +1,311 @@
+<!-- Main Content -->
+<div class="about-page">
+
+  <!-- Why We Exist Section -->
+  <section class="why-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="section-title text-center mb-4">Why Geek @ Your Spot Exists</h2>
+
+          <div class="problem-statement p-4 bg-light rounded-3 mb-4">
+            <p class="lead text-center mb-3">
+              Most small businesses face an impossible choice:
+            </p>
+            <h3 class="text-center text-danger mb-4">
+              Ignore technology and fall behind, or invest in tools they can't understand or maintain.
+            </h3>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <div class="pain-point p-3 bg-white rounded">
+                  <i class="bi bi-emoji-frown fs-2 text-muted d-block mb-2"></i>
+                  <p class="mb-0"><strong>Expensive consultants</strong> build complex systems</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="pain-point p-3 bg-white rounded">
+                  <i class="bi bi-exclamation-triangle fs-2 text-warning d-block mb-2"></i>
+                  <p class="mb-0"><strong>"Affordable" solutions</strong> create more problems</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="pain-point p-3 bg-white rounded">
+                  <i class="bi bi-clock-history fs-2 text-danger d-block mb-2"></i>
+                  <p class="mb-0"><strong>DIY approaches</strong> waste time and money</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-center fs-5 text-primary mb-0">
+              There has to be a better way.
+            </p>
+          </div>
+
+          <div class="solution-statement p-4 bg-primary text-white rounded-3">
+            <p class="fs-5 mb-0">
+              That's why <strong>Geek @ Your Spot</strong> exists: to give small businesses access to
+              <strong>enterprise-grade technology</strong>, <strong>AI automation</strong>, and
+              <strong>data-driven systems</strong>—without enterprise costs, complexity, or lock-in.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner - Using Reusable Component -->
+<!--   <lib-cta
+    heading="Ready to transform your business with smart technology?"
+    buttonText="Get a Free Quote"
+    backgroundColor="#1a1a1a"
+    textColor="white"
+    buttonColor="#ffc107"
+    buttonTextColor="#1a1a1a"
+    (ctaClicked)="openQuote()">
+  </lib-cta> -->
+
+  <!-- How We're Different Section -->
+  <section class="different-section py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <h2 class="section-title text-center mb-3">How We're Different</h2>
+          <p class="lead text-center text-muted mb-0">
+            We don't sell software licenses or one-size-fits-all packages. We build
+            <strong>custom solutions that integrate seamlessly into your business</strong>,
+            designed for your goals, your team, and your budget.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" *ngFor="let diff of differentiators">
+          <div class="differentiator-card card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <div class="icon-wrapper mb-3">
+                <i class="bi {{ diff.icon }} fs-1 text-primary"></i>
+              </div>
+              <h4 class="card-title h5 mb-3">{{ diff.title }}</h4>
+              <p class="card-text text-muted mb-0">{{ diff.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-12">
+          <div class="results-box p-4 bg-white rounded-3 shadow-sm">
+            <h4 class="text-center mb-4">Every Project Delivers Measurable Results</h4>
+            <div class="row g-3">
+              <div class="col-md-3">
+                <div class="result-item text-center p-3">
+                  <i class="bi bi-clock fs-2 text-success d-block mb-2"></i>
+                  <strong>Automated workflows</strong> that save hours every week
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="result-item text-center p-3">
+                  <i class="bi bi-robot fs-2 text-info d-block mb-2"></i>
+                  <strong>AI-powered systems</strong> that generate leads and insights
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="result-item text-center p-3">
+                  <i class="bi bi-shield-check fs-2 text-primary d-block mb-2"></i>
+                  <strong>Secure infrastructure</strong> that protects your data
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="result-item text-center p-3">
+                  <i class="bi bi-diagram-3 fs-2 text-warning d-block mb-2"></i>
+                  <strong>Integrated technology</strong> that works together
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do Section -->
+  <section class="what-we-do-section py-5">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <h2 class="section-title text-center mb-3">What We Do</h2>
+          <p class="lead text-center text-muted">
+            From custom websites and mobile apps to AI chatbots, process automation, cybersecurity,
+            SEO, and business intelligence—we provide <strong>20 specialized services</strong> that
+            work together as a complete technology ecosystem.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6" *ngFor="let capability of capabilities">
+          <div class="capability-card card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-start">
+                <div class="capability-icon me-3">
+                  <i class="bi bi-check-circle-fill fs-3 text-success"></i>
+                </div>
+                <div>
+                  <h5 class="card-title mb-2">{{ capability.phase }}</h5>
+                  <p class="card-text text-muted mb-0">{{ capability.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Jeff Section -->
+  <section class="founder-section py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="section-title text-center mb-5">Meet Jeff Martin</h2>
+
+          <div class="founder-card card border-0 shadow">
+            <div class="card-body p-4 p-lg-5">
+              <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                  <!-- Placeholder for founder photo -->
+                  <div class="founder-photo-placeholder bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+                       style="width: 200px; height: 200px;">
+                    <i class="bi bi-person fs-1"></i>
+                  </div>
+                  <h4 class="mt-3 mb-1">Jeff Martin</h4>
+                  <p class="text-muted">Founder & Lead Developer</p>
+                  <p class="mb-0">
+                    <i class="bi bi-geo-alt-fill text-primary me-1"></i>
+                    Broward & Palm Beach County, FL
+                  </p>
+                </div>
+                <div class="col-lg-8">
+                  <h4 class="mb-3">20+ Years of Enterprise Experience</h4>
+                  <p class="mb-3">
+                    Jeff Martin has spent over two decades building the technology systems that power
+                    enterprise businesses—modernizing CRM platforms for Fortune 500 insurance companies,
+                    designing government-compliant service systems, and architecting secure, scalable
+                    solutions that process millions of transactions.
+                  </p>
+                  <p class="mb-3">
+                    His expertise spans full-stack development (C#, .NET, Angular, React), cloud infrastructure
+                    (AWS, Azure), AI integration (Claude API, ChatGPT), database design (SQL Server, PostgreSQL),
+                    cybersecurity, and digital marketing optimization.
+                  </p>
+                  <p class="mb-4">
+                    <strong>Jeff's philosophy is simple:</strong> Technology should make business easier,
+                    not more complicated. Now, he's bringing enterprise-level capabilities to businesses
+                    of all sizes—providing practical, scalable solutions without the enterprise price tag.
+                  </p>
+
+                  <div class="expertise-tags">
+                    <span class="badge bg-primary me-2 mb-2">Full Stack Development</span>
+                    <span class="badge bg-primary me-2 mb-2">AI Integration</span>
+                    <span class="badge bg-primary me-2 mb-2">Cloud Architecture</span>
+                    <span class="badge bg-primary me-2 mb-2">Cybersecurity</span>
+                    <span class="badge bg-primary me-2 mb-2">Database Design</span>
+                    <span class="badge bg-primary me-2 mb-2">SEO & Analytics</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Roots Section -->
+  <section class="location-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title mb-3">Local Roots. National Reach.</h2>
+          <p class="lead mb-0">
+            Based in <strong>Broward and Palm Beach County</strong>, we serve South Florida
+            businesses face-to-face while supporting clients nationwide with the same hands-on expertise.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta-section py-5 bg-primary text-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h2 class="display-5 mb-4">Your Technology Partner</h2>
+          <p class="lead mb-4">
+            Small businesses shouldn't have to choose between staying competitive and staying sane.
+            With Geek @ Your Spot, you get <strong>enterprise capabilities</strong>,
+            <strong>small business pricing</strong>, and a partner who explains technology in plain English.
+          </p>
+          <p class="fs-5 mb-5">
+            We don't just implement solutions—we train your team, support your growth,
+            and ensure every dollar you invest generates measurable ROI.
+          </p>
+
+          <h3 class="mb-4">Let's build something great together.</h3>
+
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <button class="btn btn-warning btn-lg px-5" (click)="scrollToContact()">
+              <i class="bi bi-calendar-check me-2"></i>
+              Schedule Free Consultation
+            </button>
+            <button class="btn btn-outline-light btn-lg px-5" (click)="openQuote()">
+              <i class="bi bi-calculator me-2"></i>
+              Get an Instant Quote
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<section class="journey-section d-flex align-items-center py-5" id="journey">
+    <div class="container">
+      <h2 class="display-2 text-center mb-5 neon-text">The Journey</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card journey-card border-0 h-100 p-5">
+            <span class="display-3 mb-3">1982</span>
+            <p class="fs-4 mb-0 text-white">First program on a Timex Computer. Pong was the dream.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card journey-card border-0 h-100 p-5">
+            <span class="display-3 mb-3">1984</span>
+            <p class="fs-4 mb-0 text-white">Macintosh revolution. Everything changed.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card journey-card border-0 h-100 p-5">
+            <span class="display-3 mb-3">Age 12</span>
+            <p class="fs-4 mb-0 text-white">Motorcycles. Freedom on two wheels. Risk, precision, and the open road.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="card journey-card border-0 h-100 p-5">
+            <span class="display-3 mb-3">20+ Years</span>
+            <p class="fs-4 mb-0 text-white">Fortune 500 insurance companies, government systems, millions of transactions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="card journey-card border-0 h-100 p-5">
+            <span class="display-3 mb-3">Today</span>
+            <p class="fs-4 mb-0 text-white">AI-powered solutions for businesses that need enterprise power without enterprise cost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

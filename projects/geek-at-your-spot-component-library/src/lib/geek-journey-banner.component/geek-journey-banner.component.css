@@ -1,0 +1,25 @@
+:root {
+  --deep-navy: #0A0B26;
+  --medium-slate-blue: #7E5EF2;
+  --deep-lake: #1D3273;
+  --dark-cornflower-blue: #3060BF;
+  --traditional-blue: #3D80D9;
+  --pale-turquoise: #A7F2F2;
+  --midnight-black: #03020D;
+  --night-sky: #091740;
+  --hermes: #203B8C;
+  --lapis-lazuli: #3632A6;
+  --cerulean-periwinkle: #5CB9F2;
+}
+div.d-block.container-fluid.geek-banner {
+  background-color: var(--deep-lake);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h2.banner{
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: capitalize;
+}

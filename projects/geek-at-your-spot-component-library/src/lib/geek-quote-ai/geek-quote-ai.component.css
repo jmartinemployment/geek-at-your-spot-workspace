@@ -1,3 +1,18 @@
+:root {
+  --deep-navy: #0A0B26;
+  --medium-slate-blue: #7E5EF2;
+  --deep-lake: #1D3273;
+  --dark-cornflower-blue: #3060BF
+  --traditional-blue: #3D80D9;
+  --pale-turquoise: #A7F2F2;
+  --midnight-black: #03020D;
+  --night-sky: #091740;
+  --hermes: #203B8C;
+  --lapis-lazuli: #3632A6;
+  --cerulean-periwinkle: #5CB9F2;
+  --burlywood: #D4A574;
+  --shiny-copper: #DD8343;
+}
 .geek-quote-ai-banner {
   background-color: #0A0B26;
   min-height: 400px;
@@ -20,3 +35,35 @@
 .loading-overlay .spinner-border {
   border-width: 0.3rem;
 }
+h2 {
+  font-weight: 700;
+}
+p {
+}
+div.container-fluid.geek-quote-ai-banner.d-block {
+  height: 50dvh;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+  background-color: var(--deep-navy);
+}
+div.col {
+  display: grid;
+}
+
+div.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  gap: 10px;
+  place-content: center;
+}
+h2 {
+  color: white;
+  font-weight: 700;
+  text-transform:capitalize;
+}
+p{
+  color: white;
+}
+

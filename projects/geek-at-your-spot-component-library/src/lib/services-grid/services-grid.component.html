@@ -1,27 +1,116 @@
-<section class="services-section" [style.backgroundColor]="backgroundColor">
-  <div class="container">
-    <div class="section-title text-center mb-5" *ngIf="title">
-      <h2 class="fw-bold mb-3">{{ title }}</h2>
-      <p class="text-muted fs-5" *ngIf="subtitle">{{ subtitle }}</p>
-    </div>
-    
-    <div class="row g-4">
-      <div *ngFor="let service of services" class="col-md-6 col-lg-3">
-        <div class="card h-100 shadow-sm service-card">
-          <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
-            <i [class]="service.icon + ' fs-1'"></i>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title fw-semibold mb-3">{{ service.title }}</h5>
-            <p class="card-text text-muted small">{{ service.description }}</p>
-            <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
-              <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
-                {{ keyword }}
-              </span>
-            </div>
-          </div>
-        </div>
+<div class="container-fluid front-page-services d-block d-sm-none d-md-none d-lg-none py-4">
+  <section>
+    <div class="row px-4">
+      <div class="col-12">
+        <h2 class="section-title xs fw-bold my-0">{{ title }}</h2>
+        <p class="subtitle lead">{{ subtitle }}</p>
       </div>
     </div>
-  </div>
-</section>
+    <div class="row px-4">
+      <div *ngFor="let service of services" class="col-12 mx-auto text-center">
+          <div class="card h-100 shadow-sm service-card xs mx-auto">
+            <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
+              <i [class]="service.icon + ' fs-1'"></i>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
+              <p class="card-text text-muted small text-start">{{ service.description }}</p>
+              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
+                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
+                  {{ keyword }}
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container-fluid front-page-services d-none d-sm-block d-md-none d-lg-none py-4">
+  <section>
+    <div class="row px-4">
+      <div class="col-12">
+        <h2 class="section-title sm fw-bold my-0">{{ title }}</h2>
+        <p class="subtitle lead">{{ subtitle }}</p>
+      </div>
+    </div>
+    <div class="row px-4">
+      <div *ngFor="let service of services" class="col-6 text-center">
+          <div class="card h-100 shadow-sm service-card sm mx-auto">
+            <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
+              <i [class]="service.icon + ' fs-1'"></i>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
+              <p class="card-text text-muted small text-start">{{ service.description }}</p>
+              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
+                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
+                  {{ keyword }}
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container-fluid front-page-services d-none d-sm-none d-md-block d-lg-block d-xl-block d-xxl-none py-4">
+  <section>
+    <div class="row px-4">
+      <div class="col-12">
+        <h2 class="section-title md fw-bold my-0 ">{{ title }}</h2>
+        <p class="subtitle lead">{{ subtitle }}</p>
+      </div>
+    </div>
+    <div class="row px-4">
+      <div *ngFor="let service of services" class="col-4">
+          <div class="card h-100 shadow-sm service-card">
+            <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
+              <i [class]="service.icon + ' fs-1'"></i>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
+              <p class="card-text text-muted small text-start">{{ service.description }}</p>
+              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
+                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
+                  {{ keyword }}
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container-fluid front-page-servicesd-none d-sm-none d-md-none d-lg-none d-xl-none d-xxl-block py-4">
+  <section>
+    <div class="row px-4">
+      <div class="col-12">
+        <h2 class="section-title xxl fw-bold my-0" style="font-size: calc(1.375rem + 1.5vw) !important;">{{ title }}</h2>
+        <p class="subtitle lead">{{ subtitle }}</p>
+      </div>
+    </div>
+    <div class="row px-4">
+      <div *ngFor="let service of services" class="col-3 g-4">
+          <div class="card h-100 shadow-sm service-card">
+            <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
+              <i [class]="service.icon + ' fs-1'"></i>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
+              <p class="card-text text-muted small text-start">{{ service.description }}</p>
+              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
+                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
+                  {{ keyword }}
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+

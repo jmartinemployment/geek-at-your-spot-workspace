@@ -3,7 +3,7 @@ get_header();
 ?>
 <header>
   <geek-navbar></geek-navbar>
-  <geek-hero-main></geek-hero-main>
+  <geek-front-page-hero></geek-front-page-hero>
 </header>
 <main>
   <geek-services-grid></geek-services-grid>

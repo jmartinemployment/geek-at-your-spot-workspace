@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { GeekContactModalComponent } from '../geek-contact-modal/geek-contact-modal.component';
 
 @Component({
-  selector: 'lib-front-page-hero',
+  selector: 'lib-geek-front-page-hero.component',
   standalone: true,
   imports: [CommonModule, GeekContactModalComponent],
-  templateUrl: './front-page-hero-component.html',
-  styleUrls: ['./front-page-hero-component.scss']
+  templateUrl: './geek-front-page-hero.component.html',
+  styleUrl: './geek-front-page-hero.component.css',
 })
-export class FrontPageHeroComponent {
+export class GeekFrontPageHeroComponent {
   @ViewChild(GeekContactModalComponent) contactModal?: GeekContactModalComponent;
 
   title = signal<string>('Empower Your Small Business with Smart Technology');
