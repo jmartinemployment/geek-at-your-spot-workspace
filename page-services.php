@@ -1,6 +1,8 @@
 <?php
 get_header();
 ?>
+<?php wp_body_open(); ?>
+
 <header>
   <geek-navbar></geek-navbar>
   <geek-services-page-hero></geek-services-page-hero>

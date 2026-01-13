@@ -2,7 +2,10 @@
 /* Template Name: Blog Custom Page Template */
 get_header();
 ?>
+<?php wp_body_open(); ?>
 
+  </body>
+</html>
 <header>
   <geek-navbar></geek-navbar>
 </header>
