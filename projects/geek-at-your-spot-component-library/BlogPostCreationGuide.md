@@ -511,18 +511,18 @@ A: [Concise answer with keywords]
 Before finalizing each blog post, verify:
 
 **Format & Structure:**
-- [ ] Blog category recommendation provided (plain text, not markdown)
+- [ ] Blog category recommendation provided (plain text, not markdown) and Blog Post primarily pertains to at least one of the twenty services offered, unless told to deviate
 - [ ] Leonardo.ai prompt includes gradient with 3 hex codes
-- [ ] Leonardo.ai prompt ends with "no text, transparent background, 16:9 landscape"
+- [ ] Leonardo.ai prompt ends with "no text, white background, 16:9 landscape"
 - [ ] Title follows pattern: "[Service Name]: [Compelling Benefit]"
 - [ ] Opens with relatable pain points (bullets)
 - [ ] Includes "You Don't Need Their Budget" section
 - [ ] Technology stack explained clearly
 - [ ] Real-world example with specific metrics
+- [ ] "Pricing and Timeline Overview" section with estimated timelines
 - [ ] Simple pricing overview (not detailed tiers)
-- [ ] NO detailed implementation timeline section
-- [ ] Ends with strong CTA and free offer
-- [ ] Footer includes: "Serving Broward & Palm Beach County, FL | [Tagline] | Code Like a Legend"
+- [ ] Ends with strong CTA and free assessment offer
+- [ ] Footer includes: "Code Like a Legend" only
 - [ ] Entire post in markdown format, ready to copy/paste
 
 **SEO Optimization:**
