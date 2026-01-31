@@ -6,7 +6,7 @@
       <!-- Modal Header -->
       <div class="modal-header bg-primary text-white">
         <h5 class="modal-title">Get In Touch</h5>
-        <button type="button" class="btn-close btn-close-white" (click)="close()" aria-label="Close"></button>
+        <button id="geek-contact-modal-close-button" type="button" class="btn-close btn-close-white" (click)="close()" aria-label="Close"></button>
       </div>
 
       <!-- Modal Body -->
@@ -73,7 +73,9 @@
               (change)="updateField('service', $any($event.target).value)"
               [disabled]="isSubmitting()">
               <option value="">Select a service...</option>
-              <option *ngFor="let svc of services" [value]="svc">{{ svc }}</option>
+              @for (svc of services; track svc) {
+                <option [value]="svc">{{ svc }}</option>
+              }
             </select>
           </div>
 
@@ -92,13 +94,17 @@
 
           <!-- Modal Footer Buttons -->
           <div class="d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-secondary" (click)="close()" [disabled]="isSubmitting()">Cancel</button>
-            <button
+            <button id="geek-contact-modal-cancel" type="button" class="btn btn-secondary" (click)="close()" [disabled]="isSubmitting()">Cancel</button>
+            <button id="geek-contact-modal-contact-us"
               type="submit"
               class="btn btn-primary"
               [disabled]="!isFormValid() || isSubmitting()">
-              <span *ngIf="!isSubmitting()">Send Message</span>
-              <span *ngIf="isSubmitting()">Sending...</span>
+              @if (!isSubmitting()) {
+                <span>Send Message</span>
+              }
+              @if (isSubmitting()) {
+                <span>Sending...</span>
+              }
             </button>
           </div>
 
@@ -110,4 +116,6 @@
 </div>
 
 <!-- Modal Backdrop -->
-<div class="modal-backdrop fade" [class.show]="isOpen()" *ngIf="isOpen()"></div>
+@if (isOpen()) {
+  <div class="modal-backdrop fade" [class.show]="isOpen()"></div>
+}

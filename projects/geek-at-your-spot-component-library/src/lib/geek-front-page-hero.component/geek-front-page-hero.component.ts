@@ -1,20 +1,24 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GeekContactModalComponent } from '../geek-contact-modal/geek-contact-modal.component';
 
 @Component({
   selector: 'lib-geek-front-page-hero.component',
-  standalone: true,
   imports: [CommonModule, GeekContactModalComponent],
   templateUrl: './geek-front-page-hero.component.html',
   styleUrl: './geek-front-page-hero.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GeekFrontPageHeroComponent {
   @ViewChild(GeekContactModalComponent) contactModal?: GeekContactModalComponent;
 
-  title = signal<string>('Empower Your Small Business with Smart Technology');
-  subtitle = signal<string>('Transform your business with intelligent automation, data-driven insights, and cutting-edge technology. From web development to workflow automation, we help small businesses compete like enterprises.');
-  imageUrl = signal<string>('https://geekatyourspot.com/wp-content/uploads/2025/10/geek@yourSpot-1.jpeg');
+  readonly headline = signal('Your competitors are using AI.');
+  readonly headlineAccent = signal('Are you?');
+  readonly subtext = signal('While you\'re still doing things the old way, your competitors are automating workflows, generating leads 24/7, and making data-driven decisions. Small businesses that embrace AI now will dominate their markets. Those that don\'t will struggle to keep up.');
+  readonly ctaText = signal('Get Your Free AI Assessment');
+  readonly imageUrl = signal('https://geekatyourspot.com/wp-content/uploads/2025/10/geek@yourSpot-1.jpeg');
+  readonly imageAlt = signal('AI-powered business transformation - Geek At Your Spot helps small businesses compete with intelligent automation');
+
 
   openContactModal(): void {
     this.contactModal?.open();

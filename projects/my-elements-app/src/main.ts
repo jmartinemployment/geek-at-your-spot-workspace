@@ -15,6 +15,12 @@ import { GeekFrontPageHeroComponent} from 'geek-at-your-spot-component-library';
 import { GeekServicesHeroComponent} from 'geek-at-your-spot-component-library';
 import { GeekAboutHeroComponent} from 'geek-at-your-spot-component-library';
 import { GeekFooterComponent} from 'geek-at-your-spot-component-library';
+import { GeekHomeHeroComponent } from 'geek-at-your-spot-component-library';
+import { GeekTrustBarComponent } from 'geek-at-your-spot-component-library';
+import { GeekQuoteSectionComponent } from 'geek-at-your-spot-component-library';
+import { GeekServicesHighlightComponent } from 'geek-at-your-spot-component-library';
+import { GeekAboutTeaserComponent } from 'geek-at-your-spot-component-library';
+import { GeekHomeCTAComponent } from 'geek-at-your-spot-component-library';
 import { appConfig } from './app/app.config';
 
 (async () => {
@@ -96,5 +102,36 @@ import { appConfig } from './app/app.config';
   });
   customElements.define('geek-footer', geekFooterElement);
 
-  console.log('Custom elements registered: geek-navbar, geek-hero-main, geek-hero, geek-quote-ai, geek-services-grid, geek-services-detail, geek-about-page, geek-pong, geek-banner');
+  // Homepage Components
+  const geekHomeHeroElement = createCustomElement(GeekHomeHeroComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-home-hero', geekHomeHeroElement);
+
+  const geekTrustBarElement = createCustomElement(GeekTrustBarComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-trust-bar', geekTrustBarElement);
+
+  const geekQuoteSectionElement = createCustomElement(GeekQuoteSectionComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-quote-section', geekQuoteSectionElement);
+
+  const geekServicesHighlightElement = createCustomElement(GeekServicesHighlightComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-services-highlight', geekServicesHighlightElement);
+
+  const geekAboutTeaserElement = createCustomElement(GeekAboutTeaserComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-about-teaser', geekAboutTeaserElement);
+
+  const geekHomeCTAElement = createCustomElement(GeekHomeCTAComponent, {
+    injector: app.injector,
+  });
+  customElements.define('geek-home-cta', geekHomeCTAElement);
+
+  console.log('Custom elements registered: geek-navbar, geek-home-hero, geek-trust-bar, geek-quote-section, geek-services-highlight, geek-about-teaser, geek-home-cta, geek-quote-ai, geek-services-grid, geek-services-detail, geek-pong, geek-banner, geek-footer');
 })();

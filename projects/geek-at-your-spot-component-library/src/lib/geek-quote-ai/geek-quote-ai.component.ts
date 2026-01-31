@@ -5,11 +5,12 @@ import { GeekQuoteAiService, LeadInfo, Message } from '../services/geek-quote-ai
 import { GeekQuoteModalComponent } from '../geek-quote-modal/geek-quote-modal.component';
 import { ConversationPhase } from '../services/api.service';
 import { GeekEmailService } from '../services/geek-email-service';
+import { GeekScrollAnimationDirective } from '../directives/scroll-animation.directive';
 
 @Component({
   selector: 'geek-quote-ai',
   standalone: true,
-  imports: [CommonModule, FormsModule, GeekQuoteModalComponent],
+  imports: [CommonModule, FormsModule, GeekQuoteModalComponent, GeekScrollAnimationDirective],
   templateUrl: './geek-quote-ai.component.html',
   styleUrls: ['./geek-quote-ai.component.css']
 })

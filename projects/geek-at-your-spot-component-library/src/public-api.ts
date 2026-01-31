@@ -22,3 +22,14 @@ export * from './lib/geek-front-page-hero.component/geek-front-page-hero.compone
 export * from './lib/geek-services-hero.component/geek-services-hero.component';
 export * from './lib/geek-about-hero.component/geek-about-hero.component';
 export * from './lib/geek-footer.component/geek-footer.component';
+
+// Homepage Components
+export * from './lib/geek-home-hero.component/geek-home-hero.component';
+export * from './lib/geek-trust-bar.component/geek-trust-bar.component';
+export * from './lib/geek-quote-section.component/geek-quote-section.component';
+export * from './lib/geek-services-highlight.component/geek-services-highlight.component';
+export * from './lib/geek-about-teaser.component/geek-about-teaser.component';
+export * from './lib/geek-home-cta.component/geek-home-cta.component';
+
+// Directives
+export * from './lib/directives/scroll-animation.directive';

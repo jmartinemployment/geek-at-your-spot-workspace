@@ -1,92 +1,162 @@
-import { Component, signal, effect, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  signal,
+  computed,
+  OnDestroy,
+  OnInit,
+  ElementRef,
+  inject,
+  PLATFORM_ID,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'lib-geek-pong',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './geek-pong.component.html',
-  styleUrls: ['./geek-pong.component.css']
+  styleUrls: ['./geek-pong.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GeekPongComponent implements OnDestroy {
-  // Canvas dimensions
-  canvasWidth = 800;
-  canvasHeight = 600;
-  
+export class GeekPongComponent implements OnInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  // Base canvas dimensions (used for viewBox - game logic works in these coordinates)
+  readonly baseWidth = 800;
+  readonly baseHeight = 600;
+
+  // Actual display dimensions (responsive)
+  containerWidth = signal(800);
+
+  // Computed aspect ratio height
+  displayHeight = computed(() => (this.containerWidth() * this.baseHeight) / this.baseWidth);
+
   // Game state
   score = signal(0);
   highScore = signal(0);
   gameActive = signal(false);
   gameOver = signal(false);
-  
-  // Ball
+
+  // Ball position (in base coordinates)
   ballX = signal(400);
   ballY = signal(300);
-  ballSpeedX = 5;
-  ballSpeedY = 5;
-  ballSize = 10;
-  
-  // Paddle
+  private ballSpeedX = 5;
+  private ballSpeedY = 5;
+  private readonly baseBallSpeed = 5;
+  readonly ballSize = 15;
+
+  // Paddle (in base coordinates)
   paddleX = signal(350);
-  paddleY = 550;
-  paddleWidth = 100;
-  paddleHeight = 15;
-  
+  readonly paddleY = 550;
+  readonly paddleWidth = 140;
+  readonly paddleHeight = 20;
+
   // Animation frame
   private animationId?: number;
-  
+  private resizeObserver?: ResizeObserver;
+
+  // Touch tracking
+  private lastTouchX = 0;
+
   constructor() {
     // Load high score from localStorage
-    const saved = localStorage.getItem('geek-pong-high-score');
-    if (saved) {
-      this.highScore.set(parseInt(saved, 10));
+    if (isPlatformBrowser(this.platformId)) {
+      const saved = localStorage.getItem('geek-pong-high-score');
+      if (saved) {
+        this.highScore.set(parseInt(saved, 10));
+      }
     }
+  }
+
+  ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    // Set up resize observer for responsive canvas
+    this.setupResizeObserver();
+  }
+
+  private setupResizeObserver(): void {
+    const container = this.elementRef.nativeElement.querySelector('.game-canvas-wrapper');
+    if (!container) return;
+
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const width = Math.min(entry.contentRect.width - 20, 800);
+        this.containerWidth.set(Math.max(width, 280));
+      }
+    });
+
+    this.resizeObserver.observe(container);
   }
 
   startGame(): void {
     this.score.set(0);
     this.gameOver.set(false);
     this.gameActive.set(true);
-    this.ballX.set(400);
-    this.ballY.set(300);
-    this.ballSpeedX = 5;
-    this.ballSpeedY = 5;
+    this.ballX.set(this.baseWidth / 2);
+    this.ballY.set(this.baseHeight / 2);
+    this.ballSpeedX = this.baseBallSpeed * (Math.random() > 0.5 ? 1 : -1);
+    this.ballSpeedY = this.baseBallSpeed;
+    this.paddleX.set((this.baseWidth - this.paddleWidth) / 2);
     this.gameLoop();
   }
 
-  gameLoop(): void {
+  private gameLoop(): void {
     if (!this.gameActive()) return;
 
     // Move ball
-    this.ballX.update(x => x + this.ballSpeedX);
-    this.ballY.update(y => y + this.ballSpeedY);
+    this.ballX.update((x) => x + this.ballSpeedX);
+    this.ballY.update((y) => y + this.ballSpeedY);
 
-    // Ball collision with walls
-    if (this.ballX() <= 0 || this.ballX() >= this.canvasWidth - this.ballSize) {
-      this.ballSpeedX = -this.ballSpeedX;
+    // Ball collision with left/right walls
+    if (this.ballX() <= this.ballSize / 2) {
+      this.ballX.set(this.ballSize / 2);
+      this.ballSpeedX = Math.abs(this.ballSpeedX);
     }
-    if (this.ballY() <= 0) {
-      this.ballSpeedY = -this.ballSpeedY;
+    if (this.ballX() >= this.baseWidth - this.ballSize / 2) {
+      this.ballX.set(this.baseWidth - this.ballSize / 2);
+      this.ballSpeedX = -Math.abs(this.ballSpeedX);
+    }
+
+    // Ball collision with top wall
+    if (this.ballY() <= this.ballSize / 2) {
+      this.ballY.set(this.ballSize / 2);
+      this.ballSpeedY = Math.abs(this.ballSpeedY);
     }
 
     // Ball collision with paddle
+    const ballBottom = this.ballY() + this.ballSize / 2;
+    const paddleTop = this.paddleY;
+    const paddleLeft = this.paddleX();
+    const paddleRight = this.paddleX() + this.paddleWidth;
+
     if (
-      this.ballY() + this.ballSize >= this.paddleY &&
-      this.ballX() >= this.paddleX() &&
-      this.ballX() <= this.paddleX() + this.paddleWidth
+      ballBottom >= paddleTop &&
+      ballBottom <= paddleTop + this.paddleHeight &&
+      this.ballX() >= paddleLeft &&
+      this.ballX() <= paddleRight &&
+      this.ballSpeedY > 0
     ) {
-      this.ballSpeedY = -this.ballSpeedY;
-      this.score.update(s => s + 1);
-      
-      // Increase difficulty
+      this.ballSpeedY = -Math.abs(this.ballSpeedY);
+      this.score.update((s) => s + 1);
+
+      // Add angle based on where ball hits paddle
+      const hitPos = (this.ballX() - paddleLeft) / this.paddleWidth;
+      this.ballSpeedX = (hitPos - 0.5) * 10;
+
+      // Increase difficulty every 5 points
       if (this.score() % 5 === 0) {
-        this.ballSpeedX *= 1.1;
-        this.ballSpeedY *= 1.1;
+        const speedMultiplier = 1.1;
+        this.ballSpeedX *= speedMultiplier;
+        this.ballSpeedY *= speedMultiplier;
       }
     }
 
     // Ball missed paddle - game over
-    if (this.ballY() >= this.canvasHeight) {
+    if (this.ballY() >= this.baseHeight + this.ballSize) {
       this.endGame();
       return;
     }
@@ -94,31 +164,70 @@ export class GeekPongComponent implements OnDestroy {
     this.animationId = requestAnimationFrame(() => this.gameLoop());
   }
 
-  endGame(): void {
+  private endGame(): void {
     this.gameActive.set(false);
     this.gameOver.set(true);
-    
+
     // Update high score
     if (this.score() > this.highScore()) {
       this.highScore.set(this.score());
-      localStorage.setItem('geek-pong-high-score', this.score().toString());
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('geek-pong-high-score', this.score().toString());
+      }
     }
-    
+
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
   }
 
+  // Mouse control
   movePaddle(event: MouseEvent): void {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const newX = Math.max(0, Math.min(x - this.paddleWidth / 2, this.canvasWidth - this.paddleWidth));
+    if (!this.gameActive()) return;
+
+    const svg = event.currentTarget as SVGSVGElement;
+    const rect = svg.getBoundingClientRect();
+    const scaleX = this.baseWidth / rect.width;
+
+    const mouseX = (event.clientX - rect.left) * scaleX;
+    this.updatePaddlePosition(mouseX);
+  }
+
+  // Touch controls
+  onTouchStart(event: TouchEvent): void {
+    if (event.touches.length > 0) {
+      const svg = event.currentTarget as SVGSVGElement;
+      const rect = svg.getBoundingClientRect();
+      const scaleX = this.baseWidth / rect.width;
+      this.lastTouchX = (event.touches[0].clientX - rect.left) * scaleX;
+    }
+  }
+
+  onTouchMove(event: TouchEvent): void {
+    event.preventDefault(); // Prevent scrolling while playing
+
+    if (!this.gameActive() || event.touches.length === 0) return;
+
+    const svg = event.currentTarget as SVGSVGElement;
+    const rect = svg.getBoundingClientRect();
+    const scaleX = this.baseWidth / rect.width;
+
+    const touchX = (event.touches[0].clientX - rect.left) * scaleX;
+    this.updatePaddlePosition(touchX);
+    this.lastTouchX = touchX;
+  }
+
+  private updatePaddlePosition(x: number): void {
+    const newX = Math.max(0, Math.min(x - this.paddleWidth / 2, this.baseWidth - this.paddleWidth));
     this.paddleX.set(newX);
   }
 
   ngOnDestroy(): void {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 }

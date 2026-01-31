@@ -20,6 +20,9 @@ body html {
   width:100%;
   scroll-behavior: smooth;
 }
+button.btn.btn-primary{
+    background-color: #7E5EF2;
+}
 .container-fluid {
   margin-top:5rem;
   min-width:100vw !important;
@@ -47,13 +50,16 @@ div.row.hero {
   height: auto;
   display:flex;
 }
-h1.hero {
+h1.hero,
+p.hero.hero-title {
   font-weight: 700;
-  text-transform:capitalize;
+  text-transform: capitalize;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 img.img-fluid {
 }
-
 p.hero {
 }
 @media all and (max-width: 933px) and (orientation: landscape) {

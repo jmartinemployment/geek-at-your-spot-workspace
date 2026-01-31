@@ -1,8 +1,14 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* CSS Variables */
 :root {
   --deep-navy: #0A0B26;
   --medium-slate-blue: #7E5EF2;
   --deep-lake: #1D3273;
-  --dark-cornflower-blue: #3060BF
+  --dark-cornflower-blue: #3060BF;
   --traditional-blue: #3D80D9;
   --pale-turquoise: #A7F2F2;
   --midnight-black: #03020D;
@@ -10,82 +16,103 @@
   --hermes: #203B8C;
   --lapis-lazuli: #3632A6;
   --cerulean-periwinkle: #5CB9F2;
-  --burlywood: #D4A574;
-  --shiny-copper: #DD8343;
-}
-body html {
-  background-color:white;
-  overflow-x: hidden;
-  padding: 0;
-  margin: 0;
-  height:100vh;
-  width:100%;
-  scroll-behavior: smooth;
+  --copper: #DD8343;
 }
 
-div.container-fluid.geek-pong-component{
-  height: auto;
-  min-height:100dvh;
+/* Main Container */
+.geek-pong-component {
+  min-height: 100dvh;
   width: 100%;
-  background-color: var(--cerulean-periwinkle);
+  padding: 1rem;
+  background: linear-gradient(180deg, var(--cerulean-periwinkle) 0%, var(--deep-lake) 100%);
 }
-div.col-2.d-flex.flex-column.justify-content-between{
-  max-height: 100rvh;
-  flex-direction: column;
-  justify-content: space-between;
-}
-div.card-header.pong{
-    background-color: var(--night-sky);
-    min-width: 100%;
-}
-div.card.pong{
-  width: 100%;
-  height:auto;
+
+/* Timeline Cards */
+.card.pong {
   background-color: white;
-}
-.card-text{
-  color: #000;
-  font-size: var(--bs-body-font-size);
-  padding-left:5px;
-  padding-right:5px;
-}
-small.d-block.text-center.mx-auto.pong{
-  color:  #dd8343;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.card-header.pong {
+  background-color: var(--night-sky);
+  padding: 0.5rem;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header.pong img {
+  max-width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+small.pong {
+  color: var(--copper);
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-body {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.card-year {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--night-sky);
+  margin-bottom: 0.25rem;
+}
+
+.card-text {
+  font-size: 0.7rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Pong Game Container */
 .pong-container {
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  background: linear-gradient(135deg, #03020D 0%, #091740 100%);
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(92, 185, 242, 0.3);
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--midnight-black) 0%, var(--night-sky) 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(92, 185, 242, 0.3);
 }
 
 .pong-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .pong-title {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--cerulean-periwinkle);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(92, 185, 242, 0.5);
 }
 
 .pong-subtitle {
-  color: #DD8343;
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  color: var(--copper);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .score-board {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  margin-top: 1rem;
+  gap: 2rem;
 }
 
 .score-item {
@@ -96,127 +123,144 @@ small.d-block.text-center.mx-auto.pong{
 
 .score-label {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .score-value {
   color: var(--cerulean-periwinkle);
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Courier New', monospace;
 }
 
+/* Game Canvas */
 .game-canvas-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  align-items: center;
+  margin: 1rem 0;
+  touch-action: none; /* Prevent browser touch actions during game */
 }
 
 .game-canvas {
   background: var(--midnight-black);
-  border: 3px solid var(--cerulean-periwinkle);
-  box-shadow: 0 0 20px rgba(92, 185, 242, 0.5), inset 0 0 20px rgba(92, 185, 242, 0.1);
+  border: 2px solid var(--cerulean-periwinkle);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(92, 185, 242, 0.4), inset 0 0 15px rgba(92, 185, 242, 0.1);
   cursor: none;
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 .ball {
   fill: var(--cerulean-periwinkle);
-  filter: drop-shadow(0 0 10px var(--cerulean-periwinkle));
+  filter: drop-shadow(0 0 8px var(--cerulean-periwinkle));
 }
 
 .paddle {
-  fill: #DD8343;
-  filter: drop-shadow(0 0 8px #DD8343);
+  fill: #FF9F43;
+  stroke: #FFF;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 12px #FF9F43) drop-shadow(0 0 20px rgba(255, 159, 67, 0.8));
 }
 
+/* Game Overlays */
 .game-overlay {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
+  border-radius: 4px;
 }
 
-.game-over-content,
-.start-content {
+.overlay-content {
   text-align: center;
-  color: white;
+  padding: 1rem;
 }
 
-.game-over-title,
-.start-title {
-  font-size: 3rem;
+.overlay-title {
+  font-size: 1.75rem;
   color: var(--cerulean-periwinkle);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(92, 185, 242, 0.5);
 }
 
 .final-score {
-  font-size: 2rem;
-  color: #DD8343;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
 }
 
 .high-score-message {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #ffc107;
   animation: pulse 1s infinite;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .instructions {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
+/* Buttons - Touch Friendly */
 .btn-retro {
   background: var(--cerulean-periwinkle);
-  color: #03020D;
+  color: var(--midnight-black);
   border: none;
-  padding: 1rem 3rem;
-  font-size: 1.2rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-family: 'Courier New', monospace;
   box-shadow: 0 4px 15px rgba(92, 185, 242, 0.4);
+  border-radius: 4px;
+  min-height: 48px; /* Touch-friendly minimum */
+  min-width: 120px;
 }
 
-.btn-retro:hover {
-  background: #DD8343;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(92, 185, 242, 1);
+.btn-retro:hover,
+.btn-retro:active {
+  background: var(--copper);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(221, 131, 67, 0.5);
 }
 
 .btn-start {
   animation: glow 2s infinite;
 }
 
+/* Footer */
 .pong-footer {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .retro-text {
-  color: rgba(92, 185, 242, 1);
-  font-size: 0.9rem;
+  color: rgba(92, 185, 242, 0.8);
+  font-size: 0.75rem;
   font-family: 'Courier New', monospace;
+  margin: 0;
 }
 
+/* Animations */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -224,37 +268,224 @@ small.d-block.text-center.mx-auto.pong{
 
 @keyframes glow {
   0%, 100% { box-shadow: 0 4px 15px rgba(92, 185, 242, 0.4); }
-  50% { box-shadow: 0 8px 30px rgba(92, 185, 242, 0.8); }
+  50% { box-shadow: 0 6px 25px rgba(92, 185, 242, 0.7); }
 }
-@media only screen and (min-width: 576px) {
 
-}
-/* Responsive */
-@media (max-width: 768px) {
+/* ==================== */
+/* Responsive Breakpoints */
+/* ==================== */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
   .pong-title {
     font-size: 2rem;
   }
 
-  .game-canvas {
-    max-width: 100%;
+  .score-value {
+    font-size: 1.75rem;
+  }
+
+  .card-header.pong img {
+    max-width: 60px;
+  }
+
+  small.pong {
+    font-size: 0.7rem;
+  }
+
+  .card-year {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .geek-pong-component {
+    padding: 1.5rem;
+  }
+
+  .pong-container {
+    padding: 1.5rem;
+  }
+
+  .pong-title {
+    font-size: 2.5rem;
+  }
+
+  .pong-subtitle {
+    font-size: 1rem;
+  }
+
+  .score-board {
+    gap: 3rem;
+  }
+
+  .score-label {
+    font-size: 0.8rem;
+  }
+
+  .score-value {
+    font-size: 2rem;
+  }
+
+  .overlay-title {
+    font-size: 2.5rem;
+  }
+
+  .btn-retro {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .card-header.pong {
+    padding: 0.75rem;
+    min-height: 80px;
+  }
+
+  .card-header.pong img {
+    max-width: 64px;
+  }
+
+  small.pong {
+    font-size: 0.75rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .card-year {
+    font-size: 1.25rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .geek-pong-component {
+    padding: 2rem;
+  }
+
+  .pong-container {
+    max-width: 900px;
+    padding: 2rem;
+  }
+
+  .pong-title {
+    font-size: 3rem;
+  }
+
+  .pong-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .score-value {
+    font-size: 2.5rem;
+  }
+
+  .game-canvas-wrapper {
+    margin: 1.5rem 0;
+  }
+
+  .overlay-title {
+    font-size: 3rem;
+  }
+
+  .final-score {
+    font-size: 1.5rem;
+  }
+
+  .btn-retro {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+
+  .card-header.pong {
+    min-height: 90px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-year {
+    font-size: 1.5rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  .retro-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .geek-pong-component {
+    min-height: auto;
+    padding: 0.5rem;
+  }
+
+  .pong-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .pong-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  .pong-subtitle {
+    display: none;
   }
 
   .score-board {
     gap: 1.5rem;
   }
-}
-@media only screen and (min-width: 768px) {
 
+  .score-label {
+    font-size: 0.6rem;
+  }
+
+  .score-value {
+    font-size: 1.25rem;
+  }
+
+  .game-canvas-wrapper {
+    margin: 0.5rem 0;
+  }
+
+  .pong-footer {
+    display: none;
+  }
+
+  .row.py-2,
+  .row.py-md-3 {
+    display: none !important;
   }
 }
-@media only screen and (min-width: 992px) {
 
-}
-@media all and (max-width: 933px) and (orientation: landscape) {
-  div.d-none.d-sm-none.d-md-block.container-fluid.geek-hero-main-banner {
-    padding-top: 10px;
-    padding-bottom: 10px;;
-    margin-top:5rem !important;
-    min-height:100dvh;
-    height: auto;
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .btn-start {
+    animation: none;
+  }
+
+  .high-score-message {
+    animation: none;
+  }
+
+  .btn-retro {
+    transition: none;
+  }
 }

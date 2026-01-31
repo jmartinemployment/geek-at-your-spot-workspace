@@ -1,0 +1,151 @@
+:host {
+  display: block;
+}
+
+.services-highlight {
+  min-height: 100vh;
+  height: auto;
+  background-color: #1D3273;
+  display: flex;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #a0a0a0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-card:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(126, 94, 242, 0.3);
+}
+
+.service-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.service-icon {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.service-description {
+  font-size: 0.9375rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.btn-services-cta {
+  color: #ffffff;
+  border: 2px solid #7E5EF2;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-services-cta:hover {
+  background-color: #7E5EF2;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+  .services-highlight {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-icon {
+    font-size: 1.5rem;
+  }
+
+  .service-title {
+    font-size: 1.125rem;
+  }
+
+  .service-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .service-card {
+    padding: 2.5rem;
+  }
+
+  .service-icon-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+  }
+
+  .service-description {
+    font-size: 1rem;
+  }
+}

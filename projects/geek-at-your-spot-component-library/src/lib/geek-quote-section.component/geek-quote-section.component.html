@@ -1,0 +1,17 @@
+<section class="quote-section">
+  <div class="container-fluid py-5 px-4">
+    <div class="row justify-content-center mb-4">
+      <div class="col-12 col-lg-8 text-center">
+        <h2 class="quote-headline" geekScrollAnimation="fade">{{ headline() }}</h2>
+        <p class="quote-subheadline" geekScrollAnimation="fade" [geekAnimationDelay]="100">{{ subheadline() }}</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="quote-ai-wrapper" geekScrollAnimation="slide-up" [geekAnimationDelay]="200">
+          <geek-quote-ai></geek-quote-ai>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -33,7 +33,14 @@ function initialize_styles()
   // Enqueue main stylesheet
   wp_enqueue_style(
     'my-elements-css',
-    get_template_directory_uri() . '/assets/css/styles-7ZT44ZCQ.css',
+    get_template_directory_uri() . '/assets/css/styles-64DERVWF.css',
+    array(),
+    '1.0.0',
+    'all'
+  );
+  wp_enqueue_style(
+    'get-order-stack',
+    get_template_directory_uri() . '/assets/css/styles-LBOEZ5Z6.css',
     array(),
     '1.0.0',
     'all'
@@ -47,10 +54,18 @@ function my_custom_scripts()
   // Enqueue Custom Elements from my-elements-app build
   wp_enqueue_script(
     'my-elements-js',
-    get_template_directory_uri() . '/assets/js/main-6LQGVLKZ.js',
+    get_template_directory_uri() . '/assets/js/main-NSMUSNQF.js',
     array('custom-elements-polyfill'),
+    '1.0.0',
+    true
+  );
+  wp_enqueue_script(
+    'get-order-stack',
+    get_template_directory_uri() . '/assets/js/main-YSFTN32N.js',
+    array(),
     '1.0.0',
     true
   );
 }
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
+

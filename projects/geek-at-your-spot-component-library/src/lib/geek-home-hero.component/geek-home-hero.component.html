@@ -1,0 +1,55 @@
+<!-- Mobile View -->
+<section class="home-hero container-fluid d-block d-md-none px-5">
+      <div class="col-12 hero-full-width-column">
+        <h1 class="hero-headline" geekScrollAnimation="slide-up">
+            {{ headline() }}
+            <span class="hero-accent d-block">{{ headlineAccent() }}</span>
+        </h1>
+        <img [src]="imageUrl()" [alt]="imageAlt()" class="img-fluid mx-auto px-0 text-center" width="560" height="286" geekScrollAnimation="fade" [geekAnimationDelay]="100" />
+        <p class="hero-subtext mt-4" geekScrollAnimation="fade" [geekAnimationDelay]="200">{{ subtext() }}</p>
+        <button
+            id="home-hero-cta-mobile"
+            class="btn btn-cta btn-lg mt-4"
+            (click)="openContactModal()"
+            geekScrollAnimation="slide-up"
+            [geekAnimationDelay]="300">
+            {{ ctaText() }}
+        </button>
+      </div>
+  </section>
+<!-- Desktop View -->
+<section class="home-hero d-none d-md-block">
+  <div class="container-fluid py-0 px-0">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-md-6 ps-5">
+        <h1 class="hero-headline" geekScrollAnimation="slide-up">
+          {{ headline() }}
+          <span class="hero-accent d-block">{{ headlineAccent() }}</span>
+        </h1>
+        <p class="hero-subtext mt-4 pe-5" geekScrollAnimation="fade" [geekAnimationDelay]="100">{{ subtext() }}</p>
+        <button
+          id="home-hero-cta-desktop"
+          class="btn btn-cta btn-lg mt-4"
+          (click)="openContactModal()"
+          geekScrollAnimation="slide-up"
+          [geekAnimationDelay]="200">
+          {{ ctaText() }}
+        </button>
+      </div>
+      <div class="col-md-6 d-flex justify-content-center align-items-center px-0 py-0">
+        <img
+          [src]="imageUrl()"
+          [alt]="imageAlt()"
+          class="hero-image img-fluid"
+          width="1070"
+          height="601"
+          loading="eager"
+          geekScrollAnimation="fade"
+          [geekAnimationDelay]="150" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Modal -->
+<geek-contact-modal></geek-contact-modal>

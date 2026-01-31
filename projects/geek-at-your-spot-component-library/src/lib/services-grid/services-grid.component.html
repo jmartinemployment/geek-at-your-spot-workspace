@@ -1,3 +1,5 @@
+Copy
+
 <div class="container-fluid front-page-services d-block d-sm-none d-md-none d-lg-none py-4">
   <section>
     <div class="row px-4">
@@ -7,7 +9,8 @@
       </div>
     </div>
     <div class="row px-4">
-      <div *ngFor="let service of services" class="col-12 mx-auto text-center">
+      @for (service of services; track service) {
+        <div class="col-12 mx-auto text-center">
           <div class="card h-100 shadow-sm service-card xs mx-auto">
             <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
               <i [class]="service.icon + ' fs-1'"></i>
@@ -15,14 +18,19 @@
             <div class="card-body">
               <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
               <p class="card-text text-muted small text-start">{{ service.description }}</p>
-              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
-                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
-                  {{ keyword }}
-                </span>
-              </div>
+              @if (service.keywords.length > 0) {
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  @for (keyword of service.keywords; track keyword) {
+                    <span class="badge rounded-pill">
+                      {{ keyword }}
+                    </span>
+                  }
+                </div>
+              }
             </div>
           </div>
-      </div>
+        </div>
+      }
     </div>
   </section>
 </div>
@@ -36,7 +44,8 @@
       </div>
     </div>
     <div class="row px-4">
-      <div *ngFor="let service of services" class="col-6 text-center">
+      @for (service of services; track service) {
+        <div class="col-6 text-center">
           <div class="card h-100 shadow-sm service-card sm mx-auto">
             <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
               <i [class]="service.icon + ' fs-1'"></i>
@@ -44,14 +53,19 @@
             <div class="card-body">
               <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
               <p class="card-text text-muted small text-start">{{ service.description }}</p>
-              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
-                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
-                  {{ keyword }}
-                </span>
-              </div>
+              @if (service.keywords.length > 0) {
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  @for (keyword of service.keywords; track keyword) {
+                    <span class="badge rounded-pill">
+                      {{ keyword }}
+                    </span>
+                  }
+                </div>
+              }
             </div>
           </div>
-      </div>
+        </div>
+      }
     </div>
   </section>
 </div>
@@ -65,7 +79,8 @@
       </div>
     </div>
     <div class="row px-4">
-      <div *ngFor="let service of services" class="col-4">
+      @for (service of services; track service) {
+        <div class="col-4">
           <div class="card h-100 shadow-sm service-card">
             <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
               <i [class]="service.icon + ' fs-1'"></i>
@@ -73,14 +88,19 @@
             <div class="card-body">
               <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
               <p class="card-text text-muted small text-start">{{ service.description }}</p>
-              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
-                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
-                  {{ keyword }}
-                </span>
-              </div>
+              @if (service.keywords.length > 0) {
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  @for (keyword of service.keywords; track keyword) {
+                    <span class="badge rounded-pill">
+                      {{ keyword }}
+                    </span>
+                  }
+                </div>
+              }
             </div>
           </div>
-      </div>
+        </div>
+      }
     </div>
   </section>
 </div>
@@ -94,7 +114,8 @@
       </div>
     </div>
     <div class="row px-4">
-      <div *ngFor="let service of services" class="col-3 g-4">
+      @for (service of services; track service) {
+        <div class="col-3 g-4">
           <div class="card h-100 shadow-sm service-card">
             <div class="card-header text-white text-center py-4" [style.backgroundColor]="service.headerColor">
               <i [class]="service.icon + ' fs-1'"></i>
@@ -102,15 +123,19 @@
             <div class="card-body">
               <h3 class="card-title fw-semibold mx-0 text-start">{{ service.title }}</h3>
               <p class="card-text text-muted small text-start">{{ service.description }}</p>
-              <div class="d-flex flex-wrap gap-2 mt-3" *ngIf="service.keywords.length > 0">
-                <span *ngFor="let keyword of service.keywords" class="badge rounded-pill">
-                  {{ keyword }}
-                </span>
-              </div>
+              @if (service.keywords.length > 0) {
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  @for (keyword of service.keywords; track keyword) {
+                    <span class="badge rounded-pill">
+                      {{ keyword }}
+                    </span>
+                  }
+                </div>
+              }
             </div>
           </div>
-      </div>
+        </div>
+      }
     </div>
   </section>
 </div>
-

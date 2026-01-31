@@ -1,0 +1,1059 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-01-14 13:53:13",
+    "containerVersion": {
+        "path": "accounts/6333489997/containers/240385012/versions/0",
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6333489997/containers/240385012",
+            "accountId": "6333489997",
+            "containerId": "240385012",
+            "name": "Geek",
+            "publicId": "GTM-K5CXSQRP",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1768236212711",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6333489997/containers/240385012/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-K5CXSQRP"
+            ]
+        },
+        "tag": [
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "1",
+                    "name": "Consent Mode - Default Settings (U.S. Traffic)",
+                    "type": "html",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "html",
+                        "value": "<script>\n  // Google Consent Mode v2 - Default Settings for U.S. Traffic\n  // All consent types granted by default (no consent banner required for U.S.)\n  \n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  \n  // Set default consent state\n  gtag('consent', 'default', {\n    'ad_storage': 'granted',\n    'ad_user_data': 'granted',\n    'ad_personalization': 'granted',\n    'analytics_storage': 'granted',\n    'functionality_storage': 'granted',\n    'personalization_storage': 'granted',\n    'security_storage': 'granted'\n  });\n  \n  // Log for debugging\n  console.log('[Geek @ Your Spot] Consent Mode v2 initialized - All consent granted for U.S. traffic');\n</script>"
+                      },
+                      {
+                        "type": "boolean",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                      }
+                    ],
+                    "fingerprint": "consent_mode_v2_us",
+                    "firingTriggerId": [
+                      "1"
+                    ],
+                    "tagFiringOption": "oncePerEvent",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "notSet"
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "2",
+                    "name": "GA4 - Configuration Tag",
+                    "type": "gaawc",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "boolean",
+                        "key": "sendPageView",
+                        "value": "true"
+                      },
+                      {
+                        "type": "list",
+                        "key": "configSettingsTable",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "parameter",
+                                "value": "send_page_view"
+                              },
+                              {
+                                "type": "template",
+                                "key": "parameterValue",
+                                "value": "true"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_config",
+                    "firingTriggerId": [
+                      "2"
+                    ],
+                    "tagFiringOption": "oncePerEvent",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "3",
+                    "name": "Google Ads - Conversion Tracking",
+                    "type": "googtag",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "tagId",
+                        "value": "GT-5MJDLPBG"
+                      }
+                    ],
+                    "fingerprint": "google_ads_config",
+                    "firingTriggerId": [
+                      "2"
+                    ],
+                    "tagFiringOption": "oncePerEvent",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "ad_storage"
+                        },
+                        {
+                          "type": "template",
+                          "value": "ad_user_data"
+                        },
+                        {
+                          "type": "template",
+                          "value": "ad_personalization"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "4",
+                    "name": "GA4 Event - Tracked Button Clicks",
+                    "type": "gaawe",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "template",
+                        "key": "eventName",
+                        "value": "{{Click - Track Event}}"
+                      },
+                      {
+                        "type": "list",
+                        "key": "eventParameters",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "event_category"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click - Track Category}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "event_label"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click - Track Label}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "click_text"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click Text}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "page_location"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Page URL}}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_tracked_clicks",
+                    "firingTriggerId": [
+                      "3"
+                    ],
+                    "tagFiringOption": "unlimited",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "5",
+                    "name": "GA4 Event - Outbound Link Clicks",
+                    "type": "gaawe",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "template",
+                        "key": "eventName",
+                        "value": "click_outbound"
+                      },
+                      {
+                        "type": "list",
+                        "key": "eventParameters",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "link_url"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click URL}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "link_text"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click Text}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "link_domain"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Click - Outbound Domain}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "page_location"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Page URL}}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_outbound_clicks",
+                    "firingTriggerId": [
+                      "4"
+                    ],
+                    "tagFiringOption": "unlimited",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "6",
+                    "name": "GA4 Event - Form Submissions",
+                    "type": "gaawe",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "template",
+                        "key": "eventName",
+                        "value": "form_submit"
+                      },
+                      {
+                        "type": "list",
+                        "key": "eventParameters",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "form_id"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Form ID}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "form_name"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{DL - Form Name}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "page_location"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Page URL}}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_form_submit",
+                    "firingTriggerId": [
+                      "5"
+                    ],
+                    "tagFiringOption": "unlimited",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "7",
+                    "name": "GA4 Event - Quote Modal Opened",
+                    "type": "gaawe",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "template",
+                        "key": "eventName",
+                        "value": "quote_modal_opened"
+                      },
+                      {
+                        "type": "list",
+                        "key": "eventParameters",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "modal_type"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{DL - Modal Type}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "page_location"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Page URL}}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_quote_modal",
+                    "firingTriggerId": [
+                      "6"
+                    ],
+                    "tagFiringOption": "unlimited",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "accountId": "6333489997",
+                    "containerId": "240385012",
+                    "tagId": "8",
+                    "name": "GA4 Event - Scroll Depth",
+                    "type": "gaawe",
+                    "parameter": [
+                      {
+                        "type": "template",
+                        "key": "measurementId",
+                        "value": "G-WL9NJH8FLH"
+                      },
+                      {
+                        "type": "template",
+                        "key": "eventName",
+                        "value": "scroll_depth"
+                      },
+                      {
+                        "type": "list",
+                        "key": "eventParameters",
+                        "list": [
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "percent_scrolled"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Scroll Depth Threshold}}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "map",
+                            "map": [
+                              {
+                                "type": "template",
+                                "key": "name",
+                                "value": "page_location"
+                              },
+                              {
+                                "type": "template",
+                                "key": "value",
+                                "value": "{{Page URL}}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "fingerprint": "ga4_scroll_depth",
+                    "firingTriggerId": [
+                      "7"
+                    ],
+                    "tagFiringOption": "unlimited",
+                    "monitoringMetadata": {
+                      "type": "map"
+                    },
+                    "consentSettings": {
+                      "consentStatus": "needed",
+                      "consentType": [
+                        {
+                          "type": "template",
+                          "value": "analytics_storage"
+                        }
+                      ]
+                    }
+                  },
+                {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "tagId": "3",
+                "name": "Google Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "G-WL9NJH8FLH"
+                    }
+                ],
+                "fingerprint": "1768238604333",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "tagId": "4",
+                "name": "Google Analytics Tag",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "{{Page Hostname}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "G-WL9NJH8FLH"
+                    }
+                ],
+                "fingerprint": "1768238618587",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "tagId": "7",
+                "name": "Geek-Frontpage-Contact-Us Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Click ID}}"
+                    }
+                ],
+                "fingerprint": "1768330948198",
+                "firingTriggerId": [
+                    "6"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "tagId": "9",
+                "name": "Geek Frontpage Page View Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Page URL}}"
+                    }
+                ],
+                "fingerprint": "1768330751663",
+                "firingTriggerId": [
+                    "2147479573",
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "tagId": "11",
+                "name": "Geek Contact Modal Contact Us Tag",
+                "type": "googtag",
+                "liveOnly": true,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Click ID}}"
+                    }
+                ],
+                "fingerprint": "1768331261905",
+                "firingTriggerId": [
+                    "2147479573",
+                    "10"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "triggerId": "6",
+                "name": "Front-Page-Hero-Contact-Us Trigger",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click ID}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "front-page-hero-contact-us"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1768330896795"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "triggerId": "8",
+                "name": "Frontpage Page View Trigger",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "https://geekatyourspot.com/"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1768330604914"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "triggerId": "10",
+                "name": "geek-contact-modal-contact-us Trigger",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click ID}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "geek-contact-modal-contact-us"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE"
+                },
+                "fingerprint": "1768331148506"
+            },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "1",
+        "name": "Consent Initialization - All Pages",
+        "type": "consentInit",
+        "fingerprint": "consent_init_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "2",
+        "name": "All Pages - Page View",
+        "type": "pageview",
+        "fingerprint": "all_pages_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "3",
+        "name": "Click - Tracked Elements (Data Attributes)",
+        "type": "click",
+        "filter": [
+          {
+            "type": "matchCssSelector",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{Click Element}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "[data-track-event]"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "tracked_clicks_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "4",
+        "name": "Click - Outbound Links",
+        "type": "click",
+        "filter": [
+          {
+            "type": "doesNotContain",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{Click URL}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "geekatyourspot.com"
+              }
+            ]
+          },
+          {
+            "type": "startsWith",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{Click URL}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "http"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "outbound_clicks_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "5",
+        "name": "Custom Event - Form Submit",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "form_submit"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "form_submit_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "6",
+        "name": "Custom Event - Quote Modal Opened",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "quote_modal_opened"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "quote_modal_trigger"
+      },
+      {
+        "accountId": "6333489997",
+        "containerId": "240385012",
+        "triggerId": "7",
+        "name": "Scroll Depth - 25%, 50%, 75%, 90%",
+        "type": "scrollDepth",
+        "verticalScrollPercentagesList": "25,50,75,90",
+        "fingerprint": "scroll_depth_trigger"
+      }
+    ],
+        "builtInVariable": [
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_CLASSES",
+                "name": "Click Classes"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_ID",
+                "name": "Click ID"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_TARGET",
+                "name": "Click Target"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_URL",
+                "name": "Click URL"
+            },
+            {
+                "accountId": "6333489997",
+                "containerId": "240385012",
+                "type": "CLICK_TEXT",
+                "name": "Click Text"
+            }
+        ],
+        "fingerprint": "1768398793512",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6333489997/containers/240385012/versions/0?apiLink=version"
+    }
+}

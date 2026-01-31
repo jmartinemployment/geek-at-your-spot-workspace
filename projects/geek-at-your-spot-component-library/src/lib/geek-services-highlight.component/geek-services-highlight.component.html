@@ -1,0 +1,36 @@
+<section class="services-highlight">
+  <div class="container-fluid py-5 px-4">
+    <!-- Section Header -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title" geekScrollAnimation="rotate-in">{{ sectionTitle() }}</h2>
+        <p class="section-subtitle" geekScrollAnimation="fade" [geekAnimationDelay]="100">{{ sectionSubtitle() }}</p>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="row justify-content-center g-4">
+      @for (service of services(); track service.title; let i = $index) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="service-card h-100" geekScrollAnimation="flip-up" [geekAnimationDelay]="200 + (i * 100)">
+            <div class="service-icon-wrapper" [style.background-color]="service.color">
+              <i [class]="service.icon + ' service-icon'"></i>
+            </div>
+            <h3 class="service-title">{{ service.title }}</h3>
+            <p class="service-description">{{ service.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <a id="services-highlight-view-all" [href]="servicesPageUrl()" class="btn btn-services-cta btn-lg" geekScrollAnimation="zoom-in" [geekAnimationDelay]="600">
+          {{ ctaText() }}
+          <i class="fa-solid fa-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -27,7 +27,9 @@
   transition: transform 300ms ease-in-out;
   overflow-y: auto;
 }
-
+.sidebar-header {
+  background-color: #0d6efd;
+}
 .sidebar.open {
   transform: translateX(0);
 }

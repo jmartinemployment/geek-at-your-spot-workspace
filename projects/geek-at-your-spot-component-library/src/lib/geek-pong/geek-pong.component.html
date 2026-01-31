@@ -1,61 +1,74 @@
-<div class="d-block d-sm-none d-md-none d-lg-none container-fluid geek-pong-component">
+<div class="container-fluid geek-pong-component">
   <section>
-    <div class="row py-1">
+    <!-- Timeline Cards - Top Row -->
+    <div class="row py-2 py-md-3 g-2 g-md-3">
       <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">Timex Sinclair</small>
-          </div>
-          <div class="card-body">
-            <h3>1982</h3>
-            <p>
-              Where the programming journey began. This game in Basic.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
+        <div class="card pong h-100">
           <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Apple Macintosh</small>
+            <img
+              class="img-top d-block mx-auto"
+              src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png"
+              title="Timex Sinclair Computer - The beginning"
+              alt="Timex Sinclair Computer - The beginning"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">Timex Sinclair</small>
           </div>
           <div class="card-body">
-            <h3>1985</h3>
-            <p>
-              Illustrator, Photoshop, FileMaker, QuarkXpress, Pascal
-            </p>
+            <h3 class="card-year">1982</h3>
+            <p class="card-text">Where the programming journey began. This game in Basic.</p>
           </div>
         </div>
       </div>
       <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-office-inch.jpeg" title="Kia Motors America - The Ethernet Office - Oracle" alt="Kia Motors America - The Ethernet Office - Oracle" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Macintosh Office</small>
+        <div class="card pong h-100">
+          <div class="card-header pong">
+            <img
+              src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg"
+              title="Apple Macintosh"
+              alt="MacPaint - Design beginning"
+              class="img-top d-block mx-auto"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">Apple Macintosh</small>
           </div>
           <div class="card-body">
-            <h3 class="card-title">1993</h3>
-            <p class="card-text">
-              Implemented Macintosh Office.  File server, 5 Macs, 2 pc's, FileMaker,
-            </p>
+            <h3 class="card-year">1985</h3>
+            <p class="card-text">Illustrator, Photoshop, FileMaker, QuarkXpress, Pascal</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card pong h-100">
+          <div class="card-header pong">
+            <img
+              src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-office-inch.jpeg"
+              title="Kia Motors America - The Ethernet Office"
+              alt="Macintosh Office"
+              class="img-top d-block mx-auto"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">Macintosh Office</small>
+          </div>
+          <div class="card-body">
+            <h3 class="card-year">1993</h3>
+            <p class="card-text">Implemented Macintosh Office. File server, 5 Macs, 2 PCs.</p>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Game Section -->
     <div class="row">
-      <div class="col-12 mx-auto">
+      <div class="col-12">
         <div class="pong-container">
           <div class="pong-header">
             <h2 class="pong-title">GEEK PONG</h2>
             <p class="pong-subtitle">1982: Where it all began</p>
             <div class="score-board">
               <div class="score-item">
-                <span class="score-label">Score:</span>
+                <span class="score-label">Score</span>
                 <span class="score-value">{{ score() }}</span>
               </div>
               <div class="score-item">
-                <span class="score-label">High Score:</span>
+                <span class="score-label">High Score</span>
                 <span class="score-value">{{ highScore() }}</span>
               </div>
             </div>
@@ -63,28 +76,32 @@
 
           <div class="game-canvas-wrapper">
             <svg
-              [attr.width]="canvasWidth"
-              [attr.height]="canvasHeight"
+              [attr.viewBox]="'0 0 ' + baseWidth + ' ' + baseHeight"
+              [style.width.px]="containerWidth()"
+              [style.height.px]="displayHeight()"
               class="game-canvas"
-              (mousemove)="movePaddle($event)">
+              (mousemove)="movePaddle($event)"
+              (touchstart)="onTouchStart($event)"
+              (touchmove)="onTouchMove($event)"
+              preserveAspectRatio="xMidYMid meet">
 
               <!-- Background grid (retro effect) -->
               <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="1"/>
+                <pattern id="pong-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="1"/>
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
+              <rect width="100%" height="100%" fill="url(#pong-grid)" />
 
               <!-- Center line -->
               <line
-                [attr.x1]="canvasWidth / 2"
+                [attr.x1]="baseWidth / 2"
                 y1="0"
-                [attr.x2]="canvasWidth / 2"
-                [attr.y2]="canvasHeight"
+                [attr.x2]="baseWidth / 2"
+                [attr.y2]="baseHeight"
                 stroke="rgba(0, 212, 255, 0.3)"
                 stroke-width="2"
-                stroke-dasharray="10,10" />
+                stroke-dasharray="20,20" />
 
               <!-- Ball -->
               <circle
@@ -99,611 +116,94 @@
                 [attr.y]="paddleY"
                 [attr.width]="paddleWidth"
                 [attr.height]="paddleHeight"
+                [attr.rx]="4"
                 class="paddle" />
             </svg>
 
             <!-- Game Over Overlay -->
-            <div class="game-overlay" *ngIf="gameOver()">
-              <div class="game-over-content">
-                <h3 class="game-over-title">GAME OVER</h3>
-                <p class="final-score">Score: {{ score() }}</p>
-                <p class="high-score-message" *ngIf="score() === highScore() && score() > 0">
-                  🎉 NEW HIGH SCORE! 🎉
-                </p>
-                <button class="btn-retro" (click)="startGame()">PLAY AGAIN</button>
+            @if (gameOver()) {
+              <div class="game-overlay">
+                <div class="overlay-content">
+                  <h3 class="overlay-title">GAME OVER</h3>
+                  <p class="final-score">Score: {{ score() }}</p>
+                  @if (score() === highScore() && score() > 0) {
+                    <p class="high-score-message">NEW HIGH SCORE!</p>
+                  }
+                  <button class="btn-retro" (click)="startGame()">PLAY AGAIN</button>
+                </div>
               </div>
-            </div>
+            }
 
             <!-- Start Screen -->
-            <div class="game-overlay" *ngIf="!gameActive() && !gameOver()">
-              <div class="start-content">
-                <h3 class="start-title">READY PLAYER ONE?</h3>
-                <p class="instructions">Move your mouse to control the paddle</p>
-                <button class="btn-retro btn-start" (click)="startGame()">START GAME</button>
+            @if (!gameActive() && !gameOver()) {
+              <div class="game-overlay">
+                <div class="overlay-content">
+                  <h3 class="overlay-title">READY?</h3>
+                  <p class="instructions d-none d-md-block">Move your mouse to control the paddle</p>
+                  <p class="instructions d-block d-md-none">Swipe to control the paddle</p>
+                  <button class="btn-retro btn-start" (click)="startGame()">START</button>
+                </div>
               </div>
-            </div>
+            }
           </div>
 
           <div class="pong-footer">
-            <p class="retro-text">🎮 Est. 1982 • The dream that started it all</p>
+            <p class="retro-text">Est. 1982 - The dream that started it all</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="row py-1">
+
+    <!-- Timeline Cards - Bottom Row -->
+    <div class="row py-2 py-md-3 g-2 g-md-3">
       <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">ACORD Reference Architecture</small>
-          </div>
-          <div class="card-body">
-            <h3>2007</h3>
-            <p>
-              Real-World Applications of the ACORD Reference Architecture
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
+        <div class="card pong h-100">
           <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Service Oriented Architecture (SOA)</small>
+            <img
+              class="img-top d-block mx-auto"
+              src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png"
+              title="ACORD Reference Architecture"
+              alt="ACORD Reference Architecture"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">ACORD Architecture</small>
           </div>
           <div class="card-body">
-            <h3>2014</h3>
-            <p>
-              Windows Services provided access points to implement.
-            </p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2025/11/ai-icon.svg" title="Artificial Intelligence MCP Agentic architecture" alt="KArtificial Intelligence MCP Agentic architecture" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Geek@YourSpot</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">2026</h3>
-            <p class="card-text">
-              AI-powered solutions for businesses that need enterprise power without enterprise cost.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-<div class="d-none d-sm-block d-md-none d-lg-none container-fluid geek-pong-component">
-  <section>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">Timex Sinclair</small>
-          </div>
-          <div class="card-body">
-            <h3>1982</h3>
-            <p>
-              Where the programming journey began. This game in Basic.
-            </p>
+            <h3 class="card-year">2007</h3>
+            <p class="card-text">Real-World Applications of the ACORD Reference Architecture</p>
           </div>
         </div>
       </div>
       <div class="col-4">
-        <div class="card pong">
+        <div class="card pong h-100">
           <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Apple Macintosh</small>
+            <img
+              src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg"
+              title="Service Oriented Architecture"
+              alt="SOA"
+              class="img-top d-block mx-auto"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">SOA</small>
           </div>
           <div class="card-body">
-            <h3>1985</h3>
-            <p>
-              Illustrator, Photoshop, FileMaker, QuarkXpress, Pascal
-            </p>
+            <h3 class="card-year">2014</h3>
+            <p class="card-text">Windows Services provided access points to implement.</p>
           </div>
         </div>
       </div>
       <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-office-inch.jpeg" title="Kia Motors America - The Ethernet Office - Oracle" alt="Kia Motors America - The Ethernet Office - Oracle" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Macintosh Office</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">1993</h3>
-            <p class="card-text">
-              Implemented Macintosh Office.  File server, 5 Macs, 2 pc's, FileMaker,
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 mx-auto">
-        <div class="pong-container">
-          <div class="pong-header">
-            <h2 class="pong-title">GEEK PONG</h2>
-            <p class="pong-subtitle">1982: Where it all began</p>
-            <div class="score-board">
-              <div class="score-item">
-                <span class="score-label">Score:</span>
-                <span class="score-value">{{ score() }}</span>
-              </div>
-              <div class="score-item">
-                <span class="score-label">High Score:</span>
-                <span class="score-value">{{ highScore() }}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="game-canvas-wrapper">
-            <svg
-              [attr.width]="canvasWidth"
-              [attr.height]="canvasHeight"
-              class="game-canvas"
-              (mousemove)="movePaddle($event)">
-
-              <!-- Background grid (retro effect) -->
-              <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-
-              <!-- Center line -->
-              <line
-                [attr.x1]="canvasWidth / 2"
-                y1="0"
-                [attr.x2]="canvasWidth / 2"
-                [attr.y2]="canvasHeight"
-                stroke="rgba(0, 212, 255, 0.3)"
-                stroke-width="2"
-                stroke-dasharray="10,10" />
-
-              <!-- Ball -->
-              <circle
-                [attr.cx]="ballX()"
-                [attr.cy]="ballY()"
-                [attr.r]="ballSize / 2"
-                class="ball" />
-
-              <!-- Paddle -->
-              <rect
-                [attr.x]="paddleX()"
-                [attr.y]="paddleY"
-                [attr.width]="paddleWidth"
-                [attr.height]="paddleHeight"
-                class="paddle" />
-            </svg>
-
-            <!-- Game Over Overlay -->
-            <div class="game-overlay" *ngIf="gameOver()">
-              <div class="game-over-content">
-                <h3 class="game-over-title">GAME OVER</h3>
-                <p class="final-score">Score: {{ score() }}</p>
-                <p class="high-score-message" *ngIf="score() === highScore() && score() > 0">
-                  🎉 NEW HIGH SCORE! 🎉
-                </p>
-                <button class="btn-retro" (click)="startGame()">PLAY AGAIN</button>
-              </div>
-            </div>
-
-            <!-- Start Screen -->
-            <div class="game-overlay" *ngIf="!gameActive() && !gameOver()">
-              <div class="start-content">
-                <h3 class="start-title">READY PLAYER ONE?</h3>
-                <p class="instructions">Move your mouse to control the paddle</p>
-                <button class="btn-retro btn-start" (click)="startGame()">START GAME</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="pong-footer">
-            <p class="retro-text">🎮 Est. 1982 • The dream that started it all</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">ACORD Reference Architecture</small>
-          </div>
-          <div class="card-body">
-            <h3>2007</h3>
-            <p>
-              Real-World Applications of the ACORD Reference Architecture
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
+        <div class="card pong h-100">
           <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Service Oriented Architecture (SOA)</small>
+            <img
+              src="https://geekatyourspot.com/wp-content/uploads/2025/11/ai-icon.svg"
+              title="AI & Agentic Architecture"
+              alt="AI Architecture"
+              class="img-top d-block mx-auto"
+              loading="lazy" />
+            <small class="d-block text-center mx-auto pong">Geek@YourSpot</small>
           </div>
           <div class="card-body">
-            <h3>2014</h3>
-            <p>
-              Windows Services provided access points to implement.
-            </p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2025/11/ai-icon.svg" title="Artificial Intelligence MCP Agentic architecture" alt="KArtificial Intelligence MCP Agentic architecture" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Geek@YourSpot</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">2026</h3>
-            <p class="card-text">
-              AI-powered solutions for businesses that need enterprise power without enterprise cost.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-<div class="d-none d-sm-none d-md-block d-lg-none container-fluid geek-pong-component">
-  <section>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">Timex Sinclair</small>
-          </div>
-          <div class="card-body">
-            <h3>1982</h3>
-            <p>
-              Where the programming journey began. This game in Basic.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Apple Macintosh</small>
-          </div>
-          <div class="card-body">
-            <h3>1985</h3>
-            <p>
-              Illustrator, Photoshop, FileMaker, QuarkXpress, Pascal
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-office-inch.jpeg" title="Kia Motors America - The Ethernet Office - Oracle" alt="Kia Motors America - The Ethernet Office - Oracle" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Macintosh Office</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">1993</h3>
-            <p class="card-text">
-              Implemented Macintosh Office.  File server, 5 Macs, 2 pc's, FileMaker,
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 mx-auto">
-        <div class="pong-container">
-          <div class="pong-header">
-            <h2 class="pong-title">GEEK PONG</h2>
-            <p class="pong-subtitle">1982: Where it all began</p>
-            <div class="score-board">
-              <div class="score-item">
-                <span class="score-label">Score:</span>
-                <span class="score-value">{{ score() }}</span>
-              </div>
-              <div class="score-item">
-                <span class="score-label">High Score:</span>
-                <span class="score-value">{{ highScore() }}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="game-canvas-wrapper">
-            <svg
-              [attr.width]="canvasWidth"
-              [attr.height]="canvasHeight"
-              class="game-canvas"
-              (mousemove)="movePaddle($event)">
-
-              <!-- Background grid (retro effect) -->
-              <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-
-              <!-- Center line -->
-              <line
-                [attr.x1]="canvasWidth / 2"
-                y1="0"
-                [attr.x2]="canvasWidth / 2"
-                [attr.y2]="canvasHeight"
-                stroke="rgba(0, 212, 255, 0.3)"
-                stroke-width="2"
-                stroke-dasharray="10,10" />
-
-              <!-- Ball -->
-              <circle
-                [attr.cx]="ballX()"
-                [attr.cy]="ballY()"
-                [attr.r]="ballSize / 2"
-                class="ball" />
-
-              <!-- Paddle -->
-              <rect
-                [attr.x]="paddleX()"
-                [attr.y]="paddleY"
-                [attr.width]="paddleWidth"
-                [attr.height]="paddleHeight"
-                class="paddle" />
-            </svg>
-
-            <!-- Game Over Overlay -->
-            <div class="game-overlay" *ngIf="gameOver()">
-              <div class="game-over-content">
-                <h3 class="game-over-title">GAME OVER</h3>
-                <p class="final-score">Score: {{ score() }}</p>
-                <p class="high-score-message" *ngIf="score() === highScore() && score() > 0">
-                  🎉 NEW HIGH SCORE! 🎉
-                </p>
-                <button class="btn-retro" (click)="startGame()">PLAY AGAIN</button>
-              </div>
-            </div>
-
-            <!-- Start Screen -->
-            <div class="game-overlay" *ngIf="!gameActive() && !gameOver()">
-              <div class="start-content">
-                <h3 class="start-title">READY PLAYER ONE?</h3>
-                <p class="instructions">Move your mouse to control the paddle</p>
-                <button class="btn-retro btn-start" (click)="startGame()">START GAME</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="pong-footer">
-            <p class="retro-text">🎮 Est. 1982 • The dream that started it all</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">ACORD Reference Architecture</small>
-          </div>
-          <div class="card-body">
-            <h3>2007</h3>
-            <p>
-              Real-World Applications of the ACORD Reference Architecture
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Service Oriented Architecture (SOA)</small>
-          </div>
-          <div class="card-body">
-            <h3>2014</h3>
-            <p>
-              Windows Services provided access points to implement.
-            </p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2025/11/ai-icon.svg" title="Artificial Intelligence MCP Agentic architecture" alt="KArtificial Intelligence MCP Agentic architecture" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Geek@YourSpot</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">2026</h3>
-            <p class="card-text">
-              AI-powered solutions for businesses that need enterprise power without enterprise cost.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-<div class="d-none d-sm-none d-md-none d-lg-block container-fluid geek-pong-component">
-  <section>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">Timex Sinclair</small>
-          </div>
-          <div class="card-body">
-            <h3>1982</h3>
-            <p>
-              Where the programming journey began. This game in Basic.<br>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Apple Macintosh</small>
-          </div>
-          <div class="card-body">
-            <h3>1985</h3>
-            <p>
-              Illustrator, Photoshop, FileMaker, QuarkXpress, Pascal
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-office-inch.jpeg" title="Kia Motors America - The Ethernet Office - Oracle" alt="Kia Motors America - The Ethernet Office - Oracle" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Macintosh Office</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">1993</h3>
-            <p class="card-text">
-              Implemented Macintosh Office.  File server, 5 Macs, 2 pc's, FileMaker,
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 mx-auto">
-        <div class="pong-container">
-          <div class="pong-header">
-            <h2 class="pong-title">GEEK PONG</h2>
-            <p class="pong-subtitle">1982: Where it all began</p>
-            <div class="score-board">
-              <div class="score-item">
-                <span class="score-label">Score:</span>
-                <span class="score-value">{{ score() }}</span>
-              </div>
-              <div class="score-item">
-                <span class="score-label">High Score:</span>
-                <span class="score-value">{{ highScore() }}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="game-canvas-wrapper">
-            <svg
-              [attr.width]="canvasWidth"
-              [attr.height]="canvasHeight"
-              class="game-canvas"
-              (mousemove)="movePaddle($event)">
-
-              <!-- Background grid (retro effect) -->
-              <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-
-              <!-- Center line -->
-              <line
-                [attr.x1]="canvasWidth / 2"
-                y1="0"
-                [attr.x2]="canvasWidth / 2"
-                [attr.y2]="canvasHeight"
-                stroke="rgba(0, 212, 255, 0.3)"
-                stroke-width="2"
-                stroke-dasharray="10,10" />
-
-              <!-- Ball -->
-              <circle
-                [attr.cx]="ballX()"
-                [attr.cy]="ballY()"
-                [attr.r]="ballSize / 2"
-                class="ball" />
-
-              <!-- Paddle -->
-              <rect
-                [attr.x]="paddleX()"
-                [attr.y]="paddleY"
-                [attr.width]="paddleWidth"
-                [attr.height]="paddleHeight"
-                class="paddle" />
-            </svg>
-
-            <!-- Game Over Overlay -->
-            <div class="game-overlay" *ngIf="gameOver()">
-              <div class="game-over-content">
-                <h3 class="game-over-title">GAME OVER</h3>
-                <p class="final-score">Score: {{ score() }}</p>
-                <p class="high-score-message" *ngIf="score() === highScore() && score() > 0">
-                  🎉 NEW HIGH SCORE! 🎉
-                </p>
-                <button class="btn-retro" (click)="startGame()">PLAY AGAIN</button>
-              </div>
-            </div>
-
-            <!-- Start Screen -->
-            <div class="game-overlay" *ngIf="!gameActive() && !gameOver()">
-              <div class="start-content">
-                <h3 class="start-title">READY PLAYER ONE?</h3>
-                <p class="instructions">Move your mouse to control the paddle</p>
-                <button class="btn-retro btn-start" (click)="startGame()">START GAME</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="pong-footer">
-            <p class="retro-text">🎮 Est. 1982 • The dream that started it all</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row py-1">
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img class="img-top d-block mx-auto" src="https://geekatyourspot.com/wp-content/uploads/2026/01/Timex-Sinclair-TS-1000-1-1-inch.png" title="Timex Sinclair Computer - The beginning - I coded this game." alt="Timex Sinclair Computer - The beginning" height="44" width="64"/><small class="d-block text-center mx-auto  pong">ACORD Reference Architecture</small>
-          </div>
-          <div class="card-body">
-            <h3>2007</h3>
-            <p>
-              Real-World Applications of the ACORD Reference Architecture
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2026/01/macintosh-photo.jpeg" title="Filemaker - QuarkXpress/PageMaker - Adobe Illustator - Adobe Photoshop - Dial Up Internet" alt="MacPaint - Design beginning" class="img-top d-block mx-auto" width="64" height="48" />
-            <small class="d-block text-center mx-auto  pong">Service Oriented Architecture (SOA)</small>
-          </div>
-          <div class="card-body">
-            <h3>2014</h3>
-            <p>
-              Windows Services provided access points to implement.
-            </p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-4">
-        <div class="card pong">
-          <div class="card-header pong mx-auto">
-            <img src="https://geekatyourspot.com/wp-content/uploads/2025/11/ai-icon.svg" title="Artificial Intelligence MCP Agentic architecture" alt="KArtificial Intelligence MCP Agentic architecture" class="img-top d-block mx-auto" width="64" height="39"/>
-            <small class="d-block text-center mx-auto  pong">Geek@YourSpot</small>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">2026</h3>
-            <p class="card-text">
-              AI-powered solutions for businesses that need enterprise power without enterprise cost.
-            </p>
+            <h3 class="card-year">2026</h3>
+            <p class="card-text">AI-powered solutions for businesses that need enterprise power.</p>
           </div>
         </div>
       </div>
