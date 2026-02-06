@@ -1,0 +1,36 @@
+<div class="container-fluid footer px-5 py-5">
+  <div class="row footer">
+    <div class="col-12 col-md-4 footer mb-4 mb-md-0">
+      <a id="footer-logo-link" class="footer-logo" href="/">
+        <img height="48" class="d-inline-block align-text-top" [src]="logoUrl()" [alt]="logoAlt()">
+      </a>
+      <ul class="footer-contact-list">
+        <li>
+          <strong><p class="footer-tagline mt-3">Smart Technology for Small Business</p></strong>
+        </li>
+        <li>
+          <p>
+            2025 NW 18th Street<br>
+            Delray Beach, FL 33445
+          </p>
+        </li>
+        <li>
+          <a id="footer-phone-link" [href]="phoneHref()" class="footer-link">
+           {{ phone() }}
+          </a>
+        </li>
+        <li>
+          <a id="footer-email-link" [href]="'mailto:' + email()" class="footer-link">
+            {{ email() }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row footer footer-copyright">
+    <div class="col-12 d-flex flex-column align-items-center">
+      <span class="footer-copyright-text">Geek &copy; Your Spot {{ currentYear() }}. All Rights Reserved.</span>
+    </div>
+  </div>
+</div>

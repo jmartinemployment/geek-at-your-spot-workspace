@@ -1,0 +1,60 @@
+<div class="d-block d-sm-block d-md-none d-lg-none container-fluid py-5 px-0">
+  <div class="grid-container xs">
+    <div class="col">
+      <h1 class="hero text-white mx-auto px-1">{{ title() }}</h1>
+      <img [src]="imageUrl()" alt="AI generated action figure" class="img-fluid mx-auto px-0" width="560" height="840" />
+      <p class="hero text-white mx-auto px-1">{{ subtitle() }}</p>
+      <button class="btn btn-primary mx-auto" (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+<div class="d-none d-sm-none d-md-block d-lg-none container-fluid py-5 px-md-0">
+  <div class="grid-container xs">
+    <div class="col">
+      <h1 class="hero text-white mx-auto px-1">{{ title() }}</h1>
+      <img [src]="imageUrl()" alt="AI generated action figure" class="img-fluid mx-auto px-0" width="1184" height="672" />
+      <p class="hero text-white mx-auto px-1">{{ subtitle() }}</p>
+      <button class="btn btn-primary mx-auto" (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+<div class="d-none d-sm-none d-md-none d-lg-block d-xl-none d-xxl-none container-fluid px-0 py-5">
+  <div class="grid-container">
+    <div class="col">
+      <img [src]="imageUrl()" alt="AI generated action figure" class="img-fluid px-0" width="581" height="330" />
+    </div>
+    <div class="col">
+      <h1 class="hero text-white">{{ title() }}</h1>
+      <p class="hero text-white">{{ subtitle() }}</p>
+      <button class="btn btn-primary mx-auto" (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+<div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-none container-fluid px-0 py-5">
+  <div class="grid-container">
+    <div class="col">
+      <img [src]="imageUrl()" alt="AI generated action figure" class="img-fluid px-0" width="681" height="387" />
+    </div>
+    <div class="col">
+      <h1 class="hero text-white">{{ title() }}</h1>
+      <p class="hero text-white">{{ subtitle() }}</p>
+      <button class="btn btn-primary mx-auto" (click)="openContactModal()">Contact Us</button>
+    </div>
+  </div>
+</div>
+<div class="d-none d-sm-none d-md-none d-lg-none d-xl-none d-xxl-block container-fluid px-0 py-5">
+  <div class="row">
+    <div class="col-6 d-flex flex-column align-items-center">
+      <img [src]="imageUrl()" alt="AI generated action figure" class="img-fluid px-0" width="500" height="750" />
+    </div>
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+      <h1 class="hero text-white">{{ title() }}</h1>
+      <p class="hero text-white">{{ subtitle() }}</p>
+      <div class="mx-auto">
+        <button class="btn btn-primary text-center" (click)="openContactModal()">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact Modal -->
+<geek-contact-modal></geek-contact-modal>

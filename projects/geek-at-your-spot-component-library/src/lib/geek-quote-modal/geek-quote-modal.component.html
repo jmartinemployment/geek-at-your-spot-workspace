@@ -1,0 +1,93 @@
+<!-- Bootstrap Modal -->
+<div class="modal fade" [class.show]="isOpen()" [class.d-block]="isOpen()" tabindex="-1" (click)="close()">
+  <div class="modal-dialog modal-fullscreen-xl-down modal-lg modal-dialog-scrollable modal-dialog-centered" (click)="stopPropagation($event)">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">{{ title() }}</h5>
+        @if (showCloseButton()) {
+          <button id="geek-quote-modal-close"
+            type="button"
+            class="btn-close btn-close-white"
+            (click)="close()"
+            aria-label="Close">
+          </button>
+        }
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" #modalBody>
+        <div class="message-container">
+          @for (message of displayMessages; track message) {
+            <div class="mb-3"
+                 [class.text-end]="message.role === 'user'">
+
+              <!-- User Message -->
+              @if (message.role === 'user') {
+                <div class="d-inline-block user-message-width">
+                  <div class="badge bg-primary mb-1">You</div>
+                  <div class="card bg-primary text-white">
+                    <div class="card-body p-3">
+                      <div [innerHTML]="getSafeHtml(message.content)"></div>
+                      @if (message.timestamp) {
+                        <small class="opacity-75 d-block mt-2">
+                          {{ message.timestamp | date:'short' }}
+                        </small>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- Assistant Message -->
+              @if (message.role === 'assistant') {
+                <div class="d-inline-block assistant-message-width">
+                  <div class="badge bg-secondary mb-1">AI Assistant</div>
+                  <div class="card">
+                    <div class="card-body p-3">
+                      <div [innerHTML]="getSafeHtml(message.content)"></div>
+                      @if (message.timestamp) {
+                        <small class="text-muted d-block mt-2">
+                          {{ message.timestamp | date:'short' }}
+                        </small>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Message Input -->
+        <div class="input-group w-100">
+          <input
+            #messageInput
+            type="text"
+            class="form-control"
+            placeholder="Type your message..."
+            [(ngModel)]="inputText"
+            (keyup.enter)="sendMessage()"
+            [disabled]="isSending">
+          <button id="geek-quote-modal-send-message"
+            class="btn btn-primary"
+            type="button"
+            (click)="sendMessage()"
+            [disabled]="!inputText.trim() || isSending">
+            Send
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+@if (isOpen()) {
+  <div class="modal-backdrop fade" [class.show]="isOpen()"></div>
+}

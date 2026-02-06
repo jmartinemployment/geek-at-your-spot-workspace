@@ -1,0 +1,80 @@
+div.container-fluid.footer {
+  width: 100%;
+  min-height: 33dvh;
+  background-color: #D3D3D3;
+  color: #000000;
+  overflow: hidden;
+}
+
+.footer-logo {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer-logo:hover {
+  opacity: 0.8;
+}
+
+.footer-tagline {
+  font-size: 0.875rem;
+  color: #000000;
+  margin: 0;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-contact-list,
+.footer-area-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contact-list li,
+.footer-area-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.footer-link {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #000000;
+}
+
+.footer-icon {
+  margin-right: 0.5rem;
+}
+
+.footer-service-area {
+  font-size: 0.875rem;
+  color: #000000;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.footer-area-list li {
+  color: #000000;
+}
+
+.footer-copyright {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #333;
+}
+
+.footer-copyright-text {
+  font-size: 0.75rem;
+  color: #000000;
+}

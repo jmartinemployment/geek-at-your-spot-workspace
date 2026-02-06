@@ -1,0 +1,81 @@
+@if (isOpen()) {
+  <div
+    class="sidebar-overlay"
+    [class.open]="isOpen()"
+    (click)="handleClose()"
+    [attr.aria-hidden]="true">
+  </div>
+}
+
+<!-- Sidebar -->
+<aside
+  id="sidebar-menu"
+  role="navigation"
+  [attr.aria-label]="'Main navigation'"
+  [class.open]="isOpen()"
+  class="sidebar bg-white shadow-lg">
+
+  <div class="sidebar-header border-bottom p-4 d-flex justify-content-between align-items-center" style="background-color: #0d6efd;">
+    <h2 class="h5 fw-semibold mb-0 text-white">Menu</h2>
+    <button id="geek-sidebar-close"
+      (click)="handleClose()"
+      [attr.aria-label]="'Close menu'"
+      class="btn btn-link text-dark p-2">
+      <svg
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        [attr.aria-hidden]="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="p-4">
+    <ul class="list-unstyled mb-0">
+      @for (item of menuItems(); track item.name) {
+        <li class="mb-2">
+          @if (item.children) {
+            <button
+              type="button"
+              (click)="toggleExpand(item.name)"
+              class="d-flex align-items-center justify-content-between w-100 px-3 py-2 rounded text-decoration-none text-dark sidebar-link border-0 bg-transparent"
+              [attr.aria-expanded]="isExpanded(item.name)">
+              <span>{{ item.name }}</span>
+              <svg
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+                [class.rotate-180]="isExpanded(item.name)"
+                class="transition-transform">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </button>
+            @if (isExpanded(item.name)) {
+              <ul class="list-unstyled ms-3 mt-1">
+                @for (child of item.children; track child.name) {
+                  <li class="mb-1">
+                    <a [href]="child.href" (click)="handleClose()" class="d-block px-3 py-2 rounded text-decoration-none text-dark sidebar-link">
+                      {{ child.name }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          } @else {
+            <a [href]="item.href" (click)="handleClose()" class="d-block px-3 py-2 rounded text-decoration-none text-dark sidebar-link">
+              {{ item.name }}
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+</aside>

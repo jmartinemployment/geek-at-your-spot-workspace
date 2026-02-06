@@ -4,6 +4,12 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "geek-at-your-spot-component-library": [
+        "projects/geek-at-your-spot-component-library/src/public-api.ts"
+      ]
+    },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -21,5 +27,19 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/geek-at-your-spot-component-library/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/geek-at-your-spot-component-library/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/geek-at-your-spot-elements/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/geek-at-your-spot-elements/tsconfig.spec.json"
+    }
+  ]
 }

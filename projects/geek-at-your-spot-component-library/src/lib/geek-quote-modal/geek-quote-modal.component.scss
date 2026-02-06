@@ -1,0 +1,28 @@
+.modal.show {
+  display: block;
+}
+
+.modal-backdrop {
+  z-index: 1040;
+}
+
+.modal {
+  z-index: 1050;
+}
+
+.user-message-width {
+  max-width: 75%;
+}
+
+.assistant-message-width {
+  max-width: 75%;
+}
+
+.message-container {
+  min-height: 200px;
+}
+
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}

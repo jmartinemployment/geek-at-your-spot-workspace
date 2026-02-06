@@ -1,0 +1,42 @@
+<section class="home-cta">
+  <div class="container-fluid py-5 px-4">
+    <div class="row justify-content-center">
+      <!-- Main CTA -->
+      <div class="col-12 col-lg-8 text-center mb-5">
+        <h2 class="cta-headline" >{{ headline() }}</h2>
+        <p class="cta-subheadline" >{{ subheadline() }}</p>
+        <button
+          id="home-cta-contact"
+          class="btn btn-cta btn-lg mt-4"
+          (click)="openContactModal()">
+          {{ ctaText() }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+        <div class="contact-item" >
+          <i class="fa-solid fa-phone contact-icon"></i>
+          <a id="home-cta-phone" [href]="phoneHref()" class="contact-link">{{ phone() }}</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+        <div class="contact-item" >
+          <i class="fa-solid fa-envelope contact-icon"></i>
+          <a id="home-cta-email" [href]="'mailto:' + email()" class="contact-link">{{ email() }}</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 text-center">
+        <div class="contact-item" >
+          <i class="fa-solid fa-location-dot contact-icon"></i>
+          <span class="contact-text">{{ serviceArea() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Modal -->
+<geek-contact-modal></geek-contact-modal>

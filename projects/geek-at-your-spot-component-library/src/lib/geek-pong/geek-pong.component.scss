@@ -1,0 +1,324 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Main Container */
+.geek-pong-component {
+  min-height: 100dvh;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(180deg, #5CB9F2 0%, #1D3273 100%);
+}
+
+/* Timeline Cards */
+.card.pong {
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header.pong {
+  background-color: #091740;
+  padding: 0.5rem;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header.pong img {
+  max-width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+small.pong {
+  color: #DD8343;
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-body {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.card-year {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #091740;
+  margin-bottom: 0.25rem;
+}
+
+.card-text {
+  font-size: 0.7rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Pong Game Container */
+.pong-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  background: linear-gradient(135deg, #03020D 0%, #091740 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(92, 185, 242, 0.3);
+}
+
+.pong-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pong-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #5CB9F2;
+  margin-bottom: 0.25rem;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(92, 185, 242, 0.5);
+}
+
+.pong-subtitle {
+  color: #DD8343;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-value {
+  color: #5CB9F2;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+/* Game Canvas */
+.game-canvas-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  touch-action: none;
+}
+
+.game-canvas {
+  background: #03020D;
+  border: 2px solid #5CB9F2;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(92, 185, 242, 0.4), inset 0 0 15px rgba(92, 185, 242, 0.1);
+  cursor: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ball {
+  fill: #5CB9F2;
+  filter: drop-shadow(0 0 8px #5CB9F2);
+}
+
+.paddle {
+  fill: #FF9F43;
+  stroke: #FFF;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 12px #FF9F43) drop-shadow(0 0 20px rgba(255, 159, 67, 0.8));
+}
+
+/* Game Overlays */
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.overlay-content {
+  text-align: center;
+  padding: 1rem;
+}
+
+.overlay-title {
+  font-size: 1.75rem;
+  color: #5CB9F2;
+  margin-bottom: 0.75rem;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(92, 185, 242, 0.5);
+}
+
+.final-score {
+  font-size: 1.25rem;
+  color: #DD8343;
+  margin-bottom: 0.5rem;
+}
+
+.high-score-message {
+  font-size: 1rem;
+  color: #ffc107;
+  animation: pulse 1s infinite;
+  margin-bottom: 1rem;
+}
+
+.instructions {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.25rem;
+}
+
+/* Buttons */
+.btn-retro {
+  background: #5CB9F2;
+  color: #03020D;
+  border: none;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 4px 15px rgba(92, 185, 242, 0.4);
+  border-radius: 4px;
+  min-height: 48px;
+  min-width: 120px;
+}
+
+.btn-retro:hover,
+.btn-retro:active {
+  background: #DD8343;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(221, 131, 67, 0.5);
+}
+
+.btn-start {
+  animation: glow 2s infinite;
+}
+
+/* Footer */
+.pong-footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.retro-text {
+  color: rgba(92, 185, 242, 0.8);
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(92, 185, 242, 0.4); }
+  50% { box-shadow: 0 6px 25px rgba(92, 185, 242, 0.7); }
+}
+
+/* Small devices (576px+) */
+@media (min-width: 576px) {
+  .pong-title { font-size: 2rem; }
+  .score-value { font-size: 1.75rem; }
+  .card-header.pong img { max-width: 60px; }
+  small.pong { font-size: 0.7rem; }
+  .card-year { font-size: 1.1rem; }
+  .card-text { font-size: 0.75rem; }
+}
+
+/* Medium devices (768px+) */
+@media (min-width: 768px) {
+  .geek-pong-component { padding: 1.5rem; }
+  .pong-container { padding: 1.5rem; }
+  .pong-title { font-size: 2.5rem; }
+  .pong-subtitle { font-size: 1rem; }
+  .score-board { gap: 3rem; }
+  .score-label { font-size: 0.8rem; }
+  .score-value { font-size: 2rem; }
+  .overlay-title { font-size: 2.5rem; }
+  .btn-retro { padding: 1rem 2.5rem; font-size: 1.1rem; }
+  .card-header.pong { padding: 0.75rem; min-height: 80px; }
+  .card-header.pong img { max-width: 64px; }
+  small.pong { font-size: 0.75rem; }
+  .card-body { padding: 0.75rem; }
+  .card-year { font-size: 1.25rem; }
+  .card-text { font-size: 0.85rem; }
+}
+
+/* Large devices (992px+) */
+@media (min-width: 992px) {
+  .geek-pong-component { padding: 2rem; }
+  .pong-container { max-width: 900px; padding: 2rem; }
+  .pong-title { font-size: 3rem; }
+  .pong-subtitle { font-size: 1.2rem; margin-bottom: 1rem; }
+  .score-value { font-size: 2.5rem; }
+  .game-canvas-wrapper { margin: 1.5rem 0; }
+  .overlay-title { font-size: 3rem; }
+  .final-score { font-size: 1.5rem; }
+  .btn-retro { padding: 1rem 3rem; font-size: 1.2rem; }
+  .card-header.pong { min-height: 90px; }
+  .card-body { padding: 1rem; }
+  .card-year { font-size: 1.5rem; }
+  .card-text { font-size: 0.9rem; }
+  .retro-text { font-size: 0.9rem; }
+}
+
+/* Landscape on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .geek-pong-component { min-height: auto; padding: 0.5rem; }
+  .pong-header { margin-bottom: 0.5rem; }
+  .pong-title { font-size: 1.25rem; margin-bottom: 0; }
+  .pong-subtitle { display: none; }
+  .score-board { gap: 1.5rem; }
+  .score-label { font-size: 0.6rem; }
+  .score-value { font-size: 1.25rem; }
+  .game-canvas-wrapper { margin: 0.5rem 0; }
+  .pong-footer { display: none; }
+  .row.py-2, .row.py-md-3 { display: none !important; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-start { animation: none; }
+  .high-score-message { animation: none; }
+  .btn-retro { transition: none; }
+}
