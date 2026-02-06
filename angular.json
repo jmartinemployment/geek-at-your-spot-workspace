@@ -6,5 +6,112 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "geek-at-your-spot-component-library": {
+      "projectType": "library",
+      "root": "projects/geek-at-your-spot-component-library",
+      "sourceRoot": "projects/geek-at-your-spot-component-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/geek-at-your-spot-component-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/geek-at-your-spot-component-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/geek-at-your-spot-component-library/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "geek-at-your-spot-elements": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/geek-at-your-spot-elements",
+      "sourceRoot": "projects/geek-at-your-spot-elements/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/geek-at-your-spot-elements/src/main.ts",
+            "tsConfig": "projects/geek-at-your-spot-elements/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/geek-at-your-spot-elements/public"
+              },
+              {
+                "glob": "*.woff2",
+                "input": "node_modules/@fortawesome/fontawesome-free/webfonts",
+                "output": "/webfonts"
+              },
+              {
+                "glob": "*.{woff,woff2}",
+                "input": "node_modules/bootstrap-icons/font/fonts",
+                "output": "/fonts"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "projects/geek-at-your-spot-elements/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "geek-at-your-spot-elements:build:production"
+            },
+            "development": {
+              "buildTarget": "geek-at-your-spot-elements:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
   }
 }

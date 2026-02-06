@@ -1,0 +1,51 @@
+:host {
+  display: block;
+}
+
+.geek-quote-ai-banner {
+  background-color: #7e5ef2;
+  min-height: 400px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-overlay .spinner-border {
+  border-width: 0.3rem;
+}
+
+h2 {
+  font-weight: 700;
+  color: white;
+  text-transform: capitalize;
+}
+
+p {
+  color: white;
+}
+
+div.container-fluid.geek-quote-ai-banner.d-block {
+  height: 50dvh;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+  background-color: #0A0B26;
+}
+
+div.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  gap: 10px;
+  place-content: center;
+}

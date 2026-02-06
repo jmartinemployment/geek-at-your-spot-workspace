@@ -1,0 +1,43 @@
+<div class="services-detail-container">
+  @for (service of services; track service.title; let i = $index) {
+    <div class="service-section"
+         [class.even]="isEven(i)"
+         [class.odd]="!isEven(i)">
+      <!-- Icon Side -->
+      <div class="icon-side" [style.backgroundColor]="service.headerColor">
+        <div class="icon-container">
+          <i [class]="service.iconClass + ' service-icon-large'"></i>
+        </div>
+      </div>
+      <!-- Content Side -->
+      <div class="content-side">
+        <div class="content-container">
+          <h2 class="service-title">{{ service.title }}</h2>
+          <p class="service-subtitle">{{ service.subtitle }}</p>
+          <h3>Key Benefits</h3>
+          <ul class="benefits-list">
+            @for (benefit of service.benefits; track benefit) {
+              <li>{{ benefit }}</li>
+            }
+          </ul>
+          <h3>Perfect For</h3>
+          <ul class="use-cases-list">
+            @for (useCase of service.useCases; track useCase) {
+              <li>{{ useCase }}</li>
+            }
+          </ul>
+          <h3>Features Included</h3>
+          <ul class="features-list">
+            @for (feature of service.features; track feature) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+          <!-- SEO Keywords -->
+          <div class="seo-keywords" aria-hidden="true">
+            {{ service.keywords }}
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

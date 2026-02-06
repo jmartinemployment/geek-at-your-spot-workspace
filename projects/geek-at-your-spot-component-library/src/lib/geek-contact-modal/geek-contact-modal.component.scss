@@ -1,0 +1,15 @@
+.modal.show {
+  display: block;
+}
+
+.modal-backdrop {
+  z-index: 1040;
+}
+
+.modal {
+  z-index: 1050;
+}
+
+.bg-primary {
+  background-color: #0d6efd !important;
+}

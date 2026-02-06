@@ -1,0 +1,16 @@
+.navbar.navbar-expand-lg.navbar-light.bg-white.shadow-sm {
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.5);
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-toggler {
+      display: block;
+  }
+}

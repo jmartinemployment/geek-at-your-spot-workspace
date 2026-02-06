@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geek-At-Your-Spot — Local Test (All Bundles)</title>
+
+  <!-- Geek Elements CSS (all pages) -->
+  <link rel="stylesheet" href="assets/geek-elements/styles.css">
+  <!-- Get-Order-Stack CSS -->
+  <link rel="stylesheet" href="assets/get-order-stack-elements/styles.css">
+  <!-- ACORD PCS CRM CSS -->
+  <link rel="stylesheet" href="assets/acord-pcs-crm-elements/styles.css">
+
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .test-section { border: 2px dashed #ccc; margin: 1rem; padding: 1rem; border-radius: 8px; }
+    .test-section h2 { color: #333; font-size: 1rem; margin: 0 0 0.5rem 0; text-transform: uppercase; letter-spacing: 1px; }
+    .test-section.geek { border-color: #5CB9F2; }
+    .test-section.orderstack { border-color: #7E5EF2; }
+    .test-section.crm { border-color: #1976d2; }
+    .bundle-status { padding: 1rem; background: #f8f9fa; border-radius: 8px; margin: 1rem; font-family: monospace; font-size: 0.85rem; }
+    .bundle-status .registered { color: green; }
+    .bundle-status .missing { color: red; }
+    /* Offset for geek-navbar fixed positioning */
+    .page-content { padding-top: 5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== -->
+  <!-- GEEK SITE ELEMENTS   -->
+  <!-- ==================== -->
+  <geek-navbar></geek-navbar>
+
+  <div class="page-content">
+
+    <!-- Bundle Registration Status -->
+    <div class="bundle-status" id="bundle-status">
+      <strong>Bundle Status:</strong> checking...
+    </div>
+
+    <!-- GEEK COMPONENTS -->
+    <div class="test-section geek">
+      <h2>Geek — Home Hero</h2>
+      <geek-home-hero></geek-home-hero>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Trust Bar</h2>
+      <geek-trust-bar></geek-trust-bar>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Services Highlight</h2>
+      <geek-services-highlight></geek-services-highlight>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — About Teaser</h2>
+      <geek-about-teaser></geek-about-teaser>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Home CTA</h2>
+      <geek-home-cta></geek-home-cta>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Quote AI</h2>
+      <geek-quote-ai></geek-quote-ai>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — About Hero</h2>
+      <geek-about-hero></geek-about-hero>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Services Page Hero</h2>
+      <geek-services-page-hero></geek-services-page-hero>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Services Detail</h2>
+      <geek-services-detail></geek-services-detail>
+    </div>
+
+    <div class="test-section geek">
+      <h2>Geek — Pong</h2>
+      <geek-pong></geek-pong>
+    </div>
+
+    <!-- GET-ORDER-STACK COMPONENTS -->
+    <div class="test-section orderstack">
+      <h2>Get-Order-Stack — Login</h2>
+      <get-order-stack-login></get-order-stack-login>
+    </div>
+
+    <div class="test-section orderstack">
+      <h2>Get-Order-Stack — Restaurant Select</h2>
+      <get-order-stack-restaurant-select></get-order-stack-restaurant-select>
+    </div>
+
+    <div class="test-section orderstack">
+      <h2>Get-Order-Stack — SOS Terminal</h2>
+      <get-order-stack-sos-terminal></get-order-stack-sos-terminal>
+    </div>
+
+    <!-- ACORD PCS CRM -->
+    <div class="test-section crm">
+      <h2>ACORD PCS CRM — Full App (hash routing)</h2>
+      <acord-pcs-crm-app></acord-pcs-crm-app>
+    </div>
+
+    <geek-footer></geek-footer>
+  </div>
+
+  <!-- Load all three bundles as modules -->
+  <script type="module" src="assets/geek-elements/main.js"></script>
+  <script type="module" src="assets/get-order-stack-elements/main.js"></script>
+  <script type="module" src="assets/acord-pcs-crm-elements/main.js"></script>
+
+  <!-- Bundle status checker -->
+  <script type="module">
+    // Wait for all custom elements to register
+    setTimeout(() => {
+      const elements = [
+        // Geek (12)
+        'geek-navbar', 'geek-footer', 'geek-home-hero', 'geek-trust-bar',
+        'geek-services-highlight', 'geek-about-teaser', 'geek-home-cta',
+        'geek-quote-ai', 'geek-about-hero', 'geek-services-page-hero',
+        'geek-services-detail', 'geek-pong',
+        // Get-Order-Stack (4 registered — others are internal to SOS terminal)
+        'get-order-stack-login', 'get-order-stack-restaurant-select',
+        'get-order-stack-sos-terminal', 'get-order-stack-kds-display',
+        // ACORD PCS CRM (1)
+        'acord-pcs-crm-app',
+      ];
+
+      let html = '<strong>Bundle Status:</strong><br>';
+      let registered = 0;
+      let total = elements.length;
+
+      for (const tag of elements) {
+        const exists = !!customElements.get(tag);
+        if (exists) registered++;
+        html += `<span class="${exists ? 'registered' : 'missing'}">${exists ? '&#10003;' : '&#10007;'} ${tag}</span><br>`;
+      }
+
+      html = `<strong>Bundle Status: ${registered}/${total} registered</strong><br>` + html;
+      document.getElementById('bundle-status').innerHTML = html;
+    }, 2000);
+  </script>
+
+</body>
+</html>
