@@ -30,8 +30,28 @@ function geek_enqueue_styles()
     'all'
   );
 
-  // Get-Order-Stack stylesheet — demo pages only
-  if (is_page('taipa-demo')) {
+  // Get-Order-Stack stylesheet — OrderStack demo pages
+  $orderstack_pages = array(
+    'taipa-demo',
+    'orderstack-kds',
+    'orderstack-menu-engineering',
+    'orderstack-sales',
+    'orderstack-inventory',
+    'orderstack-menu-management',
+    'orderstack-orders',
+    'orderstack-online-ordering',
+    'orderstack-reservations',
+    'orderstack-command-center',
+    'orderstack-floor-plan',
+    'orderstack-crm',
+    'orderstack-ai-chat',
+    'orderstack-monitoring',
+    'orderstack-voice-order',
+    'orderstack-pricing',
+    'orderstack-waste',
+    'orderstack-sentiment',
+  );
+  if (is_page($orderstack_pages)) {
     wp_enqueue_style(
       'order-stack-elements-css',
       get_template_directory_uri() . '/assets/geek-elements/get-order-stack-elements/styles.css',
@@ -46,6 +66,17 @@ function geek_enqueue_styles()
     wp_enqueue_style(
       'crm-elements-css',
       get_template_directory_uri() . '/assets/geek-elements/acord-pcs-crm-elements/styles.css',
+      array(),
+      '1.0.0',
+      'all'
+    );
+  }
+
+  // ACORD LHA CRM stylesheet — demo pages only
+  if (is_page('acord-lhs-demo')) {
+    wp_enqueue_style(
+      'lha-crm-elements-css',
+      get_template_directory_uri() . '/assets/geek-elements/acord-lha-crm-elements/styles.css',
       array(),
       '1.0.0',
       'all'
@@ -66,8 +97,28 @@ function geek_enqueue_modules()
     '1.0.0'
   );
 
-  // Get-Order-Stack elements bundle — demo pages only
-  if (is_page('taipa-demo')) {
+  // Get-Order-Stack elements bundle — OrderStack demo pages
+  $orderstack_pages = array(
+    'taipa-demo',
+    'orderstack-kds',
+    'orderstack-menu-engineering',
+    'orderstack-sales',
+    'orderstack-inventory',
+    'orderstack-menu-management',
+    'orderstack-orders',
+    'orderstack-online-ordering',
+    'orderstack-reservations',
+    'orderstack-command-center',
+    'orderstack-floor-plan',
+    'orderstack-crm',
+    'orderstack-ai-chat',
+    'orderstack-monitoring',
+    'orderstack-voice-order',
+    'orderstack-pricing',
+    'orderstack-waste',
+    'orderstack-sentiment',
+  );
+  if (is_page($orderstack_pages)) {
     wp_enqueue_script_module(
       'order-stack-elements',
       get_template_directory_uri() . '/assets/geek-elements/get-order-stack-elements/main.js',
@@ -81,6 +132,16 @@ function geek_enqueue_modules()
     wp_enqueue_script_module(
       'crm-elements',
       get_template_directory_uri() . '/assets/geek-elements/acord-pcs-crm-elements/main.js',
+      array(),
+      '1.0.0'
+    );
+  }
+
+  // ACORD LHA CRM elements bundle — demo pages only
+  if (is_page('acord-lhs-demo')) {
+    wp_enqueue_script_module(
+      'lha-crm-elements',
+      get_template_directory_uri() . '/assets/geek-elements/acord-lha-crm-elements/main.js',
       array(),
       '1.0.0'
     );
