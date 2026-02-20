@@ -402,11 +402,19 @@ get_header();
       updateStatusDisplay(prefs);
     }
 
+    // Update status display live as toggles change
+    function onToggleChange() {
+      updateStatusDisplay(buildPrefsFromToggles());
+    }
+
     // Initialize on load
     document.addEventListener('DOMContentLoaded', function() {
       var saved = geekGetConsent();
       setTogglesFromPrefs(saved);
       updateStatusDisplay(saved);
+
+      document.getElementById('toggle-analytics').addEventListener('change', onToggleChange);
+      document.getElementById('toggle-advertising').addEventListener('change', onToggleChange);
     });
   </script>
 

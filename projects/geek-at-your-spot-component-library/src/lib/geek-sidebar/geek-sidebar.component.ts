@@ -30,7 +30,7 @@ export class GeekSidebarComponent {
       name: 'Demo',
       children: [
         { name: 'ACORD PCS Demo', href: '/acord-pcs-demo/' },
-        { name: 'OrderStack: Self-Order Terminal', href: '/taipa-demo/' },
+        { name: 'OrderStack: Server Ordering', href: '/orderstack-server-ordering/' },
         { name: 'OrderStack: Kitchen Display', href: '/orderstack-kds/' },
         { name: 'OrderStack: Orders', href: '/orderstack-orders/' },
         { name: 'OrderStack: Online Ordering', href: '/orderstack-online-ordering/' },
