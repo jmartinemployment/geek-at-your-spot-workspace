@@ -30,9 +30,9 @@ function geek_enqueue_styles()
     'all'
   );
 
-  // Get-Order-Stack stylesheet — OrderStack demo pages
+  // Get-Order-Stack stylesheet — OrderStack pages
   $orderstack_pages = array(
-    'taipa-demo',
+    'orderstack-server-ordering',
     'orderstack-kds',
     'orderstack-menu-engineering',
     'orderstack-sales',
@@ -50,13 +50,24 @@ function geek_enqueue_styles()
     'orderstack-pricing',
     'orderstack-waste',
     'orderstack-sentiment',
+    'orderstack-order-pad',
+    'orderstack-staff-portal',
+    'orderstack-food-cost',
+    'orderstack-multi-location',
+    'orderstack-pos',
+    'orderstack-close-of-day',
+    'orderstack-kiosk',
+    'orderstack-settings',
+    'orderstack-scheduling',
+    'orderstack-marketing',
+    'orderstack-invoicing',
   );
   if (is_page($orderstack_pages)) {
     wp_enqueue_style(
       'order-stack-elements-css',
       get_template_directory_uri() . '/assets/geek-elements/get-order-stack-elements/styles.css',
       array(),
-      '1.0.0',
+      '1.2.0',
       'all'
     );
   }
@@ -82,6 +93,28 @@ function geek_enqueue_styles()
       'all'
     );
   }
+
+  // RankPilot stylesheet — rankpilot page only
+  if (is_page('rankpilot')) {
+    wp_enqueue_style(
+      'rankpilot-elements-css',
+      get_template_directory_uri() . '/assets/geek-elements/rankpilot/styles.css',
+      array(),
+      '0.1.0',
+      'all'
+    );
+  }
+
+  // GeekFlow stylesheet — geek-flow page only
+  if (is_page('geek-flow')) {
+    wp_enqueue_style(
+      'geek-flow-elements-css',
+      get_template_directory_uri() . '/assets/geek-elements/geek-flow-elements/styles.css',
+      array(),
+      '0.1.0',
+      'all'
+    );
+  }
 }
 add_action('wp_enqueue_scripts', 'geek_enqueue_styles');
 
@@ -97,9 +130,9 @@ function geek_enqueue_modules()
     '1.0.0'
   );
 
-  // Get-Order-Stack elements bundle — OrderStack demo pages
+  // Get-Order-Stack elements bundle — OrderStack pages
   $orderstack_pages = array(
-    'taipa-demo',
+    'orderstack-server-ordering',
     'orderstack-kds',
     'orderstack-menu-engineering',
     'orderstack-sales',
@@ -117,13 +150,24 @@ function geek_enqueue_modules()
     'orderstack-pricing',
     'orderstack-waste',
     'orderstack-sentiment',
+    'orderstack-order-pad',
+    'orderstack-staff-portal',
+    'orderstack-food-cost',
+    'orderstack-multi-location',
+    'orderstack-pos',
+    'orderstack-close-of-day',
+    'orderstack-kiosk',
+    'orderstack-settings',
+    'orderstack-scheduling',
+    'orderstack-marketing',
+    'orderstack-invoicing',
   );
   if (is_page($orderstack_pages)) {
     wp_enqueue_script_module(
       'order-stack-elements',
       get_template_directory_uri() . '/assets/geek-elements/get-order-stack-elements/main.js',
       array(),
-      '1.0.0'
+      '1.2.0'
     );
   }
 
@@ -144,6 +188,26 @@ function geek_enqueue_modules()
       get_template_directory_uri() . '/assets/geek-elements/acord-lha-crm-elements/main.js',
       array(),
       '1.0.0'
+    );
+  }
+
+  // RankPilot elements bundle — rankpilot page only
+  if (is_page('rankpilot')) {
+    wp_enqueue_script_module(
+      'rankpilot-elements',
+      get_template_directory_uri() . '/assets/geek-elements/rankpilot/main.js',
+      array(),
+      '0.1.0'
+    );
+  }
+
+  // GeekFlow elements bundle — geek-flow page only
+  if (is_page('geek-flow')) {
+    wp_enqueue_script_module(
+      'geek-flow-elements',
+      get_template_directory_uri() . '/assets/geek-elements/geek-flow-elements/main.js',
+      array(),
+      '0.1.0'
     );
   }
 }
