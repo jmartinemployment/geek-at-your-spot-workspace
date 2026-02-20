@@ -13,9 +13,8 @@ get_header();
   <main style="padding-top: 5rem; min-height: 100vh;">
     <get-order-stack-login></get-order-stack-login>
     <get-order-stack-restaurant-select></get-order-stack-restaurant-select>
-    <get-order-stack-category-management></get-order-stack-category-management>
-    <get-order-stack-item-management></get-order-stack-item-management>
-    <get-order-stack-combo-management></get-order-stack-combo-management>
+    <get-order-stack-pos-terminal></get-order-stack-pos-terminal>
+    <get-order-stack-cash-drawer></get-order-stack-cash-drawer>
   </main>
 </body>
 <?php
