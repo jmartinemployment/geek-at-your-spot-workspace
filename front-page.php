@@ -5,7 +5,7 @@ get_header();
 <body
   style="background-color:white;overflow-x: hidden;padding: 0;margin: 0;height:auto;width:100%;scroll-behavior: smooth;">
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5CXSQRP" height="0" width="0"
+  <noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-K5CXSQRP" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
@@ -20,9 +20,9 @@ get_header();
     <!-- Section 2: Trust Bar (Light/White) - Quick stats -->
     <geek-trust-bar></geek-trust-bar>
 
-    <!-- Section 3: AI Quote Tool (Purple) - Instant estimate -->
+    <!-- Section 3: AI Quote Tool (Purple) - Instant estimate
     <geek-quote-ai></geek-quote-ai>
-
+-->
     <!-- Section 4: Services Highlights (Dark) - 4 key services -->
     <geek-services-highlight></geek-services-highlight>
 
