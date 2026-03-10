@@ -1,5 +1,7 @@
 <?php
 
+define('GEEK_THEME_VERSION', GEEK_THEME_VERSION);
+
 // Theme Setup - MUST be on after_setup_theme hook
 function geek_theme_setup()
 {
@@ -26,7 +28,7 @@ function geek_enqueue_styles()
     'geek-elements-css',
     get_template_directory_uri() . '/assets/geek-elements/styles.css',
     array(),
-    '1.0.0',
+    GEEK_THEME_VERSION,
     'all'
   );
 
@@ -78,7 +80,7 @@ function geek_enqueue_styles()
       'crm-elements-css',
       get_template_directory_uri() . '/assets/geek-elements/acord-pcs-crm-elements/styles.css',
       array(),
-      '1.0.0',
+      GEEK_THEME_VERSION,
       'all'
     );
   }
@@ -89,7 +91,7 @@ function geek_enqueue_styles()
       'lha-crm-elements-css',
       get_template_directory_uri() . '/assets/geek-elements/acord-lha-crm-elements/styles.css',
       array(),
-      '1.0.0',
+      GEEK_THEME_VERSION,
       'all'
     );
   }
@@ -118,6 +120,34 @@ function geek_enqueue_styles()
 }
 add_action('wp_enqueue_scripts', 'geek_enqueue_styles');
 
+// OrderStack Signup — Bootstrap CSS, PayPal SDK, Stripe.js
+function orderstack_signup_assets()
+{
+  if (!is_page('orderstack-signup'))
+    return;
+
+  // Bootstrap 5.3.8 (not bundled in any Angular Elements build)
+  wp_enqueue_style(
+    'bootstrap-css',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
+    array(),
+    '5.3.8',
+    'all'
+  );
+
+  // PayPal SDK — sandbox with vault for subscriptions
+  wp_enqueue_script(
+    'paypal-sdk',
+    'https://www.paypal.com/sdk/js?client-id=Ad4s6CdaCdVAaN047scpnIbJQx0_jNBmjuN7gn4ivxdkujaupt9C4csFMwlyaYw5yUGY268m5Fw90ig3&vault=true&intent=subscription',
+    array(),
+    null,
+    true
+  );
+
+
+}
+add_action('wp_enqueue_scripts', 'orderstack_signup_assets');
+
 // Enqueue Script Modules — loaded with type="module" for scope isolation
 // Each bundle is in its own directory since outputHashing: "none" produces main.js for all
 function geek_enqueue_modules()
@@ -127,7 +157,7 @@ function geek_enqueue_modules()
     'geek-elements',
     get_template_directory_uri() . '/assets/geek-elements/main.js',
     array(),
-    '1.0.0'
+    GEEK_THEME_VERSION
   );
 
   // Get-Order-Stack elements bundle — OrderStack pages
@@ -177,7 +207,7 @@ function geek_enqueue_modules()
       'crm-elements',
       get_template_directory_uri() . '/assets/geek-elements/acord-pcs-crm-elements/main.js',
       array(),
-      '1.0.0'
+      GEEK_THEME_VERSION
     );
   }
 
@@ -187,7 +217,7 @@ function geek_enqueue_modules()
       'lha-crm-elements',
       get_template_directory_uri() . '/assets/geek-elements/acord-lha-crm-elements/main.js',
       array(),
-      '1.0.0'
+      GEEK_THEME_VERSION
     );
   }
 
